@@ -64,7 +64,7 @@ telegram_username:
 vk_id:
 
 # Post sharing icons
-show_sharing_icons: true
+show_sharing_icons: false
 # Change to 'true' to enable individual icons
 share_facebook: true
 share_twitter: true
@@ -72,7 +72,7 @@ share_googleplus: false
 share_linkedin: false
 share_digg: false
 share_tumblr: false
-share_reddit: true
+share_reddit: false
 share_stumbleupon: false
 share_hackernews: false
 

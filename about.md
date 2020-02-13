@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About One Unicorn
+title: About
 permalink: /about/
 tags: about
 ---
@@ -16,7 +16,7 @@ This is what I wrote when I originally started this blog:
 For EF 4.0 I worked mostly on POCO support and FK associations, with a bunch of other things thrown in.
 Since we wrapped up work on EF4 I have been primarily involved in the DbContext API and Code First.
 
-Now I work primarily on [EF Core]().
+I still work on DbContext. Only now in [EF Core](https://github.com/dotnet/efcore).
 
 You can follow me on twitter as [@ajcvickers](https://twitter.com/ajcvickers).
 
