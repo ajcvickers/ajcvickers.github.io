@@ -2,8 +2,6 @@
 layout: default
 ---
 
----
-
 ## Recent Posts
 
 ### Today was a good day at work
@@ -34,7 +32,38 @@ This isn't easy for me, but more and more it feels both rewarding and worthwhile
 
 ## EF Core 5
 
+### Something about it...
+
+&nbsp;&nbsp;&nbsp;&nbsp;What...
+
+&nbsp;&nbsp;&nbsp;&nbsp;Oh yeah
+
+&nbsp;&nbsp;&nbsp;&nbsp;[[Read more...](_posts/2020-01-29-coreor6.md)]
+
+### Something about it...
+
+&nbsp;&nbsp;&nbsp;&nbsp;What...
+
+&nbsp;&nbsp;&nbsp;&nbsp;Oh yeah
+
+&nbsp;&nbsp;&nbsp;&nbsp;[[Read more...](_posts/2020-01-29-coreor6.md)]
+
 ---
 
 ## EF Core 3.0/3.1
 
+### Something about it...
+
+&nbsp;&nbsp;&nbsp;&nbsp;What...
+
+&nbsp;&nbsp;&nbsp;&nbsp;Oh yeah
+
+&nbsp;&nbsp;&nbsp;&nbsp;[[Read more...](_posts/2020-01-29-coreor6.md)]
+
+### Something about it...
+
+&nbsp;&nbsp;&nbsp;&nbsp;What...
+
+&nbsp;&nbsp;&nbsp;&nbsp;Oh yeah
+
+&nbsp;&nbsp;&nbsp;&nbsp;[[Read more...](_posts/2020-01-29-coreor6.md)]
