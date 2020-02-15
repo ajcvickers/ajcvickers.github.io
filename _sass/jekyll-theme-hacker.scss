@@ -53,7 +53,8 @@ li {
 
 header {
   background: rgba(0, 0, 0, 0.1);
-  width: $container-max-width;
+  width: 100%;
+  max-width: $container-max-width;
   border-bottom: 1px dashed $conifer; //header;
   padding: 20px 0;
   margin: 0 0 40px 0;
@@ -76,11 +77,15 @@ header h1 {
   }
 }
 
-
 header h1:before {
-  content: "🦄 ";
+  background-image: "../../android-chrome-192x192.png";
   font-size: 24px;
 }
+
+// header h1:before {
+//   content: "🦄 ";
+//   font-size: 24px;
+// }
 
 header h2 {
   font-size: 18px;
