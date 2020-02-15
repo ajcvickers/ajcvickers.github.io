@@ -22,9 +22,11 @@ This isn't easy for me, but more and more it feels both rewarding and worthwhile
 
 &nbsp;&nbsp;&nbsp;&nbsp;TL;DR:
 
-* Use EF Core.
-* Or EF6 if it works better for you.
-* Or Dapper.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;» Use EF Core.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;» Or EF6 if it works better for you.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;» Or Dapper.
 
 &nbsp;&nbsp;&nbsp;&nbsp;[[Read more...](_posts/2020-01-29-coreor6.md)]
 

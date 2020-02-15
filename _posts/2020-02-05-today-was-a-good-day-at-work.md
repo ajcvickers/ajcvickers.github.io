@@ -14,7 +14,7 @@ And I didn't write any code today.
 I was working with people all day.
 This isn't easy for me, but more and more it feels both rewarding and worthwhile.
 
-### Me
+### » Me
 
 I'm a geek, a dork, a clumsy introvert.
 Meeting new people is hard for me.
@@ -25,7 +25,7 @@ And happier people.<sup>([1](#footnote-1))</sup>
 One of my most important jobs as a manager is to facilitate and encourage effective collaboration.
 Today I think I achieved that, which made it a good day.
 
-### My day
+### » My day
 
 The EF team meets for a couple of hours every Wednesday morning for a "Design Meeting".
 It went well--good humored, productive, and with digressions about other stuff going on around us.
@@ -48,7 +48,7 @@ I also remembered to thank the SqlClient team for the good job they are doing ma
 But remembering to _tell people_ you are thankful when appropriate is important.)
 It went well.
 
-### I'm medicated
+### » I'm medicated
 
 I've been taking antianxiety medication for three years now.
 It took me until my 40s to realize that I didn't have to live with the level of social anxiety I was accustomed to.
@@ -60,7 +60,7 @@ Days like today would have been too stressful for me to cope.
 Instead I was able to bring people together.
 And that made it a good day.
 
-### Footnotes
+### » Footnotes
 
 <a name="footnote-1"></a>
 <sup>(1)</sup> I have many thoughts on teamwork. And happy people. I'll probably post more about it at a later date.
