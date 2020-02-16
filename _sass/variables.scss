@@ -4,11 +4,11 @@ $medium-breakpoint: 42em !default;
 
 // Headers
 $header-heading-color: #fff !default;
-$header-bg-color: #159957 !default;
-$header-bg-color-secondary: #155799 !default;
+$header-bg-color: #671599 !default;
+$header-bg-color-secondary: #153999 !default;
 
 // Text
-$section-headings-color: #159957 !default;
+$section-headings-color: #571589 !default;
 $body-text-color: #606c71 !default;
 $body-link-color: #1e6bb8 !default;
 $blockquote-text-color: #819198 !default;
@@ -21,3 +21,18 @@ $code-text-color: #567482 !default;
 $border-color: #dce6f0 !default;
 $table-border-color: #e9ebec !default;
 $hr-border-color: #eff0f1 !default;
+
+$spacing-unit:     30px !default;
+
+@mixin relative-font-size($ratio) {
+    font-size: #{$ratio}rem;
+  }
+
+$brand-color: #671599 !default;
+$brand-color-light: #671599 !default;
+
+$content-width:    800px !default;
+$on-palm:          600px !default;
+$on-laptop:        800px !default;
+$on-medium:        $on-palm !default;
+$on-large:         $on-laptop !default;

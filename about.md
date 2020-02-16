@@ -4,6 +4,8 @@ title: About
 permalink: /about/
 ---
 
+<img class="just-me" src="/assets/me.jpg" alt="Me">
+
 Sometimes I feel like sharing thoughts about the Entity Framework, my team, Microsoft, or coding in general.
 This blog is a place to put those thoughts.
 
@@ -15,7 +17,7 @@ This is what I wrote in 2011:
 For EF 4.0 I worked mostly on POCO support and FK associations, with a bunch of other things thrown in.
 Since we wrapped up work on EF4 I have been primarily involved in the DbContext API and Code First.
 
-Not much has changed. :smilecat:
+Not much has changed. :smile_cat:
 
 Thanks for reading!
 

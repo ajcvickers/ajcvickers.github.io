@@ -19,19 +19,27 @@
 # in the templates via {{ site.myvariable }}.
 
 title: One Unicorn
-email: ajcvickers@hotmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Thoughts from one member of the Entity Framework team.
+author:
+  name: Arthur Vickers
+  email: ajcvickers@hotmail.com
+description: Thoughts from one member of the Entity Framework team.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ajcvickers.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 markdown: GFM
-twitter_username: ajcvickers
-github_username:  ajcvickers
+
+minima:
+    social_links:
+        twitter: ajcvickers
+        github:  ajcvickers
 
 # Build settings
-theme: jekyll-theme-cayman
+theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-mentions
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
   - jemoji
 
 # Exclude from processing.

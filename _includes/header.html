@@ -1,0 +1,13 @@
+<header class="site-header">
+
+  <div class="wrapper">
+    {%- assign default_paths = site.pages | map: "path" -%}
+    {%- assign page_paths = site.header_pages | default: default_paths -%}
+    {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
+
+    <header class="page-header" role="banner">
+      <a class="project-name" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+      <h2 class="project-tagline">{{ site.description }}</h2>
+    </header>
+  </div>
+</header>

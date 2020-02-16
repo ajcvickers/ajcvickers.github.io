@@ -112,7 +112,7 @@ a {
   background-image: linear-gradient(120deg, $header-bg-color-secondary, $header-bg-color);
 
   @include large {
-    padding: 5rem 6rem;
+    padding: 3rem 4rem;
   }
 
   @include medium {
@@ -127,6 +127,14 @@ a {
 .project-name {
   margin-top: 0;
   margin-bottom: 0.1rem;
+
+  color: $header-heading-color;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: none;
+  }
 
   @include large {
     font-size: 3.25rem;
@@ -313,7 +321,7 @@ a {
     word-break: normal;
     word-break: keep-all; // For Firefox to horizontally scroll wider tables.
     -webkit-overflow-scrolling: touch;
-
+    
     th {
       font-weight: bold;
     }
@@ -349,30 +357,75 @@ a {
     border: 0;
   }
 }
+.footer-title {
+  font-size: 1.5rem;
+  color: $brand-color;
 
-.site-footer {
-  padding-top: 2rem;
-  margin-top: 2rem;
-  border-top: solid 1px $hr-border-color;
-
-  @include large {
-    font-size: 1rem;
-  }
-
-  @include medium {
-    font-size: 1rem;
-  }
-
-  @include small {
-    font-size: 0.9rem;
+  &:hover {
+    text-decoration: none;
   }
 }
 
-.site-footer-owner {
+.footer-heading {
+  color: $brand-color;
+
+  width: 56rem;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+
+  table {
+   
+    border-collapse: collapse;
+
+    th {
+      font-weight: bold;
+    }
+
+    th,
+    td {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+      border-top: 1px solid $brand-color-light;
+}
+  }
+}
+
+.contact-list,
+.social-media-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.footer-col-wrapper,
+.social-links {
+  text-align: right;
+  vertical-align: middle;
+}
+
+.svg-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-center;
+}
+
+.post-preview {
+  margin-left: 30px;
+}
+
+.just-me {
   display: block;
-  font-weight: bold;
-}
-
-.site-footer-credits {
-  color: $blockquote-text-color;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border: thick;
+  border-style: solid;
+  border-color: $brand-color;
 }
