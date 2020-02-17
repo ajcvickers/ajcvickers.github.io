@@ -6,9 +6,22 @@
     {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
 
     <header class="page-header" role="banner">
-      <img class="a-unicorn" src="/assets/1unicorn.png" alt="Me">
-      <a class="project-name" href="{{ "/" | relative_url }}">1unicorn2</a>
-      <img class="a-unicorn" src="/assets/unicorn2.png" alt="Me">
+      <div class="heading-table">
+
+        <table>
+          <tr>
+            <td>
+              <img class="a-unicorn" src="/assets/1unicorn.png" alt="Me">
+            </td>
+            <td>
+              <a class="project-name" href="{{ "/" | relative_url }}">1unicorn2</a>
+            </td>
+            <td>
+              <img class="a-unicorn" src="/assets/unicorn2.png" alt="Me">
+            </td>
+          </tr>
+        </table>
+      </div>
 
       <h2 class="project-tagline">{{ site.description }}</h2>
     </header>

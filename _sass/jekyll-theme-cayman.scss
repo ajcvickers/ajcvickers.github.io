@@ -471,7 +471,7 @@ table {
 }
 
 .a-unicorn {
-  width: 200px;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
   border: none;
@@ -509,6 +509,52 @@ table {
       vertical-align: top;
       text-align: right;
       width: 25%;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border: none;
+    }
+  }
+}
+
+.heading-table {
+  text-align: center;
+  table {
+    display: table;
+    width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    border: none;
+    border-collapse: collapse;
+
+    tr {
+      border: none;
+    }
+    
+    td:nth-child(1) {
+      vertical-align: middle;
+      text-align: right;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border: none;
+    }
+    
+    td:nth-child(2) {
+      vertical-align: middle;
+      text-align: center;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border: none;
+    }
+    
+    td:nth-child(3) {
+      vertical-align: middle;
+      text-align: left;
       padding-left: 0;
       padding-right: 0;
       padding-top: 0;
