@@ -376,40 +376,48 @@ a {
 
 .footer-title {
   font-size: 1.5rem;
-  color: $brand-color;
-
-  &:hover {
-    text-decoration: none;
-  }
 }
 
 .footer-heading {
-  color: $brand-color;
+  a:hover {
+    text-decoration: none;
+  }
+  a {
+    color: $body-link-color;
+  }
 
-  width: 52rem;
-  margin-top: 0;
-  margin-left: auto;
-  margin-right: auto;
-
-  table {
-   
+table {
+    display: table;
+    width: 100%;
+    color: $brand-color;
+    padding-top: 10px;
     border-collapse: collapse;
+    border-top: solid;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
 
-    th {
-      font-weight: bold;
+    tr {
+      width: 100%;
+      border: none;
     }
 
-    th,
-    td {
+    td
+    {
       padding-left: 0;
       padding-right: 0;
       padding-top: 0;
       padding-bottom: 0;
-      border-left: none;
-      border-right: none;
-      border-bottom: none;
-      border-top: 1px solid $brand-color-light;
-}
+      border: none;
+    }
+    
+    td:nth-child(1) {
+      text-align: left;
+    }
+    
+    td:nth-child(2) {
+      text-align: right;
+    }
   }
 }
 
@@ -419,11 +427,11 @@ a {
   margin-left: 0;
 }
 
-.footer-col-wrapper,
-.social-links {
-  text-align: right;
-  vertical-align: middle;
-}
+// .footer-col-wrapper,
+// .social-links {
+//   text-align: right;
+//   vertical-align: middle;
+// }
 
 .svg-icon {
   width: 16px;
@@ -454,6 +462,7 @@ a {
 .just-me {
   display: block;
   margin-left: auto;
+  margin-right: auto;
   margin-right: auto;
   width: 50%;
   border: thick;
