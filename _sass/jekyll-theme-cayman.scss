@@ -124,12 +124,18 @@ a {
   }
 }
 
+.project-sub {
+  font-size: xx-small;
+}
+
+
 .project-name {
   margin-top: 0;
   margin-bottom: 0.1rem;
 
   color: $header-heading-color;
   text-decoration: none;
+  vertical-align: bottom;
   font-weight: bold;
 
   &:hover {
@@ -350,13 +356,24 @@ a {
   }
 
   hr {
-    height: 2px;
+    height: 1px;
     padding: 0;
     margin: 1rem 0;
-    background-color: $hr-border-color;
+    background-color: $brand-color-light;
     border: 0;
   }
 }
+
+.big-rule {
+  hr {
+    height: 4px;
+    padding: 0;
+    margin: 1rem 0;
+    background-color: $brand-color-light;
+    border: 0;
+  }
+}
+
 .footer-title {
   font-size: 1.5rem;
   color: $brand-color;
@@ -369,7 +386,7 @@ a {
 .footer-heading {
   color: $brand-color;
 
-  width: 56rem;
+  width: 52rem;
   margin-top: 0;
   margin-left: auto;
   margin-right: auto;
@@ -416,8 +433,22 @@ a {
   vertical-align: text-center;
 }
 
-.post-preview {
+.post-preview-1 {
+  background-color: $post-summary-bg-color;
+}
+
+.post-preview-2 {
+  margin-left: 10px;
+}
+
+.post-preview-3 {
   margin-left: 30px;
+}
+
+.index_titles {
+  h1 {
+    text-align: center;
+  }
 }
 
 .just-me {
@@ -428,4 +459,52 @@ a {
   border: thick;
   border-style: solid;
   border-color: $brand-color;
+}
+
+.a-unicorn {
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+}
+
+.intro-me {
+  margin-left: 10px;
+  margin-right: 0;
+  width: 150px;
+  border: thin;
+  border-style: solid;
+  border-color: $brand-color;
+}
+
+.intro-table {
+  table {
+    border: none;
+    border-collapse: collapse;
+
+    tr {
+      border: none;
+    }
+    
+    td:nth-child(1) {
+      vertical-align: top;
+      width: 75%;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border: none;
+    }
+    
+    td:nth-child(2) {
+      vertical-align: top;
+      text-align: right;
+      width: 25%;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border: none;
+    }
+  }
 }

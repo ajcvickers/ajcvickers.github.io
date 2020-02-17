@@ -18,11 +18,11 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: One Unicorn
+title: 1unicorn2
 author:
   name: Arthur Vickers
   email: ajcvickers@hotmail.com
-description: Thoughts from one member of the Entity Framework team.
+description: More thoughts from a member of the Entity Framework team.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ajcvickers.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 markdown: GFM

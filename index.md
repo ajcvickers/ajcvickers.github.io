@@ -2,18 +2,43 @@
 layout: default
 ---
 
+<div class="index_titles">
+
 # Welcome!
 
-This is a blog about sofware development, Entity Framework, .NET Core, C#, and random other things.
+---
 
-I am the [Engineering Manager for Entity Framework](about.md) at Microsoft.
+<div class="intro-table">
+<table>
+<tr>
+<td>
+<p>
+This is a blog about sofware development, Entity Framework, .NET Core, C#, and random other things.
+</p>
+
+I'm [Arthur](about.md) and I'm the Engineering Manager for Entity Framework at Microsoft.
 However, this is my personal blog, and the opinions expressed here are my own.
+
+</td>
+<td>
+<img class="intro-me" src="/assets/mesquare.jpg" alt="Me">
+</td>
+</tr>
+</table>
+</div>
+
+<span class="big-rule">
+<hr/>
+</span>
 
 # Recent Posts
 
+<div class="post-preview-1">
+<div class="post-preview-2">
+
 ## Today was a good day at work
 
-<div class="post-preview">
+<div class="post-preview-3">
 
 No, this post isn't about installing Linux.
 
@@ -25,10 +50,15 @@ This isn't easy for me, but more and more it feels both rewarding and worthwhile
 [[Read more...](_posts/2020-02-05-today-was-a-good-day-at-work.md)]
 
 </div>
+</div>
+</div>
+
+<div class="post-preview-1">
+<div class="post-preview-2">
 
 ## What's the difference between EF Core and EF6, and which one should I use?
 
-<div class="post-preview">
+<div class="post-preview-3">
 
 TL;DR:
 
@@ -39,22 +69,85 @@ TL;DR:
 [[Read more...](_posts/2020-01-29-coreor6.md)]
 
 </div>
+</div>
+</div>
 
-# Posts
+<span class="big-rule">
+<hr/>
+</span>
 
-## EF Core 5
+# All Posts
 
-## EF Core 3.0/3.1
+<div class="post-preview-1">
+<div class="post-preview-2">
 
-## EF Core 1.x/2.x
+## Entity Framework 101
+
+<div class="post-preview-3">
+
+[What's the difference between EF Core and EF6, and which one should I use?](_posts/2020-01-29-coreor6.md)
+
+</div>
+</div>
+</div>
+
+## EF Core
+
+<div class="post-preview-2">
+<div class="post-preview-3">
+
+</div>
+</div>
 
 ## EF6 and earlier
 
+<div class="post-preview-2">
+<div class="post-preview-3">
+
+</div>
+</div>
+
 ## Software development
+
+<div class="post-preview-2">
+<div class="post-preview-3">
+
+[Today was a good day at work](_posts/2020-02-05-today-was-a-good-day-at-work.md)
+
+</div>
+</div>
 
 ## Random stuff
 
+<span class="big-rule">
+<hr/>
+</span>
+
 # Useful links
+
+## Documentation
+
+Microsoft:
+
+* [EF Core]()
+* [EF Core API reference]()
+* [.NET Core]()
+* [ASP.NET Core]()
+* [EF6]()
+* [EF6 API reference]()
+
+Other:
+
+* [Npgsql (PostgreSQL)]()
+* [PostgreSQL for EF Core]()
+* [MySQL Connector]()
+* [MySQL for EF Core]()
+* [Dapper]()
+
+## Install
+
+NuGet packages
+SDKs
 
 ## Code and issues on GitHub
 
@@ -75,21 +168,9 @@ Other open-source projects relevant to .NET data access:
 * [MySQL for EF Core]()
 * [Dapper]()
 
-## Documentation
+</div>
 
-Microsoft:
+---
 
-* [EF Core]()
-* [EF Core API reference]()
-* [.NET Core]()
-* [ASP.NET Core]()
-* [EF6]()
-* [EF6 API reference]()
-
-Other:
-
-* [Npgsql (PostgreSQL)]()
-* [PostgreSQL for EF Core]()
-* [MySQL Connector]()
-* [MySQL for EF Core]()
-* [Dapper]()
+ASCII unicorns originally by [Brice Lambson](https://www.bricelam.net/) for [dotnet-ef](https://www.nuget.org/packages/dotnet-ef/).
+Many thanks to Brice.
