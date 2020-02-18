@@ -375,7 +375,8 @@ a {
 }
 
 .footer-title {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .footer-heading {
@@ -441,15 +442,25 @@ table {
   vertical-align: text-center;
 }
 
-.post-preview-1 {
-  background-color: $post-summary-bg-color;
+.backing-blue {
+  background-color: $post-summary-bg-color-blue;
+  margin-bottom: 20px;
 }
 
-.post-preview-2 {
+.backing-purple {
+  background-color: $post-summary-bg-color;
+  margin-bottom: 5px;
+}
+
+.post-preview-10 {
   margin-left: 10px;
 }
 
-.post-preview-3 {
+.post-preview-20 {
+  margin-left: 20px;
+}
+
+.post-preview-30 {
   margin-left: 30px;
 }
 

@@ -33,12 +33,12 @@ However, this is my personal blog, and the opinions expressed here are my own.
 
 # Recent Posts
 
-<div class="post-preview-1">
-<div class="post-preview-2">
+<div class="backing-purple">
+<div class="post-preview-10">
 
 ## Today was a good day at work
 
-<div class="post-preview-3">
+<div class="post-preview-30">
 
 No, this post isn't about installing Linux.
 
@@ -53,12 +53,12 @@ This isn't easy for me, but more and more it feels both rewarding and worthwhile
 </div>
 </div>
 
-<div class="post-preview-1">
-<div class="post-preview-2">
+<div class="backing-purple">
+<div class="post-preview-10">
 
 ## What's the difference between EF Core and EF6, and which one should I use?
 
-<div class="post-preview-3">
+<div class="post-preview-30">
 
 TL;DR:
 
@@ -78,12 +78,12 @@ TL;DR:
 
 # All Posts
 
-<div class="post-preview-1">
-<div class="post-preview-2">
+<div class="backing-purple">
+<div class="post-preview-10">
 
 ## Entity Framework 101
 
-<div class="post-preview-3">
+<div class="post-preview-30">
 
 [What's the difference between EF Core and EF6, and which one should I use?](_posts/2020-01-29-coreor6.md)
 
@@ -93,24 +93,24 @@ TL;DR:
 
 ## EF Core
 
-<div class="post-preview-2">
-<div class="post-preview-3">
+<div class="post-preview-10">
+<div class="post-preview-30">
 
 </div>
 </div>
 
 ## EF6 and earlier
 
-<div class="post-preview-2">
-<div class="post-preview-3">
+<div class="post-preview-10">
+<div class="post-preview-30">
 
 </div>
 </div>
 
 ## Software development
 
-<div class="post-preview-2">
-<div class="post-preview-3">
+<div class="post-preview-10">
+<div class="post-preview-30">
 
 [Today was a good day at work](_posts/2020-02-05-today-was-a-good-day-at-work.md)
 
