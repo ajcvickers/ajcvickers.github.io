@@ -5,6 +5,8 @@ date: 2020-01-17 22:14
 author: ajcvickers
 comments: true
 categories: [EF Core, Entity Framework]
+
+/2020/01/17/dontcallupdate/
 ---
 I see all kinds of code while investigating issues and answering questions on <a href="https://github.com/dotnet/efcore">GitHub</a>. One thing that frequently crops up is calling <code>DbContext.Update</code> or <code>DbSet.Update</code> when it is not needed.
 

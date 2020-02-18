@@ -1,11 +1,13 @@
-<!-- ---
-layout: post
+---
+layout: default
 title: EF Core adoption is very healthy
 date: 2020-01-29 15:32
 author: ajcvickers
-comments: true
-categories: [EF Core, Entity Framework]
+permalink: 2020/01/29/coreadoption/
 ---
+
+# EF Core adoption is very healthy
+
 I commonly see feedback from people assuming that EF Core is not heavily used. This isn't true. The internal usage numbers are <em>very</em> healthy. The number of people moving from previous EF Core releases to 3.1 is also very healthy. I'm not going to post these numbers on my personal blog because, basically, I don't want to get fired! However, the trends are also visible in public data--notably, NuGet package downloads.
 
 At the time of writing, <a href="https://nugettrends.com/packages?months=24&amp;ids=Microsoft.EntityFrameworkCore&amp;ids=EntityFramework&amp;ids=Dapper&amp;ids=NHibernate">NuGet Trends</a> is returning the following data:
@@ -22,4 +24,4 @@ Anyway, as I said, I really just want to point out that EF Core adoption is very
 
 <hr />
 
-Note: I do not monitor comments on my blogs for several reasons. Please go through the normal process on the <a href="https://github.com/dotnet/efcore">EF Core GutHub repo</a> if you have questions or comments on this information. -->
+Note: I do not monitor comments on my blogs for several reasons. Please go through the normal process on the <a href="https://github.com/dotnet/efcore">EF Core GutHub repo</a> if you have questions or comments on this information.

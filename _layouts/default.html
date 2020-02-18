@@ -15,11 +15,11 @@
         <tr>
           <td> <a class="footer-title" href="{{ "/" | relative_url }}">1uni<span class="project-sub">xy</span>c<span class="project-sub">#</span>or<span class="project-sub">e</span>n<span class="project-sub">et</span>2</a>
           <br/>
-          <a rel="Me" href="/about" title="About me">by Arthur Vickers</a>
+          <a href="/about" title="About me">by Arthur Vickers</a>
           </td>
         
           <td>
-            <a rel="Twitter me" href="https://github.com/{{ social.github | cgi_escape | escape }}" title="{{ social.github | escape }}">
+            <a href="https://github.com/{{ social.github | cgi_escape | escape }}" title="{{ social.github | escape }}">
               <svg class="svg-icon brand-color">
                 <use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}">
                 </use>
@@ -27,7 +27,7 @@
               GitHub
             </a>
             <br/>
-            <a rel="GitHub me" href="https://twitter.com/{{ social.twitter | cgi_escape | escape }}" title="{{ social.twitter | escape }}">
+            <a href="https://twitter.com/{{ social.twitter | cgi_escape | escape }}" title="{{ social.twitter | escape }}">
               <svg class="svg-icon brand-color">
                 <use xlink:href="{{ '/assets/minima-social-icons.svg#twitter' | relative_url }}">
                 </use>

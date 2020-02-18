@@ -5,6 +5,7 @@ date: 2020-01-18 13:30
 author: ajcvickers
 comments: true
 categories: [EF Core, Entity Framework]
+/2020/01/18/docallupdate/
 ---
 My <a href="https://blog.oneunicorn.com/2020/01/17/dontcallupdate/">last post</a> talked about not calling <code>DbContext.Update</code> or <code>DbSet.Update</code> when it isn't needed. This post presents the opposite: a place where it is not obvious but necessary to call <code>Update</code>.
 

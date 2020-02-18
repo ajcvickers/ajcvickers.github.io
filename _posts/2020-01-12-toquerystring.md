@@ -5,6 +5,7 @@ date: 2020-01-12 10:16
 author: ajcvickers
 comments: true
 categories: [EF Core, Entity Framework]
+/2020/01/12/toquerystring/
 ---
 The EF team has been publishing <a href="https://github.com/dotnet/efcore/issues/19549">weekly status updates</a> since the <a href="https://github.com/dotnet/efcore/issues/15403">middle of last year</a>. Recently I have started including brief introductions for newly implemented enhancements. I'm going to experiment with blogging these brief intros to help make them more visible.
 

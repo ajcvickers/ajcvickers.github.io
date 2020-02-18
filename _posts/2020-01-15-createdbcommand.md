@@ -5,6 +5,7 @@ date: 2020-01-15 16:01
 author: ajcvickers
 comments: true
 categories: [EF Core, Entity Framework]
+/2020/01/15/createdbcommand/
 ---
 My <a href="https://blog.oneunicorn.com/2020/01/12/toquerystring/">previous post</a> showed using <code>ToQueryString</code> to get generated SQL. This will commonly be copy-pasted, but it could also be executed directly by the application. For example:
 

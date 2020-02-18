@@ -36,26 +36,6 @@ However, this is my personal blog, and the opinions expressed here are my own.
 <div class="backing-purple">
 <div class="post-preview-10">
 
-## Today was a good day at work
-
-<div class="post-preview-30">
-
-No, this post isn't about installing Linux.
-
-And I didn't write any code today.
-
-I was working with people all day.
-This isn't easy for me, but more and more it feels both rewarding and worthwhile.
-
-[[Read more...](_posts/2020-02-05-today-was-a-good-day-at-work.md)]
-
-</div>
-</div>
-</div>
-
-<div class="backing-purple">
-<div class="post-preview-10">
-
 ## What's the difference between EF Core and EF6, and which one should I use?
 
 <div class="post-preview-30">
@@ -66,7 +46,7 @@ TL;DR:
 * Or EF6 if it works better for you.
 * Or Dapper.
 
-[[Read more...](_posts/2020-01-29-coreor6.md)]
+[[Read more...](/2020/01/29/coreor6/)]
 
 </div>
 </div>
@@ -76,45 +56,63 @@ TL;DR:
 <hr/>
 </span>
 
-# All Posts
-
 <div class="backing-purple">
 <div class="post-preview-10">
+
+## EF Core adoption is very healthy
+
+<div class="post-preview-30">
+
+I commonly see feedback from people assuming that EF Core is not heavily used.
+This isn't true.
+The internal usage numbers are <em>very</em> healthy.
+The number of people moving from previous EF Core releases to 3.1 is also very healthy.
+
+[[Read more...](/2020/01/29/coreadoption/)]
+
+</div>
+</div>
+</div>
+
+# All Posts
 
 ## Entity Framework 101
 
 <div class="post-preview-30">
 
-[What's the difference between EF Core and EF6, and which one should I use?](_posts/2020-01-29-coreor6.md)
+» [What's the difference between EF Core and EF6, and which one should I use?](/2020/01/29/coreor6/)
 
-</div>
-</div>
 </div>
 
 ## EF Core
 
-<div class="post-preview-10">
 <div class="post-preview-30">
 
-</div>
-</div>
+» [EF Core adoption is very healthy](/2020/01/29/coreadoption/)
 
-## EF6 and earlier
+» [EF Core Tips: Make sure to call Update when it is needed!](/2020/01/18/docallupdate/)
 
-<div class="post-preview-10">
-<div class="post-preview-30">
+» [EF Core Tips: Don't call Update when you don't need to!](/2020/01/17/dontcallupdate/)
 
-</div>
+» [Introducing EF Core 5 Features: CreateDbCommand: I'll see your string and raise you a command...](/2020/01/15/createdbcommand/)
+
+» [Introducing EF Core 5 Features: Using ToQueryString to get generated SQL](/2020/01/12/toquerystring/)
+
+
 </div>
 
 ## Software development
 
-<div class="post-preview-10">
 <div class="post-preview-30">
 
-[Today was a good day at work](_posts/2020-02-05-today-was-a-good-day-at-work.md)
+» [Today was a good day at work](/2020/02/05/today-was-a-good-day-at-work/)
 
 </div>
+
+## EF6 and earlier
+
+<div class="post-preview-30">
+
 </div>
 
 ## Random stuff
