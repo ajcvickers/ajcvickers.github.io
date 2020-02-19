@@ -2,6 +2,9 @@
 layout: default
 title: EF Core adoption is very healthy
 date: 2020-01-29 15:32
+day: 29th
+month: January
+year: 2020
 author: ajcvickers
 permalink: 2020/01/29/coreadoption/
 ---
@@ -12,16 +15,14 @@ I commonly see feedback from people assuming that EF Core is not heavily used. T
 
 At the time of writing, <a href="https://nugettrends.com/packages?months=24&amp;ids=Microsoft.EntityFrameworkCore&amp;ids=EntityFramework&amp;ids=Dapper&amp;ids=NHibernate">NuGet Trends</a> is returning the following data:
 
-<a href="https://oneunicorn.files.wordpress.com/2020/01/trends.png"><img src="https://oneunicorn.files.wordpress.com/2020/01/trends.png" alt="" width="639" height="466" class="alignright size-full wp-image-622" /></a>
+<div class=big-image>
+<a href="https://nugettrends.com/packages?months=24&amp;ids=Microsoft.EntityFrameworkCore&amp;ids=EntityFramework&amp;ids=Dapper&amp;ids=NHibernate"><img src="/assets/trends.png" alt="NuGet Trends" width=max /></a>
+</div>
 
 Now, NuGet package downloads are notoriously hard to interpret. However, I think the trend here is pretty clear.
 
-I should point out that I don't intend from showing this that people drop one technology and use another. As I said in my <a href="https://blog.oneunicorn.com/2020/01/29/coreor6/">previous post</a>, please use what works best for you.
+I should point out that I don't intend from showing this that people drop one technology and use another. As I said in my <a href="/2020/01/29/coreor6/">previous post</a>, please use what works best for you.
 
 I think it's also true that Microsoft packages have an advantage. Fully embracing the .NET ecosystem is something I push for internally. It's much better now than it was 10 years ago, but there is still room for improvement.
 
 Anyway, as I said, I really just want to point out that EF Core adoption is very healthy and growing very fast.
-
-<hr />
-
-Note: I do not monitor comments on my blogs for several reasons. Please go through the normal process on the <a href="https://github.com/dotnet/efcore">EF Core GutHub repo</a> if you have questions or comments on this information.

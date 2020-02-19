@@ -32,6 +32,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: $body-text-color;
+  text-align: justify;
 }
 
 #skip-to-content {
@@ -387,6 +388,8 @@ a {
     color: $body-link-color;
   }
 
+  
+
 table {
     display: table;
     width: 100%;
@@ -445,15 +448,19 @@ table {
 .backing-blue {
   background-color: $post-summary-bg-color-blue;
   margin-bottom: 20px;
+  padding-right: 5px;
 }
 
 .backing-purple {
   background-color: $post-summary-bg-color;
   margin-bottom: 5px;
+  padding-right: 5px;
 }
 
 .post-preview-10 {
   margin-left: 10px;
+  margin-right: 5px;
+  padding-bottom: 2px;
 }
 
 .post-preview-20 {
@@ -500,6 +507,21 @@ table {
   text-align: right;
 }
 
+.things-change {
+  font-size: small;
+}
+
+.big-image {
+  text-align: center;
+
+  img {
+    max-width: 95%;
+    border-style: solid;
+    border-width: medium;
+  }
+
+  }
+  
 .intro-table {
   table {
     border: none;
@@ -581,3 +603,4 @@ table {
     }
   }
 }
+

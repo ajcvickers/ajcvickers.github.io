@@ -21,7 +21,7 @@ However, this is my personal blog, and the opinions expressed here are my own.
 
 </td>
 <td>
-<img class="intro-me" src="/assets/mesquare.jpg" alt="Me">
+<a href="/about/"><img class="intro-me" src="/assets/mesquare.jpg" alt="Me"/>
 </td>
 </tr>
 </table>
@@ -36,9 +36,11 @@ However, this is my personal blog, and the opinions expressed here are my own.
 <div class="backing-purple">
 <div class="post-preview-10">
 
-## What's the difference between EF Core and EF6, and which one should I use?
+## [What's the difference between EF Core and EF6?]((/2020/01/29/coreor6/))
 
 <div class="post-preview-30">
+
+And which one should I use?
 
 TL;DR:
 
@@ -52,14 +54,10 @@ TL;DR:
 </div>
 </div>
 
-<span class="big-rule">
-<hr/>
-</span>
-
 <div class="backing-purple">
 <div class="post-preview-10">
 
-## EF Core adoption is very healthy
+## [EF Core adoption is very healthy](/2020/01/29/coreadoption/)
 
 <div class="post-preview-30">
 
@@ -73,6 +71,10 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 </div>
 </div>
 </div>
+
+<span class="big-rule">
+<hr/>
+</span>
 
 # All Posts
 
