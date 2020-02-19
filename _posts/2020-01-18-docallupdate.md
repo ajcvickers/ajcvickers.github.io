@@ -1,6 +1,17 @@
+---
+layout: default
+title: "EF Core Tips: Make sure to call Update when it is needed!"
+date: 2020-01-18 13:30
+day: 18th
+month: January
+year: 2020
+author: ajcvickers
+permalink: 2020/01/18/docallupdate/
+---
+
 <!-- ---
 layout: post
-title: EF Core Tips: Make sure to call Update when it is needed!
+title: 
 date: 2020-01-18 13:30
 author: ajcvickers
 comments: true

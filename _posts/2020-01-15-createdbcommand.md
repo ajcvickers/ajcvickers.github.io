@@ -1,6 +1,17 @@
+---
+layout: default
+title: "Introducing EF Core 5 Features: CreateDbCommand: I'll see your string and raise you a command..."
+date: 2020-01-15 16:01
+day: 15th
+month: January
+year: 2020
+author: ajcvickers
+permalink: 2020/01/15/createdbcommand/
+---
+
 <!-- ---
 layout: post
-title: Introducing EF Core 5 Features: CreateDbCommand: I'll see your string and raise you a command...
+title: 
 date: 2020-01-15 16:01
 author: ajcvickers
 comments: true

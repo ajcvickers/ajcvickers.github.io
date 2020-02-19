@@ -2,6 +2,9 @@
 layout: default
 title: About
 permalink: /about/
+day: 18th
+month: February
+year: 2020
 ---
 
 <img class="just-me" src="/assets/me.jpg" alt="Me">

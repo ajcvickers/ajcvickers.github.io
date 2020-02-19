@@ -1,5 +1,8 @@
 ---
 layout: default
+day: 18th
+month: February
+year: 2020
 ---
 
 <div class="index_titles">
@@ -36,7 +39,7 @@ However, this is my personal blog, and the opinions expressed here are my own.
 <div class="backing-purple">
 <div class="post-preview-10">
 
-## [What's the difference between EF Core and EF6?]((/2020/01/29/coreor6/))
+## [What's the difference between EF Core and EF6?](/2020/01/29/coreor6/)
 
 <div class="post-preview-30">
 
@@ -172,5 +175,7 @@ Other open-source projects relevant to .NET data access:
 
 ---
 
-ASCII unicorns originally by [Brice Lambson](https://www.bricelam.net/) for [dotnet-ef](https://www.nuget.org/packages/dotnet-ef/).
+<div class="things-change">
+ASCII unicorns originally by <a href="https://www.bricelam.net/">Brice Lambson</a> for <a href="https://www.nuget.org/packages/dotnet-ef/">dotnet-ef</a>.
 Many thanks to Brice.
+</div>

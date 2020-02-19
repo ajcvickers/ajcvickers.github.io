@@ -1,7 +1,18 @@
+---
+layout: default
+title: "EF Core Tips: Don't call Update when you don't need to!"
+date: 2020-01-17 22:14
+day: 17th
+month: January
+year: 2020
+author: ajcvickers
+permalink: 2020/01/17/dontcallupdate/
+---
+
 <!-- ---
 layout: post
-title: EF Core Tips: Don't call Update when you don't need to!
-date: 2020-01-17 22:14
+title: 
+date: 
 author: ajcvickers
 comments: true
 categories: [EF Core, Entity Framework]

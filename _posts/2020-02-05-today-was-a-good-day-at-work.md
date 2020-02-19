@@ -2,6 +2,9 @@
 layout: default
 title: Today was a good day at work
 date: 2020-02-05 22:36
+day: 5th
+month: February
+year: 2020
 author: ajcvickers
 permalink: 2020/02/05/today-was-a-good-day-at-work/
 ---
@@ -15,7 +18,9 @@ And I didn't write any code today.
 I was working with people all day.
 This isn't easy for me, but more and more it feels both rewarding and worthwhile.
 
-### » Me
+---
+
+### Me
 
 I'm a geek, a dork, a clumsy introvert.
 Meeting new people is hard for me.
@@ -26,7 +31,9 @@ And happier people.<sup>([1](#footnote-1))</sup>
 One of my most important jobs as a manager is to facilitate and encourage effective collaboration.
 Today I think I achieved that, which made it a good day.
 
-### » My day
+---
+
+### My day
 
 The EF team meets for a couple of hours every Wednesday morning for a "Design Meeting".
 It went well--good humored, productive, and with digressions about other stuff going on around us.
@@ -49,7 +56,9 @@ I also remembered to thank the SqlClient team for the good job they are doing ma
 But remembering to _tell people_ you are thankful when appropriate is important.)
 It went well.
 
-### » I'm medicated
+---
+
+### I'm medicated
 
 I've been taking antianxiety medication for three years now.
 It took me until my 40s to realize that I didn't have to live with the level of social anxiety I was accustomed to.

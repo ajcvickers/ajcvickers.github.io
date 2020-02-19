@@ -32,7 +32,6 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: $body-text-color;
-  text-align: justify;
 }
 
 #skip-to-content {
@@ -252,7 +251,7 @@ a {
     border: solid 1px $border-color;
     border-radius: 0.3rem;
 
-    > code {
+    code {
       padding: 0;
       margin: 0;
       font-size: 0.9rem;
@@ -312,11 +311,11 @@ a {
     color: $blockquote-text-color;
     border-left: 0.3rem solid $border-color;
 
-    > :first-child {
+    :first-child {
       margin-top: 0;
     }
 
-    > :last-child {
+    :last-child {
       margin-bottom: 0;
     }
   }
