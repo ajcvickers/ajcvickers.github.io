@@ -1,5 +1,6 @@
+@import "rouge-base16-dark";
+@import "default_colors";
 @import "normalize";
-@import "rouge-github";
 @import "variables";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
@@ -25,6 +26,15 @@
   box-sizing: border-box;
 }
 
+code.highlighter-rouge {
+  background: rgba(0,0,0,0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0px 3px;
+  margin: 0px -3px;
+  color: #aa759f;
+  border-radius: 2px;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -32,6 +42,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: $body-text-color;
+  text-align: justify;
 }
 
 #skip-to-content {
@@ -241,27 +252,47 @@ a {
   }
 
   pre {
-    padding: 0.8rem;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    color: $code-text-color;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    font-size: 16px;
+    color: #b5e853;
+    border-radius: 2px;
     word-wrap: normal;
-    background-color: $code-bg-color;
-    border: solid 1px $border-color;
-    border-radius: 0.3rem;
-
-    code {
-      padding: 0;
-      margin: 0;
-      font-size: 0.9rem;
-      color: $code-text-color;
-      word-break: normal;
-      white-space: pre;
-      background: transparent;
-      border: 0;
+    overflow: auto;
+    overflow-y: hidden;
+    > code {
+      background: rgba(0,0,0,0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0px 3px;
+      margin: 0px -3px;
+      color: #aa759f;
+      border-radius: 2px;
     }
   }
+  
+  // pre {
+  //   padding: 0.8rem;
+  //   margin-top: 0;
+  //   margin-bottom: 1rem;
+  //   font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  //   color: $code-text-color;
+  //   word-wrap: normal;
+  //   background-color: $code-bg-color;
+  //   border: solid 1px $border-color;
+  //   border-radius: 0.3rem;
+
+  //   > code {
+  //     padding: 0;
+  //     margin: 0;
+  //     font-size: 0.9rem;
+  //     color: $code-text-color;
+  //     word-break: normal;
+  //     white-space: pre;
+  //     background: transparent;
+  //     border: 0;
+  //   }
+  // }
 
   .highlight {
     margin-bottom: 1rem;
@@ -311,11 +342,11 @@ a {
     color: $blockquote-text-color;
     border-left: 0.3rem solid $border-color;
 
-    :first-child {
+    > :first-child {
       margin-top: 0;
     }
 
-    :last-child {
+    > :last-child {
       margin-bottom: 0;
     }
   }
