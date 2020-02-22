@@ -3,6 +3,7 @@ layout: default
 day: 21st
 month: February
 year: 2020
+permalink: noggin/
 ---
 
 # Use Your Noggin!
