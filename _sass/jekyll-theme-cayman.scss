@@ -42,7 +42,6 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: $body-text-color;
-  text-align: justify;
 }
 
 #skip-to-content {
@@ -226,13 +225,17 @@ a {
     max-width: 100%;
   }
 
+  h1 {
+    text-align: center;
+  }
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     font-weight: normal;
     color: $section-headings-color;
@@ -266,7 +269,7 @@ a {
       border: 1px solid rgba(255, 255, 255, 0.15);
       padding: 0px 3px;
       margin: 0px -3px;
-      color: #aa759f;
+      color: #cf6ebc;
       border-radius: 2px;
     }
   }

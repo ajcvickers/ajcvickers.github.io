@@ -1,6 +1,6 @@
 ---
 layout: default
-day: 18th
+day: 21st
 month: February
 year: 2020
 ---
@@ -57,6 +57,8 @@ TL;DR:
 </div>
 </div>
 
+---
+
 <div class="backing-purple">
 <div class="post-preview-10">
 
@@ -95,14 +97,25 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 
 » [EF Core adoption is very healthy](/2020/01/29/coreadoption/)
 
-» [EF Core Tips: Make sure to call Update when it is needed!](/2020/01/18/docallupdate/)
+### EF Core 5.0
 
-» [EF Core Tips: Don't call Update when you don't need to!](/2020/01/17/dontcallupdate/)
+<div class="post-preview-10">
 
-» [Introducing EF Core 5 Features: CreateDbCommand: I'll see your string and raise you a command...](/2020/01/15/createdbcommand/)
+» [CreateDbCommand: I'll see your string and raise you a command...](/2020/01/15/createdbcommand/)
 
-» [Introducing EF Core 5 Features: Using ToQueryString to get generated SQL](/2020/01/12/toquerystring/)
+» [Using ToQueryString to get generated SQL](/2020/01/12/toquerystring/)
 
+</div>
+
+### Tips
+
+<div class="post-preview-10">
+
+» [Make sure to call Update when it is needed!](/2020/01/18/docallupdate/)
+
+» [Don't call Update when you don't need to!](/2020/01/17/dontcallupdate/)
+
+</div>
 
 </div>
 

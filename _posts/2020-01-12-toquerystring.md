@@ -9,9 +9,12 @@ author: ajcvickers
 permalink: 2020/01/12/toquerystring/
 ---
 
-# EF Core 5: Using ToQueryString to get generated SQL
+# EF Core 5.0
+# Using ToQueryString to get generated SQL
 
 The EF team has been publishing <a href="https://github.com/dotnet/efcore/issues/19549">weekly status updates</a> since the <a href="https://github.com/dotnet/efcore/issues/15403">middle of last year</a>. Recently I have started including brief introductions for newly implemented enhancements. I'm going to experiment with blogging these brief intros to help make them more visible.
+
+---
 
 <h2>ToQueryString: A simple way to get generated SQL</h2>
 
@@ -34,15 +37,19 @@ FROM [Customers] AS [c]
 WHERE [c].[City] = @__city_0
 ```
 
-<h3>The SQL can be executed!</h3>
+---
+
+<h2>The SQL can be executed!</h2>
 
 Notice that declarations for parameters of the correct type are also included in the output. This allows copy/pasting to SQL Server Management Studio, or similar tools, such that the query can be executed for debugging/analysis.
 
 <div class=big-image>
-<a href="https://oneunicorn.files.wordpress.com/2020/01/annotation-2020-01-12-095104.png"><img src="https://oneunicorn.files.wordpress.com/2020/01/annotation-2020-01-12-095104.png" alt="Execute SQL in SSMS" width=max /></a>
+<a href="/assets/sqlcanrun.png"><img src="/assets/sqlcanrun.png" alt="Execute SQL in SSMS" width=max /></a>
 </div>
 
-<h3>The SQL is database-specific</h3>
+---
+
+<h2>The SQL is database-specific</h2>
 
 Other database providers can generate parameter declarations suitable for their ecosystems. For example, the SQLite provider generates output suitable for the SQLite CLI tool:
 
@@ -54,10 +61,12 @@ FROM "Customers" AS "c"
 WHERE "c"."City" = @__city_0
 ```
 
-<h3>The SQL is visible in the debugger</h3>
+---
+
+<h2>The SQL is visible in the debugger</h2>
 
 EF Core 5 also introduces a "debug view" to easily see the generated SQL and associated expression tree in your debugger of choice. Just drill down into the EF query object and expand <code>DebugView</code>.
 
 <div class=big-image>
-<a href="https://oneunicorn.files.wordpress.com/2020/01/querydebugview.png"><img src="https://oneunicorn.files.wordpress.com/2020/01/querydebugview.png" alt="SQL in the debugger" /></a>
+<a href="/assets/sqlcandebug.png"><img src="/assets/sqlcandebug.png" alt="SQL in the debugger" /></a>
 </div>
