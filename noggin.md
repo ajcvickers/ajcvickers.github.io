@@ -1,8 +1,11 @@
 ---
 layout: default
+title: "Use your noggin!"
+date: 2020-02-21 22:02
 day: 21st
 month: February
 year: 2020
+author: ajcvickers
 permalink: noggin/
 ---
 
