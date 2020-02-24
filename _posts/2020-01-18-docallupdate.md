@@ -23,7 +23,7 @@ Here's an example of the kind of code I see which makes this mistake. Can you sp
 ``` c#
 public async Task<IActionResult> OnPostAsync(int id)
 {
-    // Warning: Don&#039;t copy-paste this code. It is wrong.
+    // Warning: Don't copy-paste this code. It is wrong.
 
     var user = new User { Id = id };
 

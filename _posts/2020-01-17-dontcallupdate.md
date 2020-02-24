@@ -37,7 +37,7 @@ using (var context = new UserContext())
 Notice that there is no need to explicitly tell EF that the <code>Email</code> property value has changed. EF detects this automatically and marks the property as modified. <code>SaveChanges</code> therefore knows to send an update for only the Email column.
 
 ```sql
-Executed DbCommand (1ms) [Parameters=[@p1=&#039;1&#039;, @p0=&#039;arth@example.com&#039; (Size = 4000)], CommandType=&#039;Text&#039;, CommandTimeout=&#039;30&#039;]
+Executed DbCommand (1ms) [Parameters=[@p1='1', @p0='arth@example.com' (Size = 4000)], CommandType='Text', CommandTimeout='30']
 SET NOCOUNT ON;
 UPDATE [Users] SET [Email] = @p0
 WHERE [Id] = @p1;
@@ -70,7 +70,7 @@ using (var context = new UserContext())
 The <code>Update</code> method marks the entity and <em>all its properties</em> as modified. This means <code>SaveChanges</code> will send updates for both <code>Name</code> and <code>Email</code>, even though the value of <code>Email</code> has not changed:
 
 ```sql
-Executed DbCommand (2ms) [Parameters=[@p2=&#039;1&#039;, @p0=&#039;arth@example.com&#039; (Size = 4000), @p1=&#039;Arthur&#039; (Size = 4000)], CommandType=&#039;Text&#039;, CommandTimeout=&#039;30&#039;]
+Executed DbCommand (2ms) [Parameters=[@p2='1', @p0='arth@example.com' (Size = 4000), @p1='Arthur' (Size = 4000)], CommandType='Text', CommandTimeout='30']
 SET NOCOUNT ON;
 UPDATE [Users] SET [Email] = @p0, [Name] = @p1
 WHERE [Id] = @p2;

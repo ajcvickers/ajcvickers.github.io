@@ -1,6 +1,6 @@
 ---
 layout: default
-day: 21st
+day: 23rd
 month: February
 year: 2020
 ---
@@ -16,7 +16,7 @@ year: 2020
 <tr>
 <td>
 <p>
-This is a blog about sofware development, Entity Framework, .NET Core, C#, and random other things.
+This is a blog about software development, Entity Framework, .NET Core, C#, and random other things.
 </p>
 
 I'm [Arthur](about.md) and I'm the Engineering Manager for Entity Framework at Microsoft.
@@ -101,9 +101,9 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 
 <div class="post-preview-10">
 
-» [CreateDbCommand: I'll see your string and raise you a command...](/2020/01/15/createdbcommand/)
-
 » [Using ToQueryString to get generated SQL](/2020/01/12/toquerystring/)
+
+» [CreateDbCommand: I'll see your string and raise you a command...](/2020/01/15/createdbcommand/)
 
 </div>
 
@@ -114,6 +114,20 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 » [Make sure to call Update when it is needed!](/2020/01/18/docallupdate/)
 
 » [Don't call Update when you don't need to!](/2020/01/17/dontcallupdate/)
+
+</div>
+
+### EF Core 2.0
+
+<div class="post-preview-10">
+
+» [Many-to-many relationships - Part 1: The basics](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/)
+
+» [Many-to-many relationships - Part 2: Hiding `as IEnumerable`](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-2-hiding-as-ienumerable/)
+
+» [Many-to-many relationships - Part 3: Hiding `as ICollection`](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-3-hiding-as-icollection/)
+
+» [Many-to-many relationships - Part 4: A more general abstraction](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-4-a-more-general-abstraction/)
 
 </div>
 
@@ -134,57 +148,6 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 </div>
 
 ## Random stuff
-
-<span class="big-rule">
-<hr/>
-</span>
-
-# Useful links
-
-## Documentation
-
-Microsoft:
-
-* [EF Core]()
-* [EF Core API reference]()
-* [.NET Core]()
-* [ASP.NET Core]()
-* [EF6]()
-* [EF6 API reference]()
-
-Other:
-
-* [Npgsql (PostgreSQL)]()
-* [PostgreSQL for EF Core]()
-* [MySQL Connector]()
-* [MySQL for EF Core]()
-* [Dapper]()
-
-## Install
-
-NuGet packages
-SDKs
-
-## Code and issues on GitHub
-
-.NET Core is developed in collaboration with the .NET community as open-source projects on GitHub:
-
-* [EF Core]() (Includes SQL Server, SQLite, Cosmos DB, and in-memory providers)
-* [EF6]()
-* [.NET Runtime]()
-* [ASP.NET Core]()
-* [Microsoft.Data.SqlClient (SQL Server)]()
-* [Microsoft.Data.Sqlite]()
-
-Other open-source projects relevant to .NET data access:
-
-* [Npgsql (PostgreSQL)]()
-* [PostgreSQL for EF Core]()
-* [MySQL Connector]()
-* [MySQL for EF Core]()
-* [Dapper]()
-
-</div>
 
 ---
 
