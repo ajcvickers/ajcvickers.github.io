@@ -121,13 +121,13 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 
 <div class="post-preview-10">
 
-» [Many-to-many relationships - Part 1: The basics](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/)
-
-» [Many-to-many relationships - Part 2: Hiding `as IEnumerable`](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-2-hiding-as-ienumerable/)
+» [Many-to-many relationships - Part 4: A more general abstraction](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-4-a-more-general-abstraction/)
 
 » [Many-to-many relationships - Part 3: Hiding `as ICollection`](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-3-hiding-as-icollection/)
 
-» [Many-to-many relationships - Part 4: A more general abstraction](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-4-a-more-general-abstraction/)
+» [Many-to-many relationships - Part 2: Hiding `as IEnumerable`](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-2-hiding-as-ienumerable/)
+
+» [Many-to-many relationships - Part 1: The basics](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/)
 
 </div>
 
@@ -139,15 +139,71 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 
 » [Today was a good day at work](/2020/02/05/today-was-a-good-day-at-work/)
 
+» [Why Your Feedback Is So Important](/2011/04/14/why-your-feedback-is-so-important/)
+
 </div>
 
 ## EF6 and earlier
 
 <div class="post-preview-30">
 
+» []()
+
+» []()
+
+» []()
+
+» []()
+
+» []()
+
+» []()
+
+» []()
+
+» [Don’t use Code First by mistake](/2012/02/26/dont-use-code-first-by-mistake/)
+
+» [Why Entity Framework is releasing on NuGet only](/2012/02/11/why-entity-framework-is-releasing-on-nuget-only/)
+
+» [EF 4.3 Beta 1: What happened to that EdmMetadata table?](/2012/01/13/ef-4-3-beta-1-what-happened-to-that-edmmetadata-table/)
+
+» [What’s the deal with mapping foreign keys using the Entity Framework?](/2011/12/11/whats-the-deal-with-mapping-foreign-keys-using-the-entity-framework/)
+
+» [Should you use Entity Framework change-tracking proxies?](/2011/12/05/should-you-use-entity-framework-change-tracking-proxies/)
+
+» [Entity types supported by the Entity Framework](/2011/12/05/entity-types-supported-by-the-entity-framework/)
+
+» [Why are the DbContext T4 templates so different from the EF4 POCO templates?](/2011/11/24/why-are-the-dbcontext-t4-templates-so-different-from-the-ef4-poco-templates/)
+
+» [EF 4.1 Quick Tip: Add/Attach returns your entity](/2011/04/19/ef-4-1-quick-tip-addattach-returns-your-entity/)
+
+» [Code First: Inside DbContext Initialization](/2011/04/15/code-first-inside-dbcontext-initialization/)
+
+» [A Brief History of EF 4.1](/2011/04/12/a-brief-history-of-ef-4-1/)
+
+» [Code First: What is that EdmMetadata table?](/2011/04/08/code-first-what-is-that-edmmetadata-table/)
+
+» [Rejecting changes to entities in EF 4.1](/2011/04/03/rejecting-changes-to-entities-in-ef-4-1/)
+
+» [Configuring Database Initializers in a config file](/2011/03/31/configuring-database-initializers-in-a-config-file/)
+
+» [A more general Queryable collection](/2011/03/30/a-more-general-queryable-collection/)
+
+» [LazyCountCollection with better performance](/2011/03/29/lazycountcollection-with-better-performance/)
+
+» [Extra-lazy collection count with EF 4.1 (Part 2)](/2011/03/28/extra-lazy-collection-count-with-ef-4-1-part-2/)
+
+» [Extra-lazy collection count with EF 4.1 (Part 1)](/2011/03/28/extra-lazy-collection-count-with-ef-4-1-part-1/)
+
 </div>
 
-## Random stuff
+## Other things
+
+<div class="post-preview-30">
+
+» [Why One Unicorn?](/2011/03/20/why-one-unicorn/)
+
+</div>
 
 ---
 

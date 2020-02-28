@@ -15,7 +15,7 @@ permalink: 2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-4-a-more-ge
 
 In the <a href="/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-3-hiding-as-icollection/">last few posts</a> we saw how to hide use of the join entity from two entities with a many-to-many relationship. This post doesn't add any additional functionality, it just abstracts some of what we saw so it can be re-used more easily.
 
-<!--more-->
+
 
 To start with we define an interface for join entities:
 
