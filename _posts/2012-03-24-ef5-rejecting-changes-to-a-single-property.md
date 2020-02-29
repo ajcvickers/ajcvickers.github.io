@@ -1,13 +1,18 @@
 ---
-layout: post
-title: EF5: Rejecting changes to a single property
+layout: default
+title: "EF5: Rejecting changes to a single property"
 date: 2012-03-24 16:14
+day: 24th
+month: March
+year: 2012
 author: ajcvickers
-comments: true
-categories: [Change Tracking, Code First, DbContext, DbContext API, Entity Framework, IsModified]
+permalink: 2012/03/24/ef5-rejecting-changes-to-a-single-property/
 ---
-You have probably heard about the high-profile features of <a href="https://docs.microsoft.com/archive/blogs/adonet/ef5-beta-2-available-on-nuget">EF5</a>—things like <a href="http://msdn.microsoft.com/en-us/hh859576">enums</a>, <a href="http://msdn.microsoft.com/en-us/hh859721">spatial types</a>, <a href="http://msdn.microsoft.com/en-us/hh859577">TVF support</a>, and the <a href="https://docs.microsoft.com/archive/blogs/adonet/sneak-preview-entity-framework-5-0-performance-improvements">perf improvements</a>. But there is one little feature you may not have heard about—the ability to reject changes to an individual property. That is, to reset the IsModified flag of a property such that the value of that property will not be sent to the database.
 
+# Entity Framework 5.0
+# Rejecting changes to a single property
+
+You have probably heard about the high-profile features of <a href="https://docs.microsoft.com/archive/blogs/adonet/ef5-beta-2-available-on-nuget">EF5</a>—things like <a href="http://msdn.microsoft.com/en-us/hh859576">enums</a>, <a href="http://msdn.microsoft.com/en-us/hh859721">spatial types</a>, <a href="http://msdn.microsoft.com/en-us/hh859577">TVF support</a>, and the <a href="https://docs.microsoft.com/archive/blogs/adonet/sneak-preview-entity-framework-5-0-performance-improvements">perf improvements</a>. But there is one little feature you may not have heard about—the ability to reject changes to an individual property. That is, to reset the IsModified flag of a property such that the value of that property will not be sent to the database.
 
 
 I <a href="https://docs.microsoft.com/archive/blogs/adonet/using-dbcontext-in-ef-4-1-part-5-working-with-property-values">previously blogged</a> on the EF Team blog about working with properties in DbContext. That post described how to check whether or not a property is marked as modified, and how to mark a property as modified. In that post I stated, “It is not currently possible to reset an individual property to be not modified after it has been marked as modified. This is something we plan to support in a future release.” Well, EF5 is that future release!

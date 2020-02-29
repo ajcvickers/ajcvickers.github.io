@@ -170,6 +170,26 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 
 » []()
 
+» []()
+
+» []()
+
+» []()
+
+» []()
+
+» []()
+
+» []()
+
+» []()
+
+» []()
+
+» [Code First Data Annotations on non-public properties](/2012/03/26/code-first-data-annotations-on-non-public-properties/)
+
+» [EF5: Rejecting changes to a single property](/2012/03/24/ef5-rejecting-changes-to-a-single-property/)
+
 » [Secrets of DetectChanges - Part 4: Binary properties and complex types](/2012/03/13/secrets-of-detectchanges-part-4-binary-properties-and-complex-types/)
 
 » [Secrets of DetectChanges - Part 3: Switching off automatic DetectChanges](/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/)

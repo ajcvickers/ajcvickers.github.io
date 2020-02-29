@@ -1,11 +1,17 @@
 ---
-layout: post
+layout: default
 title: Code First Data Annotations on non-public properties
 date: 2012-03-26 22:18
+day: 26th
+month: March
+year: 2012
 author: ajcvickers
-comments: true
-categories: [Code First, Data Annotations, Entity Framework]
+permalink: 2012/03/26/code-first-data-annotations-on-non-public-properties/
 ---
+
+# Entity Framework 5.0
+# Code First Data Annotations on non-public properties
+
 The Entity Framework supports mapping to public, protected, internal, and private properties. However, there are a few restrictions when mapping to non-public properties. and there are also some things you need to know when attempting to configure such mappings using Code First. In particular, mapping to non-public properties cannot be done using data annotations alone.
 <h3>
 Mapping to non-public members using Code First</h3>
