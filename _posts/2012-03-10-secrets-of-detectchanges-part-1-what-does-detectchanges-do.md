@@ -1,11 +1,28 @@
 ---
-layout: post
-title: Secrets of DetectChanges Part 1: What does DetectChanges do?
+layout: default
+title: "Secrets of DetectChanges Part 1: What does DetectChanges do?"
 date: 2012-03-10 18:18
+day: 10th
+month: March
+year: 2012
 author: ajcvickers
-comments: true
-categories: [Change Tracking, DbContext API, DetectChanges, EF4, EF4.1, EF4.2, EF4.3, EF5, Entity Framework, Foreign Keys, POCO, Proxies, SaveChanges]
+permalink: 2012/03/10/secrets-of-detectchanges-part-1-what-does-detectchanges-do/
 ---
+
+# Secrets of DetectChanges
+# Part 1: What does DetectChanges do?
+
+### Relevance
+
+These posts were written in 2012 for Entity Framework 4.3.
+However, the information is fundamentally correct for all versions up to and including EF6.
+
+The general concepts are also relevant for EF Core.
+
+As always, [use your noggin](/noggin/).
+
+---
+
 Entity Framework change tracking is often something that doesn't require too much thought from the app developer. However, change tracking and the DetectChanges method are a part of the stack where there is a tension between ease-of-use and performance. For this reason it can be useful to have an idea of what is actually going on such you can make an informed decision on what to do if the default behavior is not right for your app.
 <h3>
 Overview</h3>
@@ -46,7 +63,7 @@ public class AnotherBlogContext : DbContext
 <h3>The change tracking problem</h3>
 Most EF applications make use of <a href="/2011/12/05/entity-types-supported-by-the-entity-framework/">persistent ignorant POCO entities</a> and snapshot change tracking. This means that there is no code in the entities themselves to keep track of changes or notify the context of changes.
 
-Let’s look at the following code to illustrate the point:
+Let's look at the following code to illustrate the point:
 
 ``` c#
 using (var context = new AnotherBlogContext())

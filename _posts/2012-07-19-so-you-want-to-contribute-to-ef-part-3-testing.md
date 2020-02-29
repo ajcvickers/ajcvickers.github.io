@@ -17,7 +17,7 @@ Unit tests test code at the unit level—that is at the class and method level. 
 	<li>Unit tests have access to internal classes and members of the product assemblies. It is an accepted practice that some code is made internal (as opposed to private) purely to facilitate testing.</li>
 	<li>Unit tests make use of <a href="http://code.google.com/p/moq/">Moq</a> for mocking dependencies. The way you use Moq (if at all) is not strictly dictated.</li>
 	<li>Unit tests must run fast; it is almost always inappropriate to take slow actions such as accessing a database in a unit test.</li>
-	<li>Unit tests should be organized into namespaces and classes that match the namespaces and classes of the product. For example, tests for System.Data.Entity.Config.DbConfiguration should be placed in System.Data.Entity.Config.DbConfigurationTests. (Note that many existing tests don’t follow this convention but all new tests should.)</li>
+	<li>Unit tests should be organized into namespaces and classes that match the namespaces and classes of the product. For example, tests for System.Data.Entity.Config.DbConfiguration should be placed in System.Data.Entity.Config.DbConfigurationTests. (Note that many existing tests don't follow this convention but all new tests should.)</li>
 	<li>You may optionally group unit tests into a nested class named after the method being tested if this helps clarity. For example, see DbConfigurationTests.</li>
 	<li>It is expected that every change is unit tested. If you submit a contribution without full coverage in unit tests it will almost certainly not be accepted until the tests have been written. This is just the same as contribution from a member of the EF team which would also be rejected without tests.</li>
 </ul>
@@ -49,23 +49,23 @@ public void Add_starts_tracking_a_new_entity_and_puts_it_in_the_Added_state()
 }</pre>
 Keeping tests simple and clean means that good test code does not have the same requirements as good product code. In particular:
 <ul>
-	<li>Duplication of test code in many tests is acceptable when it keeps each test easy to read and understand. In other words, don’t repeat yourself (DRY) does not apply to test code in the same way that it applies to product code.</li>
-	<li>Copy-and-paste followed by some small edits is an acceptable way to create a new test that covers a slightly different scenario than an existing test. You may choose to factor the common code out but don’t feel that you must always do this—use your judgment.</li>
+	<li>Duplication of test code in many tests is acceptable when it keeps each test easy to read and understand. In other words, don't repeat yourself (DRY) does not apply to test code in the same way that it applies to product code.</li>
+	<li>Copy-and-paste followed by some small edits is an acceptable way to create a new test that covers a slightly different scenario than an existing test. You may choose to factor the common code out but don't feel that you must always do this—use your judgment.</li>
 	<li>Avoid anything complicated, including elaborate testing frameworks and validation mechanisms. Simple asserts are good.</li>
 	<li>Avoid exhaustive testing by looping over all possible values and especially all possible combinations of several values. It is hard to ensure that these tests are really validating what they think they are, they are often slow to run, and can become hard to understand or debug, especially when they fail.</li>
-	<li>Don’t write anything to the console for manual verification or create text baselines. Tests should use assertions for verification.</li>
+	<li>Don't write anything to the console for manual verification or create text baselines. Tests should use assertions for verification.</li>
 </ul>
 <h2>Tests for core code</h2>
 We faced a difficult situation when deciding to make EF open source—what do we do with all the tests written by both product developers and the QA team over the years? Making most of the DbContext tests and a significant proportion of the Code First test open source was not a problem and we have done that.
 
-On the other hand, most of the test for the core code and almost all of the tests written by the QA team could not be made open source. I won’t go into the reasons for this, but the upshot is that if you run “build” on the open source code most of the 6000+ tests that run are for DbContext and Code First. This isn’t as bad as it might seem because the DbContext and Code First code is dependent on the core code and hence you get a lot of coverage of the core just through running these tests.
+On the other hand, most of the test for the core code and almost all of the tests written by the QA team could not be made open source. I won't go into the reasons for this, but the upshot is that if you run “build” on the open source code most of the 6000+ tests that run are for DbContext and Code First. This isn't as bad as it might seem because the DbContext and Code First code is dependent on the core code and hence you get a lot of coverage of the core just through running these tests.
 
-One thing this does mean is that if you make changes to the core code then you are likely to find that the code you are changing doesn’t have any existing public tests. (We can still run some tests internally but as much as possible we want tests to be public.) It is expected that you write tests for this code as part of your change so that we gradually build up direct test coverage for the core code. If doing this is such a burden that you feel you can’t make a contribution because of it then contact the EF team and we will try to figure out a solution.
+One thing this does mean is that if you make changes to the core code then you are likely to find that the code you are changing doesn't have any existing public tests. (We can still run some tests internally but as much as possible we want tests to be public.) It is expected that you write tests for this code as part of your change so that we gradually build up direct test coverage for the core code. If doing this is such a burden that you feel you can't make a contribution because of it then contact the EF team and we will try to figure out a solution.
 <h2>Designing and refactoring for testability</h2>
 A lot of the EF code, especially in the core, was not designed for testability. This means that you may need to do some refactoring in order to introduce seams, make classes mockable, and so on. <a href="http://googletesting.blogspot.com/2008/11/clean-code-talks-unit-testing.html">This video</a> has a good introduction to testable code.
 
-All new code should be designed and implemented with testability in mind. Just because you see patterns or practices in the existing code that are not testable doesn’t mean that we want the code to stay that way or that new code should follow the same patterns. Design and refactor for testability so that we can keep improving the code base.
+All new code should be designed and implemented with testability in mind. Just because you see patterns or practices in the existing code that are not testable doesn't mean that we want the code to stay that way or that new code should follow the same patterns. Design and refactor for testability so that we can keep improving the code base.
 <h2>Summary</h2>
 All contributions must be unit tested and most must also have functional tests. All tests use xUnit and should be as simple and clear as possible.
 
-If there is anything here that you need more information about don’t hesitate to contact me or others on the EF team. In the next post I’ll look at the developer experience.
+If there is anything here that you need more information about don't hesitate to contact me or others on the EF team. In the next post I'll look at the developer experience.

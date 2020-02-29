@@ -6,13 +6,13 @@ author: ajcvickers
 comments: true
 categories: [Code First, EF4.1, EF4.2, EF4.3, EF5, Entity Framework, Enums]
 ---
-Code First’s convention-based approach to building a model has some interesting implications for breaking changes between different versions of EF. This post describes those implications and shows how model builder versions can be used to deal with potential breaking changes while still retaining a forward-moving developer experience.
+Code First's convention-based approach to building a model has some interesting implications for breaking changes between different versions of EF. This post describes those implications and shows how model builder versions can be used to deal with potential breaking changes while still retaining a forward-moving developer experience.
 <h3>Starting out with a new version</h3>
 Code First builds the mapping between your code and the database by examining your code and running a set of conventions. For given input code and set of conventions this will always produce the same mapping. All is well.
 
-But what happens if a new version of EF supports new features? Let’s take enums as an example since these are now supported in EF5 on .NET 4.5. Developers using EF5 with Code First will expect enums to be mapped to the database correctly…and indeed they are. All is still well.
+But what happens if a new version of EF supports new features? Let's take enums as an example since these are now supported in EF5 on .NET 4.5. Developers using EF5 with Code First will expect enums to be mapped to the database correctly…and indeed they are. All is still well.
 <h3>Updating from an old version</h3>
-But let’s say somebody has a working EF 4.3.1 application and there is an enum somewhere in the model. In EF 4.3.1 this enum is not mapped, which presumably was fine since the app is working—maybe because it is using a pre-EF5 workaround for enums. For example:
+But let's say somebody has a working EF 4.3.1 application and there is an enum somewhere in the model. In EF 4.3.1 this enum is not mapped, which presumably was fine since the app is working—maybe because it is using a pre-EF5 workaround for enums. For example:
 
 ``` c#
 public enum Gender
@@ -62,7 +62,7 @@ The solution we settled on has several parts to it:
 <ul>
 	<li>Make the default experience be that all new features work without each feature having to be explicitly enabled. In other words, continue to improve the default experience.</li>
 	<li>Allow the version of the conventions used by Code First to be explicitly specified so that a developer can opt-in to using specific conventions regardless of which version of EF the code is built with.</li>
-	<li>Commit to not releasing EntityFramework.dll as an in-place update so that an update to a new version always requires some explicit step to be taken. This is, a running app won’t break just because some new version of EntityFramework.dll makes it onto the box.</li>
+	<li>Commit to not releasing EntityFramework.dll as an in-place update so that an update to a new version always requires some explicit step to be taken. This is, a running app won't break just because some new version of EntityFramework.dll makes it onto the box.</li>
 </ul>
 <h3>What it looks like</h3>
 To force your context to use an older version of the conventions just add an attribute to your context class:

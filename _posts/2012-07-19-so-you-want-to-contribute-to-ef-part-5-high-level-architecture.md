@@ -6,7 +6,7 @@ author: ajcvickers
 comments: true
 categories: [EF6, Entity Framework, Open Source, OSS]
 ---
-This is the fifth part of a <a href="/2012/07/19/so-you-want-to-contribute-to-ef-part-1-introduction/">series</a> providing some background to those who may want make contributes to the Entity Framework. In this post I’ll give an extremely high-level overview of the EF architecture.
+This is the fifth part of a <a href="/2012/07/19/so-you-want-to-contribute-to-ef-part-1-introduction/">series</a> providing some background to those who may want make contributes to the Entity Framework. In this post I'll give an extremely high-level overview of the EF architecture.
 <h2>The Entity Data Model</h2>
 The first thing to understand is that the EF is based on the concept of an Entity Data Model (EDM). Very roughly, this means that the EF is making use of several different representations (models) and much of the work it does is to move the data between those models using defined mappings.
 <h3>The three models</h3>
@@ -31,17 +31,17 @@ I say "in principal” because EF does not necessarily store multiple copies of 
 <h3>Hiding the EDM</h3>
 The Entity Framework is an object/relational mapper (O/RM). However, the original motivation for creating the Entity Framework was not to create an O/RM. It was instead a means to promote and facilitate the use of the EDM as a common way of representing and sharing domain models.
 
-Most developers who use EF don’t care about the EDM, which is fine. Indeed, from EF 4.1 onwards the EDM is intentionally abstracted away from most uses of EF. It’s still there and can enable some powerful scenarios when needed, but most of the time as a user of EF you don’t have to think about it.
+Most developers who use EF don't care about the EDM, which is fine. Indeed, from EF 4.1 onwards the EDM is intentionally abstracted away from most uses of EF. It's still there and can enable some powerful scenarios when needed, but most of the time as a user of EF you don't have to think about it.
 
 As an EF developer it is important to recognize and understand the role of EDM but, in the spirit described in Part 4 of this series, it is often desirable to keep the EDM abstracted away from the common developer experience.
 <h2>Main sub-systems</h2>
 Using EDM as a foundation the EF code is divided into several sub-systems.
 <h3>Object services</h3>
-The object services code is responsible for most of the public API used by applications to work with the EF in conjunction with the application’s object model. For example, the context (DbContext/ObjectContext) and set (DbSet/ObjectSet) classes are part of object services. Adding new entities to the context or creating a new query are the kinds of things that object services is responsible for.
+The object services code is responsible for most of the public API used by applications to work with the EF in conjunction with the application's object model. For example, the context (DbContext/ObjectContext) and set (DbSet/ObjectSet) classes are part of object services. Adding new entities to the context or creating a new query are the kinds of things that object services is responsible for.
 <h3>State management</h3>
 The state management code takes care of storing objects that have been queried or added to the context and tracking changes made to these objects. The main class responsible for state management is the ObjectStateManager. Object services makes use of the ObjectStateManager for many of the interactions it mediates between the application and the EF.
 
-For example, when an object is returned from a query it is stored in the ObjectStateManager. Let’s assume that a change is then made to that object and the application (explicitly or implicitly) asks EF to detect that change. The change detection is performed by the state management code and the change is recorded in the ObjectStateManager. When SaveChanges is called the update pipeline asks the ObjectStateManager for the changes that have been made in order to construct updates to be sent to the database.
+For example, when an object is returned from a query it is stored in the ObjectStateManager. Let's assume that a change is then made to that object and the application (explicitly or implicitly) asks EF to detect that change. The change detection is performed by the state management code and the change is recorded in the ObjectStateManager. When SaveChanges is called the update pipeline asks the ObjectStateManager for the changes that have been made in order to construct updates to be sent to the database.
 <h3>Metadata</h3>
 The metadata code is responsible for creating representations of the object, conceptual, and store models, and the o/c and c/s mappings between these models. The principal metadata class is the MetadataWorkspace which takes care of loading and parsing the models and providing an API surface to access metadata about the models and mappings.
 
@@ -75,4 +75,4 @@ The EF provider is also responsible for returning metadata about the database wh
 <h2>Summary</h2>
 In this post I gave a very high-level overview of the Entity Framework architecture. I skimmed over a lot of details but hopefully the information is useful as a starting point for further investigation or asking further questions.
 
-If there is anything here that you need more information about don’t hesitate to contact me or others on the EF team.
+If there is anything here that you need more information about don't hesitate to contact me or others on the EF team.

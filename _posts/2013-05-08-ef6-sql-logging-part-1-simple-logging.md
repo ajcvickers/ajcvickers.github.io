@@ -30,7 +30,7 @@ using (var context = new BlogContext())
 
 Notice that context.Database.Log is set to Console.Write. This is all that is needed to log SQL to the console.
 
-Let’s add some simple query/insert/update code so that we can see some output:
+Let's add some simple query/insert/update code so that we can see some output:
 
 [code language="csharp"]
 using (var context = new BlogContext())
@@ -123,7 +123,7 @@ Looking at the example output above, each of the four commands logged are:
 </li>
 </ul>
 <h2>Logging to different places</h2>
-As shown above logging to the console is super easy. It’s also easy to log to memory, file, etc. by using different kinds of TextWriter. Damien Guard wrote <a href="http://damieng.com/blog/2008/07/30/linq-to-sql-log-to-debug-window-file-memory-or-multiple-writers">a post on this for the LINQ to SQL Log property</a> which also applies to the new property in EF.
+As shown above logging to the console is super easy. It's also easy to log to memory, file, etc. by using different kinds of TextWriter. Damien Guard wrote <a href="http://damieng.com/blog/2008/07/30/linq-to-sql-log-to-debug-window-file-memory-or-multiple-writers">a post on this for the LINQ to SQL Log property</a> which also applies to the new property in EF.
 
 If you are familiar with LINQ to SQL (or have looked at the link above) you might notice that in LINQ to SQL the Log property is set to the actual TextWriter object (e.g. Console.Out) while in EF the Log property is set to a method that accepts a string (e.g. Console.Write or Console.Out.Write). The reason for this is that EF is decouple from TextWriter by accepting any delegate that can act as a sink for strings. For example, imagine that you already have some logging framework and it defines a logging method like so:
 
@@ -145,10 +145,10 @@ context.Database.Log = s => logger.Log("EFApp", s);
 [/code]
 
 
-It’s worth keeping two things in mind here:
+It's worth keeping two things in mind here:
 <ul>
 	<li>If  all you need to do is control the format and content of the strings that are logged then this can be done while still hooking the Log property to a TextWriter in a simple way. See <a href="/2013/05/09/ef6-sql-logging-part-2-changing-the-contentformatting/">part 2</a> of this series for details.</li>
-	<li>In part 3 of this series we’ll look at a lower-level way to log directly to something that isn’t a TextWriter without using Log at all.</li>
+	<li>In part 3 of this series we'll look at a lower-level way to log directly to something that isn't a TextWriter without using Log at all.</li>
 </ul>
 <h2>Result logging</h2>
 The default logger logs command text (SQL), parameters, and the “Executing” line with a timestamp before the command is sent to the database. A “completed” line containing elapsed time is logged following execution of the command.
@@ -164,9 +164,9 @@ For commands that fail by throwing an exception, the output contains the message
 -- Executing at 5/13/2013 10:19:05 AM
 -- Failed in 1 ms with error: Invalid object name 'ThisTableIsMissing'.</pre>
 <h3>Canceled execution</h3>
-For async commands where the task is canceled the result could be failure with an exception, since this is what the underlying ADO.NET provider often does when an attempt is made to cancel. If this doesn’t happen and the task is canceled cleanly then the output will look something like this:
+For async commands where the task is canceled the result could be failure with an exception, since this is what the underlying ADO.NET provider often does when an attempt is made to cancel. If this doesn't happen and the task is canceled cleanly then the output will look something like this:
 <pre>update Blogs set Title = 'No' where Id = -1
 -- Executing asynchronously at 5/13/2013 10:21:10 AM
 -- Canceled in 1 ms</pre>
 <h2>But I want something different!</h2>
-It has been apparent from discussions among just a few members of the EF team that different people have different opinions on what the log output should contain and how it should be formatted. The default (which may change before we release so please provide feedback about what you like and don’t like) is an attempt to provide commonly useful information in an easy-to-read format. However, it is easy to change this output if you want something different. I will cover how to do this in my next post. In a further post I will also cover the lower-level interception hooks that allow more flexible control over what happens when commands are executed.
+It has been apparent from discussions among just a few members of the EF team that different people have different opinions on what the log output should contain and how it should be formatted. The default (which may change before we release so please provide feedback about what you like and don't like) is an attempt to provide commonly useful information in an easy-to-read format. However, it is easy to change this output if you want something different. I will cover how to do this in my next post. In a further post I will also cover the lower-level interception hooks that allow more flexible control over what happens when commands are executed.

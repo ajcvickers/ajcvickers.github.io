@@ -12,13 +12,13 @@ permalink: 2011/04/03/rejecting-changes-to-entities-in-ef-4-1/
 # Entity Framework 4.1
 # Rejecting changes to entities
 
-<p>Imagine your app has an entity to which changes have been made and you want to reject those changes such that they won’t be saved to the database when SaveChanges is called. Using <a href="https://docs.microsoft.com/archive/blogs/adonet/ef-4-1-release-candidate-available">Entity Framework 4.1</a> you can do this by setting the state of the entity to Unchanged. For example:</p>  
+<p>Imagine your app has an entity to which changes have been made and you want to reject those changes such that they won't be saved to the database when SaveChanges is called. Using <a href="https://docs.microsoft.com/archive/blogs/adonet/ef-4-1-release-candidate-available">Entity Framework 4.1</a> you can do this by setting the state of the entity to Unchanged. For example:</p>  
 
 ``` c#
 context.Entry(myEntity).State = EntityState.Unchanged;
 ```
 
-<p>Here’s a simple test that demonstrates this behavior:</p>
+<p>Here's a simple test that demonstrates this behavior:</p>
 
 ``` c#
 [TestMethod]
@@ -43,7 +43,7 @@ public void Setting_state_of_Modified_entity_to_Unchanged_rejects_changes()
 }
 ```
 
-<p>There isn’t a single method to reject changes to all entities, but you can easily find all Modified entities in the context and set the state of each to Unchanged. For example:</p>
+<p>There isn't a single method to reject changes to all entities, but you can easily find all Modified entities in the context and set the state of each to Unchanged. For example:</p>
 
 ``` c#
 foreach (var entry in context.ChangeTracker.Entries()

@@ -12,7 +12,7 @@ You have probably heard about the high-profile features of <a href="https://docs
 
 I <a href="https://docs.microsoft.com/archive/blogs/adonet/using-dbcontext-in-ef-4-1-part-5-working-with-property-values">previously blogged</a> on the EF Team blog about working with properties in DbContext. That post described how to check whether or not a property is marked as modified, and how to mark a property as modified. In that post I stated, “It is not currently possible to reset an individual property to be not modified after it has been marked as modified. This is something we plan to support in a future release.” Well, EF5 is that future release!
 <h3>What is a modified property?</h3>
-A property is marked as modified if <a href="/2012/03/10/secrets-of-detectchanges-part-1-what-does-detectchanges-do/">DetectChanges</a> determines that its current value is different from the value it had when the entity was queried or attached. Also, if you set the state of an entity to Modified, then all the entity’s properties are marked as modified.
+A property is marked as modified if <a href="/2012/03/10/secrets-of-detectchanges-part-1-what-does-detectchanges-do/">DetectChanges</a> determines that its current value is different from the value it had when the entity was queried or attached. Also, if you set the state of an entity to Modified, then all the entity's properties are marked as modified.
 
 Being marked as modified is important because only values of properties that are marked as modified will be sent to the database when SaveChanges is called.
 <h3>Checking for modified properties</h3>
@@ -69,9 +69,9 @@ When you tell EF that a property is no longer modified the context will do two t
 </ul>
 Because the modified flag is reset it means that when SaveChanges is called the value for the property will not be sent to the database.
 <h3>An example</h3>
-One place where this behavior can be useful is when you want to mark all the properties of an entity as modified but then selectively choose some that you don’t want sent to the database.
+One place where this behavior can be useful is when you want to mark all the properties of an entity as modified but then selectively choose some that you don't want sent to the database.
 
-For example, imagine you want to let a user modify his or her contact information and for simplicity you don’t want to keep track of exactly which properties the user edited. But you know that there are some properties that cannot be edited. For example, maybe the MemberSince property will never change and the ProfilePicture property is changed through a different UI with a different Update method. Saving the changes to the user entity without saving MemberSince or ProfilePicture could then be done like so:
+For example, imagine you want to let a user modify his or her contact information and for simplicity you don't want to keep track of exactly which properties the user edited. But you know that there are some properties that cannot be edited. For example, maybe the MemberSince property will never change and the ProfilePicture property is changed through a different UI with a different Update method. Saving the changes to the user entity without saving MemberSince or ProfilePicture could then be done like so:
 
 ``` c#
 public void Update(User user)
@@ -91,6 +91,6 @@ public void Update(User user)
 }
 ```
 
-In this case ProfilePicture might be quite large so avoiding sending data (that hasn’t changed) to the database can be quite advantageous.
+In this case ProfilePicture might be quite large so avoiding sending data (that hasn't changed) to the database can be quite advantageous.
 
 So there you have it. A small feature of EF5 (on .NET 4.5), but hopefully a useful one.

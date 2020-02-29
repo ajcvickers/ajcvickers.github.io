@@ -12,7 +12,7 @@ permalink: 2011/03/30/a-more-general-queryable-collection/
 # Entity Framework 4.1
 # A more general Queryable collection
 
-<p>In the last three posts we looked at an implementation of <a href="/2011/03/28/extra-lazy-collection-count-with-ef-4-1-part-1/">extra-lazy Count for EF 4.1</a> and how to <a href="/2011/03/29/lazycountcollection-with-better-performance/">reduce the Reflection cost of this implementation</a>. However, when looking at LazyCountCollection it is fairly apparent that the same pattern can be used for more than just extra-lazy Count. In this we’ll look at a more general implementation of ICollection<T> that contains an underlying IQueryable<T> that can be used for more than just extra-lazy Count.</p><p>LazyCountCollection is an ICollection<T> implementation that delegates most operations to another underlying ICollection<T> but also contains a DbCollectionEntry that is occasionally used instead of the underlying collection. However, the only part of DbCollectionEntry that we really need is the Query method, which returns an IQueryable<T>. Therefore, we can make our implementation more general by working only with IQueryable<T> instead of the DbCollectionEntry. Here’s the code:</p>  
+<p>In the last three posts we looked at an implementation of <a href="/2011/03/28/extra-lazy-collection-count-with-ef-4-1-part-1/">extra-lazy Count for EF 4.1</a> and how to <a href="/2011/03/29/lazycountcollection-with-better-performance/">reduce the Reflection cost of this implementation</a>. However, when looking at LazyCountCollection it is fairly apparent that the same pattern can be used for more than just extra-lazy Count. In this we'll look at a more general implementation of ICollection<T> that contains an underlying IQueryable<T> that can be used for more than just extra-lazy Count.</p><p>LazyCountCollection is an ICollection<T> implementation that delegates most operations to another underlying ICollection<T> but also contains a DbCollectionEntry that is occasionally used instead of the underlying collection. However, the only part of DbCollectionEntry that we really need is the Query method, which returns an IQueryable<T>. Therefore, we can make our implementation more general by working only with IQueryable<T> instead of the DbCollectionEntry. Here's the code:</p>  
 
 ``` c#
 namespace LazyUnicorns
@@ -271,7 +271,7 @@ public void IHasIsLoaded_can_be_used_to_set_IsLoaded_after_a_filtered_query()
 
 <h3>IsLoaded and SetLoaded extensions</h3>
 
-<p>ICollection<T> doesn’t have the concept of an IsLoaded flag so we can’t just set the flag directly on our collection. We could check the type, cast, and set, but that requires a bunch of code whenever we want to set IsLoaded. A cleaner approach is to define extension methods for IsLoaded and SetLoaded on ICollection<T>.</p>
+<p>ICollection<T> doesn't have the concept of an IsLoaded flag so we can't just set the flag directly on our collection. We could check the type, cast, and set, but that requires a bunch of code whenever we want to set IsLoaded. A cleaner approach is to define extension methods for IsLoaded and SetLoaded on ICollection<T>.</p>
 
 <p>The extension methods check whether or not the collection implementation have an IsLoaded flag and use if if they have one, otherwise do nothing. This can be quite useful if you are creating mock or fake entities that are not instances of QueryableCollection but probably already have any in-memory data in the collection such that loading is not needed.</p>
 

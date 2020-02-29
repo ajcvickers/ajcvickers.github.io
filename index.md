@@ -39,6 +39,25 @@ However, this is my personal blog, and the opinions expressed here are my own.
 <div class="backing-purple">
 <div class="post-preview-10">
 
+## [Welcome to One Unicorn 2.0!](/2020/02/29/1unicorn2/)
+
+<div class="post-preview-30">
+
+I created my first blog back in 2011. I called it _One Unicorn_.
+
+It seemed like a good idea at the time... :man_shrugging:
+
+[[Read more...](/2020/02/29/1unicorn2/)]
+
+</div>
+</div>
+</div>
+
+---
+
+<div class="backing-purple">
+<div class="post-preview-10">
+
 ## [What's the difference between EF Core and EF6?](/2020/01/29/coreor6/)
 
 <div class="post-preview-30">
@@ -151,23 +170,23 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 
 » []()
 
-» []()
+» [Secrets of DetectChanges - Part 4: Binary properties and complex types](/2012/03/13/secrets-of-detectchanges-part-4-binary-properties-and-complex-types/)
 
-» []()
+» [Secrets of DetectChanges - Part 3: Switching off automatic DetectChanges](/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/)
 
-» []()
+» [Secrets of DetectChanges - Part 2: When is DetectChanges called automatically?](/2012/03/11/secrets-of-detectchanges-part-2-when-is-detectchanges-called-automatically/)
 
-» []()
+» [Secrets of DetectChanges - Part 1: What does DetectChanges do?](/2012/03/10/secrets-of-detectchanges-part-1-what-does-detectchanges-do/)
 
-» []()
+» [Code First Migrations: Making __MigrationHistory not a system table](/2012/02/27/code-first-migrations-making-__migrationhistory-not-a-system-table/)
 
-» [Don’t use Code First by mistake](/2012/02/26/dont-use-code-first-by-mistake/)
+» [Don't use Code First by mistake](/2012/02/26/dont-use-code-first-by-mistake/)
 
 » [Why Entity Framework is releasing on NuGet only](/2012/02/11/why-entity-framework-is-releasing-on-nuget-only/)
 
 » [EF 4.3 Beta 1: What happened to that EdmMetadata table?](/2012/01/13/ef-4-3-beta-1-what-happened-to-that-edmmetadata-table/)
 
-» [What’s the deal with mapping foreign keys using the Entity Framework?](/2011/12/11/whats-the-deal-with-mapping-foreign-keys-using-the-entity-framework/)
+» [What's the deal with mapping foreign keys using the Entity Framework?](/2011/12/11/whats-the-deal-with-mapping-foreign-keys-using-the-entity-framework/)
 
 » [Should you use Entity Framework change-tracking proxies?](/2011/12/05/should-you-use-entity-framework-change-tracking-proxies/)
 
@@ -200,6 +219,8 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 ## Other things
 
 <div class="post-preview-30">
+
+» [Welcome to One Unicorn 2.0!](/2020/02/29/1unicorn2/)
 
 » [Why One Unicorn?](/2011/03/20/why-one-unicorn/)
 

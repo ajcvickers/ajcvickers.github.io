@@ -14,12 +14,12 @@ In both cases the Seed method is a virtual <a href="http://en.wikipedia.org/wiki
 <h2>Database initializers</h2>
 Starting with EF 4.1 Code First and DbContext can be used to create a database for you. This behavior is encapsulated in objects called “database initializers” that implement the IDatabaseInitializer interface. Database initializers run the first time that a DbContext is used and can do things like check if a database already exists and create a new database if needed.
 <h3>DropCreateDatabaseIfModelChanges</h3>
-Several IDatabaseInitializer implementations are included in the EntityFramework assembly. Let’s take <a href="http://msdn.microsoft.com/en-us/library/gg679604(v=vs.103).aspx">DropCreateDatabaseIfModelChanges</a> as an example since it defines a <a href="http://msdn.microsoft.com/en-us/library/gg679410(v=vs.103).aspx">Seed method</a> and is the most interesting initializer with regards to this discussion. This initializer does the following:
+Several IDatabaseInitializer implementations are included in the EntityFramework assembly. Let's take <a href="http://msdn.microsoft.com/en-us/library/gg679604(v=vs.103).aspx">DropCreateDatabaseIfModelChanges</a> as an example since it defines a <a href="http://msdn.microsoft.com/en-us/library/gg679410(v=vs.103).aspx">Seed method</a> and is the most interesting initializer with regards to this discussion. This initializer does the following:
 <ul>
 	<li>Checks whether or not the target database already exists</li>
 	<li>If it does, then the current Code First model is compared with the model stored in metadata in the database</li>
 	<li>The database is dropped if the current model does not match the model in the database</li>
-	<li>The database is created if it was dropped or didn’t exist in the first place</li>
+	<li>The database is created if it was dropped or didn't exist in the first place</li>
 	<li>If the database was created, then the initializer Seed method is called</li>
 </ul>
 This initializer and others like it are intended to be used during initial development of an application where no real data exists yet, or for tests that run against a test database that can be dropped and re-created at will. You can find many uses of this initializer in the open source EF tests on <a href="https://entityframework.codeplex.com/">CodePlex</a>.
@@ -27,7 +27,7 @@ This initializer and others like it are intended to be used during initial devel
 With respect to Seed the important thing to notice is that Seed is only ever called immediately after a new, empty database has just been created. Seed is never called for an existing database that might already have data in it. This has two important consequences:
 <ul>
 	<li>Database initializer Seed methods do not have to handle existing data. That is, new entities can be inserted without any need to check whether or not the entities already exist in the database.</li>
-	<li>The Seed method will not be called when the application is run if the database already exists and the model has not changed since the last run. We’ll come back to this point later.</li>
+	<li>The Seed method will not be called when the application is run if the database already exists and the model has not changed since the last run. We'll come back to this point later.</li>
 </ul>
 <h2>Enter Migrations</h2>
 EF 4.3 introduced <a href="http://msdn.microsoft.com/en-us/data/jj591621">Code First Migrations</a>. Migrations provide a way for the database to be evolved without needing to drop and recreate the entire database. Use of Migrations commonly involves using PowerShell commands to manage updates to the database explicitly. That is, database creation and updates are usually handled during development from PowerShell and do not happen automatically when the applications runs. (See <em>The Migrations initializer </em>below for how this can be changed.)
@@ -37,8 +37,8 @@ Migrations introduced its own <a href="http://msdn.microsoft.com/en-us/library/h
 	<li>It runs whenever the Update-Database PowerShell command is executed. Unless the Migrations initializer is being used the Migrations Seed method will <strong>not </strong>be executed when your application starts.</li>
 	<li>It must handle cases where the database already contains data because Migrations is evolving the database rather than dropping and recreating it.</li>
 </ul>
-This second point is really important and is the reason why the <a href="http://msdn.microsoft.com/en-us/library/hh846521(v=vs.103).aspx">AddOrUpdate extension method</a> is included with Migrations. This method can check whether or not an entity already exists in the database and then either insert a new entity if it doesn’t already exist or update the existing entity if it does exist.
-<h2>Seeding when the model hasn’t changed</h2>
+This second point is really important and is the reason why the <a href="http://msdn.microsoft.com/en-us/library/hh846521(v=vs.103).aspx">AddOrUpdate extension method</a> is included with Migrations. This method can check whether or not an entity already exists in the database and then either insert a new entity if it doesn't already exist or update the existing entity if it does exist.
+<h2>Seeding when the model hasn't changed</h2>
 In the section on database initializers I mentioned that the initializer Seed method will not be called if the database already exists and the model has not changed. This often turned out to be quite an inconvenience. Consider adding a new entity to the model and then running the application without remembering to update the Seed method. The database is dropped and recreated with a table for the new entity. However the new table is empty. So now you update the Seed method and run again…but the table is still empty because the model has not changed since the last run.
 
 People would usually work around this by either:
@@ -50,7 +50,7 @@ People would usually work around this by either:
 <h3>The Migrations situation</h3>
 So what should happen if you are using Migrations in a similar situation? The analogous case is that a new entity is added, a migration is created for it, and Update-Database is used to apply the migration without remembering to update the Seed method. As before, the new table is empty and you realize this, so now you update the Migrations Seed method to AddOrUpdate data into the new table. You now run Update-Database again; should the Seed method run?
 
-If we were following the database initializers pattern then the Seed method would not run because the model has not changed since Update-Database was called last time. In other words, there is no new migration to apply. You would then need to create some sort of artificial migration just to get the Seed method to run—note that just deleting the database doesn’t work in this case since the database is being evolved by Migrations.
+If we were following the database initializers pattern then the Seed method would not run because the model has not changed since Update-Database was called last time. In other words, there is no new migration to apply. You would then need to create some sort of artificial migration just to get the Seed method to run—note that just deleting the database doesn't work in this case since the database is being evolved by Migrations.
 
 However, since the Seed method must be able to handle existing data anyway why not just run the Seed method when Update-Database is executed regardless of whether or not there is a migration to apply? This is indeed what happens and it means that Seed can be updated and run at anytime without a change to the model being needed.
 <h2>The Migrations initializer</h2>

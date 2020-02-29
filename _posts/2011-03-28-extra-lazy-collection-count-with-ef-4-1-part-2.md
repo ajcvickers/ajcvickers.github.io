@@ -12,7 +12,7 @@ permalink: 2011/03/28/extra-lazy-collection-count-with-ef-4-1-part-2/
 # Entity Framework 4.1
 # Extra-lazy collection count with EF 4.1 (Part 2)
 
-<h3>Using LazyCountCollection in a model</h3>  <p>In <a href="/2011/03/28/extra-lazy-collection-count-with-ef-4-1-part-1/">part 1</a> we setup all the infrastructure for implementing an extra-lazy Count property with EF 4.1—now let’s actually use it!</p><p>I’m going to be boring and just use the <em>new Northwind</em>—a blogging model. Here are my entities and context implementation:</p>  
+<h3>Using LazyCountCollection in a model</h3>  <p>In <a href="/2011/03/28/extra-lazy-collection-count-with-ef-4-1-part-1/">part 1</a> we setup all the infrastructure for implementing an extra-lazy Count property with EF 4.1—now let's actually use it!</p><p>I'm going to be boring and just use the <em>new Northwind</em>—a blogging model. Here are my entities and context implementation:</p>  
 
 ``` c#
 namespace LazyUnicornTests.Model
@@ -64,9 +64,9 @@ namespace LazyUnicornTests.Model
 }
 ```
 
-<p>The most interesting point to notice about the code above is that the constructor registers an instance of LazyCountCollectionInitializer with the ObjectMaterialized event of the underlying ObjectContext. Notice that the entities themselves just have simple ICollection<T> properties and don’t explicitly reference LazyCountCollection.</p>
+<p>The most interesting point to notice about the code above is that the constructor registers an instance of LazyCountCollectionInitializer with the ObjectMaterialized event of the underlying ObjectContext. Notice that the entities themselves just have simple ICollection<T> properties and don't explicitly reference LazyCountCollection.</p>
 
-<p>Everything else is pretty straightforward EF 4.1 code so I won’t go into more details here.</p>
+<p>Everything else is pretty straightforward EF 4.1 code so I won't go into more details here.</p>
 
 <h3>Some tests…</h3>
 
@@ -235,18 +235,18 @@ namespace LazyUnicornTests
 
 <h3>Potential problems with this code</h3>
 
-<p>So that’s pretty much it…but before I end I’d like to address a few potential problems with the code above. First, this code is not production ready for two main reasons: first because it is not tested. I know there are some tests up there, but they are nowhere near comprehensive enough to say that this code really works. All we can say is that it <em>seems </em>to work for the simple cases that we have thrown at it. (In fact, I have spotted one bug already…)</p>
+<p>So that's pretty much it…but before I end I'd like to address a few potential problems with the code above. First, this code is not production ready for two main reasons: first because it is not tested. I know there are some tests up there, but they are nowhere near comprehensive enough to say that this code really works. All we can say is that it <em>seems </em>to work for the simple cases that we have thrown at it. (In fact, I have spotted one bug already…)</p>
 
-<p>The second reason I would not consider this code production-ready is all the uncached use of Reflection. I haven’t profiled it, but I have a hunch that this code will result in a performance bottleneck in some apps. In short, use at your own risk.</p>
+<p>The second reason I would not consider this code production-ready is all the uncached use of Reflection. I haven't profiled it, but I have a hunch that this code will result in a performance bottleneck in some apps. In short, use at your own risk.</p>
 
-<p>Another potential problem with this code is that it gives Count somewhat strange semantics. Let’s say you add three entities to the collection and then call Count. The result could be less than three, three, or more than three. This might be fine if you know that this is the way Count works for the collection, but it is pretty strange when compared to the semantics of Count on normal collections.</p>
+<p>Another potential problem with this code is that it gives Count somewhat strange semantics. Let's say you add three entities to the collection and then call Count. The result could be less than three, three, or more than three. This might be fine if you know that this is the way Count works for the collection, but it is pretty strange when compared to the semantics of Count on normal collections.</p>
 
-<p>Replacing the collection that an entity thinks it has with an instance of a different type can also cause problems. The entity (and the rest of the app) must know not to reset the collection at any point or the wrapped collection will be replaced. Also, if you try to serialize the entity you are likely to run into problems because it will attempt to serialize a LazyLoadCollection instance, which probably won’t work. Even if it does work, it’s probably not what you want. I’m sure that there are other problems with replacing the collection that I haven’t thought of…</p>
+<p>Replacing the collection that an entity thinks it has with an instance of a different type can also cause problems. The entity (and the rest of the app) must know not to reset the collection at any point or the wrapped collection will be replaced. Also, if you try to serialize the entity you are likely to run into problems because it will attempt to serialize a LazyLoadCollection instance, which probably won't work. Even if it does work, it's probably not what you want. I'm sure that there are other problems with replacing the collection that I haven't thought of…</p>
 
-<p>And finally, the collection is only replaced when the ObjectMaterialized event is fired. This means that, for example, if you were to create an entity and attach it to a context then it wouldn’t have a LazyLoadCollection. Of course, you could write an Attach method that would attach and then replace the collection if you really needed this to work.</p>
+<p>And finally, the collection is only replaced when the ObjectMaterialized event is fired. This means that, for example, if you were to create an entity and attach it to a context then it wouldn't have a LazyLoadCollection. Of course, you could write an Attach method that would attach and then replace the collection if you really needed this to work.</p>
 
 <h3>Summary</h3>
 
 <p>In these posts we looked at a simple way to implement collections with extra-lazy behavior using EF 4.1. Specifically, we implemented a collection with an extra-lazy Count property.</p>
 
-<p>In upcoming posts I’ll show how to address the potential performance issue from the Reflection code and how to generalize the wrapped collection to have more than just an extra-lazy Count property.</p>
+<p>In upcoming posts I'll show how to address the potential performance issue from the Reflection code and how to generalize the wrapped collection to have more than just an extra-lazy Count property.</p>

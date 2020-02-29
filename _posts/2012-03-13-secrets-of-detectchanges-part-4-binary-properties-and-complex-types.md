@@ -1,12 +1,29 @@
 ---
-layout: post
-title: Secrets of DetectChanges Part 4: Binary properties and complex types
+layout: default
+title: "Secrets of DetectChanges Part 4: Binary properties and complex types"
 date: 2012-03-13 10:04
+day: 13th
+month: March
+year: 2012
 author: ajcvickers
-comments: true
-categories: [Change Tracking, DbContext API, DetectChanges, EF4, EF4.1, EF4.2, EF4.3, EF5, Entity Framework, Foreign Keys; Complex Types, POCO, Proxies, SaveChanges]
+permalink: 2012/03/13/secrets-of-detectchanges-part-4-binary-properties-and-complex-types/
 ---
-In parts <a href="/2012/03/10/secrets-of-detectchanges-part-1-what-does-detectchanges-do/">1</a>, <a href="/2012/03/11/secrets-of-detectchanges-part-2-when-is-detectchanges-called-automatically/">2</a>, and <a href="/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/">3</a> of this series we looked at fairly normal, if occasionally advanced, uses of DetectChanges. In this post we’re going to look at some corner cases around complex types and binary properties. While these are corner cases its still worth knowing about them so they don’t catch you out if you ever run into them.
+
+# Secrets of DetectChanges
+# Part 4: Binary properties and complex types
+
+### Relevance
+
+These posts were written in 2012 for Entity Framework 4.3.
+However, the information is fundamentally correct for all versions up to and including EF6.
+
+The general concepts are also relevant for EF Core.
+
+As always, [use your noggin](/noggin/).
+
+---
+
+In parts <a href="/2012/03/10/secrets-of-detectchanges-part-1-what-does-detectchanges-do/">1</a>, <a href="/2012/03/11/secrets-of-detectchanges-part-2-when-is-detectchanges-called-automatically/">2</a>, and <a href="/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/">3</a> of this series we looked at fairly normal, if occasionally advanced, uses of DetectChanges. In this post we're going to look at some corner cases around complex types and binary properties. While these are corner cases its still worth knowing about them so they don't catch you out if you ever run into them.
 <h3>DetectChanges and binary properties</h3>
 EF supports byte array properties for storing binary data such as images. For example, we could store the image for a banner on a blog by adding a byte array property to our Blog class:
 
@@ -18,7 +35,7 @@ public class Post
 }
 ```
 
-If you want to change this image you must do it through setting a new byte[] instance. Don’t try to change the contents of the existing byte array. DetectChanges doesn’t go down into the contents of the byte array and attempt to see if it has changed. It assumes that if the same instance is still present on the entity that was there when it took the snapshot, then the property has not changed, and so no update for the property will be sent to the database.
+If you want to change this image you must do it through setting a new byte[] instance. Don't try to change the contents of the existing byte array. DetectChanges doesn't go down into the contents of the byte array and attempt to see if it has changed. It assumes that if the same instance is still present on the entity that was there when it took the snapshot, then the property has not changed, and so no update for the property will be sent to the database.
 
 In other words, treat your byte arrays as if they are immutable.
 <h3>Binary keys</h3>
@@ -108,7 +125,7 @@ using (var context = new PeopleContext())
 
 I prefer to always treat complex objects as immutable—they then become a good analogue for value types in DDD.
 <h3>Rule 1 to the rescue</h3>
-If you do want to mutate a complex object and do it in a way that won’t require DetectChanges, then <a href="/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/">Rule 1</a> can come to the rescue again:
+If you do want to mutate a complex object and do it in a way that won't require DetectChanges, then <a href="/2012/03/12/secrets-of-detectchanges-part-3-switching-off-automatic-detectchanges/">Rule 1</a> can come to the rescue again:
 
 ``` c#
 using (var context = new PeopleContext())
@@ -147,6 +164,6 @@ using (var context = new PeopleContext())
 }
 ```
 
-This code uses calls into EF code to mutate the complex objects and hence, by Rule 1, doesn’t require DetectChanges to be called.
-<h3>And that’s DetectChanges!</h3>
-If you’ve read all four parts of this series then thank you! You are now a certified DetectChanges expert. So how about going off to <a href="http://stackoverflow.com/">Stack Overflow</a> and using your knowledge to the betterment of the EF community. :-)
+This code uses calls into EF code to mutate the complex objects and hence, by Rule 1, doesn't require DetectChanges to be called.
+<h3>And that's DetectChanges!</h3>
+If you've read all four parts of this series then thank you! You are now a certified DetectChanges expert. So how about going off to <a href="http://stackoverflow.com/">Stack Overflow</a> and using your knowledge to the betterment of the EF community. :-)

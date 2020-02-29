@@ -73,4 +73,4 @@ Context 'BlogContext' is executing command 'SELECT [Extent1].[Id] AS [Id], [Exte
 Context 'BlogContext' is executing command 'update [dbo].[Posts]set [Title] = @0where ([Id] = @1)'
 Context 'BlogContext' is executing command 'insert [dbo].[Posts]([Title], [BlogId])values (@0, @1)select [Id]from [dbo].[Posts]where @@rowcount > 0 and [Id] = scope_identity()'</pre>
 <h2>More control?</h2>
-In the next post we’ll take a look at implementing IDbCommandInterceptor directly for even more control of command interception and show an example that integrates directly with NLog without using the Database.Log property.
+In the next post we'll take a look at implementing IDbCommandInterceptor directly for even more control of command interception and show an example that integrates directly with NLog without using the Database.Log property.

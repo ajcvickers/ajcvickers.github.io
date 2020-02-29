@@ -14,7 +14,7 @@ permalink: 2011/03/31/configuring-database-initializers-in-a-config-file/
 
 <a href="https://docs.microsoft.com/archive/blogs/adonet/ef-4-1-release-candidate-available">Entity Framework 4.1</a> introduced the concept of database initializers as a way for your application or tests to perform some actions before your database is used for the first time. On the team blog and in demos we commonly show setting a database initializer through a call to the Database.SetInitializer method. This is certainly an easy way to set an initializer, but it also possible to decouple initializer configuration from your application code by setting them in your app.config or web.config file.
 
-In this post we’ll look at database initializer basics and then show how they can be configured in either code or your config file.
+In this post we'll look at database initializer basics and then show how they can be configured in either code or your config file.
 
 <strong>Update:</strong> Please note that starting with EF 4.3 there is a new syntax for setting initializers in the config file. We introduced this new syntax because as we needed to add more items to the config it became cleaner to create an EntityFramework section rather than adding more key/value pairs to app data. You can still use the syntax described in this post, but you may find the EF 4.3 syntax cleaner. For details see <a href="https://docs.microsoft.com/archive/blogs/adonet/ef-4-3-configuration-file-settings">https://docs.microsoft.com/archive/blogs/adonet/ef-4-3-configuration-file-settings</a>.
 <h2>What are database initializers?</h2>
@@ -26,7 +26,7 @@ EF 4.1 comes with some pre-defined initializers. These are all contained in the 
 <h3>CreateDatabaseIfNotExists</h3>
 This is the default initializer for Code First development. It checks if the database referred to by your connection exists and creates it if it does not. If the database exists and contains an EdmMetadata table, then a check is made to determine if the model hash contained in this table matches the current model hash. If this check fails then an exception is thrown letting you know that you probably need to update your database to match the model.
 <h3>DropCreateDatabaseIfModelChanges</h3>
-This initializer works in basically the same way as CreateDatabaseIfNotExists except that it requires that the EdmMetadata table exists and if the model hashes don’t match then the database is automatically dropped, recreated, and re-seeded. This is initializer is likely to become much less used when full database migration support is added to Code First.
+This initializer works in basically the same way as CreateDatabaseIfNotExists except that it requires that the EdmMetadata table exists and if the model hashes don't match then the database is automatically dropped, recreated, and re-seeded. This is initializer is likely to become much less used when full database migration support is added to Code First.
 <h3>DropCreateDatabaseAlways</h3>
 This initializer drops the database if it exists and always creates a new one the first time that the context is used in the app-domain. This can be useful to ensure that your app or tests always start with a known state. Note that the database is not recreated each time that your context is used, but rather only the first time that the context is used in the app-domain.
 <h2>Custom initializers</h2>
@@ -55,7 +55,7 @@ Database.SetInitializer<BlogContext>(null);
 
 I often call SetInitializer as part of my test fixture setup code such that whatever test(s) I choose to run I know that the appropriate initializer will have been set.
 <h2>Setting an initializer in app.config/web.config</h2>
-Calling SetInitializer can be okay for tests, but what if I’m building an app and want one initializer in my development environment, a different one for my test environment, and initializers disabled entirely when in production? You could do this by making sure that different code gets compiled/run in each case, but that can get cumbersome and error-prone. A better solution is to leave the code unchanged but setup different config files for each environment, just like you might do for connection strings to development, test, and production databases.
+Calling SetInitializer can be okay for tests, but what if I'm building an app and want one initializer in my development environment, a different one for my test environment, and initializers disabled entirely when in production? You could do this by making sure that different code gets compiled/run in each case, but that can get cumbersome and error-prone. A better solution is to leave the code unchanged but setup different config files for each environment, just like you might do for connection strings to development, test, and production databases.
 
 This is the basic syntax for setting an initializer in your config file:
 

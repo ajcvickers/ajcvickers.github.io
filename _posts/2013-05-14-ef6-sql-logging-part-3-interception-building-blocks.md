@@ -21,7 +21,7 @@ Looking at the methods defined on any of the interceptor interfaces it is appare
 
 Collecting this information together into an object keeps the interface methods relatively simple and allows new contextual information to be added in the future without it being a breaking change on the interface. In the same way that we plan to add more interception types, we also plan to add more information to the interception context in the future.
 <h3>Caveat</h3>
-It’s worth noting that the interception context is a best effort to provide contextual information. However, in some corner cases some information that you would expect to be there may not be there. This is because EF has code paths that cannot easily be changed and do not include information that might be expected. For example, when EF makes a call into a provider, the provider has no knowledge of the DbContext being used. If that provider, outside of EF, decides to call ExecuteNonQuery, then two things might happen:
+It's worth noting that the interception context is a best effort to provide contextual information. However, in some corner cases some information that you would expect to be there may not be there. This is because EF has code paths that cannot easily be changed and do not include information that might be expected. For example, when EF makes a call into a provider, the provider has no knowledge of the DbContext being used. If that provider, outside of EF, decides to call ExecuteNonQuery, then two things might happen:
 <ul>
 	<li>First the provider may just make the call directly, avoiding EF interception completely. (This is a consequence of having interception at the EF level rather than lower in the stack. It would be great if interception were lower in the stack, but this is unfortunately outside of the control of the EF team.)</li>
 	<li>If the provider is aware of EF interception then it can dispatch the ExecuteNonQuery call through EF interceptors. This means that any registered interceptor will be notified and can act appropriately. This is what the SQL Server and SQL Server Compact providers do. However, even when a provider does this it is likely that the DbContext being used will not be included in the interception context because the provider has no knowledge of it, and a change to allow this would break the well-defined provider APIs.</li>
@@ -52,12 +52,12 @@ Interception.AddInterceptor(new NLogCommandInterceptor());
 
 Interceptors can also be registered at the app-domain level using the DbConfiguration code-based configuration mechanism.
 <h2>Example: Logging to NLog</h2>
-Let’s put all this together into an example that using IDbCommandInterceptor and <a href="https://nlog.codeplex.com/">NLog</a> to:
+Let's put all this together into an example that using IDbCommandInterceptor and <a href="https://nlog.codeplex.com/">NLog</a> to:
 <ul>
 	<li>Log a warning for any command that is executed non-asynchronously</li>
 	<li>Log an error for any command that throws when executed</li>
 </ul>
-Here’s the class that does the logging, which should be registered as shown above:
+Here's the class that does the logging, which should be registered as shown above:
 
 [code language="csharp"]
 public class NLogCommandInterceptor : IDbCommandInterceptor

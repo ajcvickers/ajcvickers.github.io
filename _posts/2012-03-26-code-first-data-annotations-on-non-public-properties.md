@@ -9,7 +9,7 @@ categories: [Code First, Data Annotations, Entity Framework]
 The Entity Framework supports mapping to public, protected, internal, and private properties. However, there are a few restrictions when mapping to non-public properties. and there are also some things you need to know when attempting to configure such mappings using Code First. In particular, mapping to non-public properties cannot be done using data annotations alone.
 <h3>
 Mapping to non-public members using Code First</h3>
-We’ll get to data annotations in a minute, but first let’s look at how to actually get the non-public members mapped. Consider an entity class like this:
+We'll get to data annotations in a minute, but first let's look at how to actually get the non-public members mapped. Consider an entity class like this:
 
 ``` c#
 public class Person
@@ -35,7 +35,7 @@ protected override void OnModelCreating(DbModelBuilder modelBuilder)
 }
 ```
 
-The problem is that this won’t compile because the Alias property is not visible from outside the Person class. There are several ways to overcome this problem, probably the easiest of which is to embed an EntityTypeConfiguration for the Person entity inside the Person class itself. For example:
+The problem is that this won't compile because the Alias property is not visible from outside the Person class. There are several ways to overcome this problem, probably the easiest of which is to embed an EntityTypeConfiguration for the Person entity inside the Person class itself. For example:
 
 ``` c#
 public class Person
@@ -66,7 +66,7 @@ protected override void OnModelCreating(DbModelBuilder modelBuilder)
 }
 ```
 <h3>The less intrusive way to do it</h3>
-Embedding an EntityTypeConfiguration in your entity class isn’t very clean and also means that your entity is no longer POCO, both conceptually and practically since it requires a reference to EntityFramework.dll to compile.
+Embedding an EntityTypeConfiguration in your entity class isn't very clean and also means that your entity is no longer POCO, both conceptually and practically since it requires a reference to EntityFramework.dll to compile.
 
 Jiri Cincura <a href="http://blog.cincura.net/232731-mapping-private-protected-properties-in-entity-framework-4-x-code-first/">blogged a very nice solution</a> to the problem that retains most of the POCO-ness of your entity classes. It is based on understanding that the Property fluent method expects to be passed an expression tree that describes the property. So we just need to find a way to create that expression tree. We can do that with a simple static Expression property embedded inside the entity class:
 
@@ -102,7 +102,7 @@ Before EF 4.3 any data annotation on a non-public property would be ignored by C
 
 So in the example above just putting MaxLength on the property did not cause Code First to map it. However, once the property was mapped using the fluent API then Code First read the data annotation and set the maximum length for the property to 8.
 
-I understand that this is kind of confusing, especially when you read that Code First now supports data annotations on non-public properties without any clear explanation of what that means. We’re not sure yet how to make this less confusing, but we’re thinking about it.
+I understand that this is kind of confusing, especially when you read that Code First now supports data annotations on non-public properties without any clear explanation of what that means. We're not sure yet how to make this less confusing, but we're thinking about it.
 <h3>Restrictions on mapping to non-public members</h3>
 I said at the top of the post that there were a few restrictions on mapping to non-public properties. Those restrictions fall into three categories:
 <ul>

@@ -20,7 +20,7 @@ public class Blog
 }
 [/code]
 
-Let’s assume this entity is already in our model and migrations have been created and applied so the model and database are both up-to-date. The easiest way to add an index is to place IndexAttribute onto a property. For example, let’s add an index to the column mapped to by the Rating property:
+Let's assume this entity is already in our model and migrations have been created and applied so the model and database are both up-to-date. The easiest way to add an index is to place IndexAttribute onto a property. For example, let's add an index to the column mapped to by the Rating property:
 
 [code language="csharp"]
 public class Blog
@@ -58,7 +58,7 @@ The index is being created with a default name and default options. The defaults
 	<li>Not unique</li>
 	<li>Not clustered</li>
 </ul>
-You can also use IndexAttribute to give the index a specific name and options. For example, let’s add a name to the index for the Rating column:
+You can also use IndexAttribute to give the index a specific name and options. For example, let's add a name to the index for the Rating column:
 
 [code language="csharp"]
 public class Blog
@@ -129,7 +129,7 @@ public partial class Four : DbMigration
 }
 [/code]
 <h2>Index conventions</h2>
-The ForeignKeyIndexConvention Code First convention causes indexes to be created for the columns of any foreign key in the model unless these columns already have an index specified using IndexAttribute. If you don’t want indexes for your FKs you can remove this convention:
+The ForeignKeyIndexConvention Code First convention causes indexes to be created for the columns of any foreign key in the model unless these columns already have an index specified using IndexAttribute. If you don't want indexes for your FKs you can remove this convention:
 
 [code language="csharp"]
 protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -137,5 +137,5 @@ protected override void OnModelCreating(DbModelBuilder modelBuilder)
     modelBuilder.Conventions.Remove<ForeignKeyIndexConvention>();
 }
 [/code]
-<h2>What IndexAttribute doesn’t do</h2>
+<h2>What IndexAttribute doesn't do</h2>
 IndexAttribute can be used to create a unique index in the database. However, this does not mean that EF will be able to reason about the uniqueness of the column when dealing with relationships, etc. This feature usually referred to as support for “unique constraints” which can be voted for as a <a href="http://data.uservoice.com/forums/72025-entity-framework-feature-suggestions/suggestions/1050579-unique-constraint-i-e-candidate-key-support">feature suggestion</a> and on the <a href="http://entityframework.codeplex.com/workitem/299">CodePlex work item</a>.

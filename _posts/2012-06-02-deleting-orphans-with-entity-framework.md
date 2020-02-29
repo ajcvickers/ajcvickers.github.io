@@ -41,7 +41,7 @@ public class HonorsAdvisor
 }
 ```
 
-Each student has many report cards and it doesn’t make sense for a report card to exist without it belonging to a student, so the relationship is required. Note that this doesn’t mean that the student must have report cards—she could have none. What it does mean is that any report card that exists must be associated with a student.
+Each student has many report cards and it doesn't make sense for a report card to exist without it belonging to a student, so the relationship is required. Note that this doesn't mean that the student must have report cards—she could have none. What it does mean is that any report card that exists must be associated with a student.
 
 On the other hand, a student who is not enrolled in the honors program can happily exist without having an honors advisor, so this relationship is optional.
 <h3>Relationships and foreign keys</h3>
@@ -49,7 +49,7 @@ When using foreign keys in your model a required relationship is usually represe
 
 Conversely, optional relationships are usually represented by nullable foreign keys. For example, the HonorsAdvisorId property of Student. If HonorsAdvisorId is set to null it means that the student does not have an honors advisor.
 
-You can also use the [Required] attribute or the fluent API to force relationships to be required or optional regardless of FK nullability. This can be useful when using nullable types such as strings as keys. For example, here’s how the student/advisor relationship could be made required even though it has a nullable FK:
+You can also use the [Required] attribute or the fluent API to force relationships to be required or optional regardless of FK nullability. This can be useful when using nullable types such as strings as keys. For example, here's how the student/advisor relationship could be made required even though it has a nullable FK:
 
 ``` c#
 modelBuilder
@@ -58,7 +58,7 @@ modelBuilder
     .WithMany(r => r.Students);
 ```
 <h3>Cascade delete for required relationships</h3>
-Let’s say that a student leaves the school and our application handles that by deleting the student from the database:
+Let's say that a student leaves the school and our application handles that by deleting the student from the database:
 
 ``` c#
 public static void StudentLeaves(string name)
@@ -71,7 +71,7 @@ public static void StudentLeaves(string name)
 }
 ```
 
-What will happen to the student’s report cards? Dumping my test database contents before and after shows this:
+What will happen to the student's report cards? Dumping my test database contents before and after shows this:
 
 Before:
 
@@ -100,7 +100,7 @@ The answer is that they will be deleted automatically because Code First has set
 
 Code First not only placed the cascade delete in the model but also configured it in the database. This is important—it is expected that if an EF cascade delete exists then it must also exist in the database. If the two are not in sync then you risk getting constraint exceptions from the database. It is because there is a cascade delete in the database that the report cards were deleted without even loading them into the context.
 <h3>No cascade delete for optional relationships</h3>
-Let’s say that an honors advisor leaves the school:
+Let's say that an honors advisor leaves the school:
 
 ``` c#
 public static void AdvisorLeaves(string name)
@@ -118,7 +118,7 @@ public static void AdvisorLeaves(string name)
 }
 ```
 
-What will happen to the advisor’s students? Dumping students before and after shows this:
+What will happen to the advisor's students? Dumping students before and after shows this:
 
 Before:
 
@@ -171,7 +171,7 @@ public static void DoctorReport(string name)
 
 What will happen when SaveChanges is called? The answer is that you get an exception reading:
 <blockquote>System.InvalidOperationException: The operation failed: The relationship could not be changed because one or more of the foreign-key properties is non-nullable. When a change is made to a relationship, the related foreign-key property is set to a null value. If the foreign-key does not support null values, a new relationship must be defined, the foreign-key property must be assigned another non-null value, or the unrelated object must be deleted.</blockquote>
-This is because EF cascade delete only kicks in when a parent is <em>deleted</em>. It doesn’t do anything when the parent still exists but the relationship has been severed. This is something that is on our backlog to fix.
+This is because EF cascade delete only kicks in when a parent is <em>deleted</em>. It doesn't do anything when the parent still exists but the relationship has been severed. This is something that is on our backlog to fix.
 
 You can solve this problem by directly deleting the orphaned child or by overriding SaveChanges to find and delete orphans:
 
@@ -204,6 +204,6 @@ A cascade delete will not delete orphans that have been severed from their paren
 <h3>EF Trivia</h3>
 The exception message above is known on the team as the “conceptual null message.” This is because normally when a relationship is severed the FK for that relationship is set to null. However, if the property is non-nullable then EF instead conceptually sets it to null without actually doing so. Such “conceptual nulls” cannot be saved to the database, hence the exception.
 
-The text itself is a message that describes in detail what the problem is…in a way that most people don’t understand. It is therefore not very helpful. We often use it as an example of a pitfall to avoid when writing exception messages. That is, the message needs to describe the problem and suggest a way to fix the problem <em>from the user’s perspective</em>. Writing something in terms of the implementation details often does not help much.
+The text itself is a message that describes in detail what the problem is…in a way that most people don't understand. It is therefore not very helpful. We often use it as an example of a pitfall to avoid when writing exception messages. That is, the message needs to describe the problem and suggest a way to fix the problem <em>from the user's perspective</em>. Writing something in terms of the implementation details often does not help much.
 
 We should really write a new message that is more helpful, but better still would be to fix the delete orphans problems so that the exception is no longer needed. Now if I could only stop blogging long enough to do that…

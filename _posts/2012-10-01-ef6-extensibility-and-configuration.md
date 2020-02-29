@@ -14,9 +14,9 @@ EF has historically taken a rather ad-hoc approach to runtime configuration and 
 In particular, the changes have the following high-level goals:
 <ul>
 	<li>Provide a common mechanism and building blocks whereby aspects of existing EF functionality can be factored out or new functionality added in such a way that different implementations can be injected without the core EF code knowing about the specifics of these implementations.</li>
-	<li>Provide a unified mechanism for EF code to access configuration regardless of whether that configuration has been set in code (“code-based”) or in the application’s config file.</li>
+	<li>Provide a unified mechanism for EF code to access configuration regardless of whether that configuration has been set in code (“code-based”) or in the application's config file.</li>
 	<li>Ensure that configuration can be discovered by design-time tools such that actions such as running the Code First pipeline can be correctly performed by tools.</li>
-	<li>Allow, but not require, EF dependencies to be injected using the application developer’s Inversion-of-Control (IoC) container of choice.</li>
+	<li>Allow, but not require, EF dependencies to be injected using the application developer's Inversion-of-Control (IoC) container of choice.</li>
 </ul>
 <h2>Dependency resolution</h2>
 The <a href="http://entityframework.codeplex.com/wikipage?title=EF%20Configuration%20and%20Extensibility">first post</a> describes the new IDbDependencyResolver interface that allows EF to be configured and extended by resolving services that it depends on. The approach is based loosely a similar mechanism in MVC and Web API and makes use of the Service Locator pattern but with important modifications that address some of the issues with that pattern.
@@ -27,4 +27,4 @@ The <a href="http://entityframework.codeplex.com/wikipage?title=Code-based%20Con
 
 The code-based configuration also allows application developers to configure EF without needing to learn anything about dependency resolvers, even though these are the underlying building blocks on which the configuration is based. This is important for keeping the concept count low for developers just getting started with EF.
 <h2>Feedback, please!</h2>
-The reason we spend time writing this stuff and putting it out there is so that you can tell us what you think before it gets into a shipped product and becomes hard to change. Regardless of whether you love it, hate it, or think it’s pointless, please do let us know!
+The reason we spend time writing this stuff and putting it out there is so that you can tell us what you think before it gets into a shipped product and becomes hard to change. Regardless of whether you love it, hate it, or think it's pointless, please do let us know!

@@ -71,11 +71,11 @@ The build combines the product and tooling assemblies into two NuGet packages:
 <h2>Code organization</h2>
 There are two things that effect the EF code organization more than anything else. The first is the historical split between core code and the DbContext/Code First code; the second is underpinning of the EF core code by the Entity Data model (EDM).
 
-I have written more details about the high-level architecture of EF and its EDM underpinnings in part 5 of this series, so I’m not going to cover that here. Instead I’m going to talk here about the split between the core code and the DbContext/Code First code.
+I have written more details about the high-level architecture of EF and its EDM underpinnings in part 5 of this series, so I'm not going to cover that here. Instead I'm going to talk here about the split between the core code and the DbContext/Code First code.
 <h3>The EF 4.1 code split</h3>
 The first two versions of EF were released as part of the .NET Framework. At about the time that the second version of EF (called EF4 to align with .NET 4) was released <a href="/2011/04/12/a-brief-history-of-ef-4-1/">a group of people were already working on features that became Code First and the DbContext APIs</a>. These features formed an out-of-band (OOB) release called EF 4.1. Significantly, this code was never included in the .NET Framework.
 
-The obvious consequence of this is that since EF 4.1 the Entity Framework has consisted of two code bases—the code in the .NET Framework which we refer to as the core, and the OOB code for DbContext/Code First. The OOB code was dependent on the core, but the core didn’t know anything about the OOB code.
+The obvious consequence of this is that since EF 4.1 the Entity Framework has consisted of two code bases—the code in the .NET Framework which we refer to as the core, and the OOB code for DbContext/Code First. The OOB code was dependent on the core, but the core didn't know anything about the OOB code.
 <h3>The EF6 merge</h3>
 With the move to open source for EF6 these two code bases have been brought together since all of EF6 is being released OOB and none of it is part of the .NET Framework. But when you look at the source code you will still see the historical separation. Generally speaking, code which comes from the core has been moved into namespaces under System.Data.Entity.Core.
 
@@ -112,7 +112,7 @@ The main namespaces for EntityFramework.dll are:
 </li>
 	<li>System.Data.Entity.Internal and below
 <ul>
-	<li>This namespace contains internal types used in the implementation of the DbContext APIs. The DbContext code keeps its internals here but in other parts of the code base types are organized by functional area rather than by accessibility and going forward we are tending to follow the latter pattern. In other words, don’t feel that you have to put internal types  in Internal namespaces.</li>
+	<li>This namespace contains internal types used in the implementation of the DbContext APIs. The DbContext code keeps its internals here but in other parts of the code base types are organized by functional area rather than by accessibility and going forward we are tending to follow the latter pattern. In other words, don't feel that you have to put internal types  in Internal namespaces.</li>
 </ul>
 </li>
 	<li>System.Data.Entity.Migrations and below
@@ -148,4 +148,4 @@ The Resouces.tt file is a T4 template used to create some helper methods that ca
 <h2>Summary</h2>
 The EF build generates the main EF runtime assembly (EntityFramework.dll) and two providers together with everything needed to create the EF NuGet packages and Migrations tooling.
 
-If there is anything here that you need more information about don’t hesitate to contact me or others on the EF team. In the next post I’ll look at the EF tests.
+If there is anything here that you need more information about don't hesitate to contact me or others on the EF team. In the next post I'll look at the EF tests.

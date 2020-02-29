@@ -39,7 +39,7 @@ The process for getting and building the EF code and for making contributions ar
 <h2>Deciding what to contribute</h2>
 If you want something to get started on, then the <a href="http://entityframework.codeplex.com/workitem/list/basic">EF issue tracker on CodePlex</a> contains bugs that need fixing. Fixing bugs is a good way to start getting an understanding of the code and the process of making a contribution.
 
-It’s great if you want to tackle something bigger than a bug and the EF team is fully supportive of this. If you do want to tackle something bigger than a bug then you should <a href="http://entityframework.codeplex.com/discussions">start a discussion on CodePlex</a> so that we can collaborate on the design. It’s also a good idea to read part 4 of this series to ensure whatever you work on meets expectations for the developer experience.
+It's great if you want to tackle something bigger than a bug and the EF team is fully supportive of this. If you do want to tackle something bigger than a bug then you should <a href="http://entityframework.codeplex.com/discussions">start a discussion on CodePlex</a> so that we can collaborate on the design. It's also a good idea to read part 4 of this series to ensure whatever you work on meets expectations for the developer experience.
 <h2>Additional help</h2>
 The EF team holds a weekly “design meeting” in which we discuss design and other aspects of writing and maintaining the EF code. We have started putting <a href="http://entityframework.codeplex.com/wikipage?title=Design%20Meeting%20Notes">the notes from this meeting onto our CodePlex site</a> and you might find these notes useful in gaining context for an area that you want to change.
 
@@ -47,6 +47,6 @@ The EF CodePlex site also contains other <a href="http://entityframework.codeple
 
 Feel free to contact me (see below) or others on the team if you need help. We want you to make contributions and we will do what we can to make you successful in doing so.
 <h2>Future posts…</h2>
-I have started out with five parts to this series but I’m willing to write more if people find it useful. If there is something that you would like to get more information about then let me know by leaving a comment, sending me a tweet, or emailing me (avickers) at Microsoft.
+I have started out with five parts to this series but I'm willing to write more if people find it useful. If there is something that you would like to get more information about then let me know by leaving a comment, sending me a tweet, or emailing me (avickers) at Microsoft.
 
 Have fun and I look forward to seeing your contributions!
