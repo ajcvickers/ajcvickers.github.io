@@ -23,6 +23,7 @@ author:
   name: Arthur Vickers
   email: ajcvickers@hotmail.com
 description: More thoughts from a member of the Entity Framework team.
+google_analytics: UA-159428510-1
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://ajcvickers.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 markdown: GFM
