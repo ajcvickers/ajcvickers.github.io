@@ -1,11 +1,17 @@
 ---
-layout: post
-title: So you want to write an EF Core provider...
+layout: default
+title: "So you want to write an EF Core provider..."
 date: 2016-11-11 15:15
+day: 11th
+month: November
+year: 2016
 author: ajcvickers
-comments: true
-categories: [Dependency Injection, EF Core, EF Core Metadata, EF Core Provider, Entity Framework, Metadata]
+permalink: 2016/11/11/so-you-want-to-write-an-ef-core-provider/
 ---
+
+# EF Core 1.1
+# So you want to write an EF Core provider...
+
 Writing a database provider for EF Core can be daunting. I have written several posts over the last month containing information you need to know when writing a provider. This post pulls all that together to give an overview of the different building blocks with links to previous posts containing the details.
 
 
@@ -20,7 +26,7 @@ Do the same for a relational provider, except your class should inherit from <co
 
 The properties should be implemented as <code>GetService</code> calls for your provider's implementation of the service. For example:
 
-[code lang=csharp]
+``` c#
 public class SqlServerDatabaseProviderServices : RelationalDatabaseProviderServices
 {
     public SqlServerDatabaseProviderServices(IServiceProvider services)
@@ -36,7 +42,7 @@ public class SqlServerDatabaseProviderServices : RelationalDatabaseProviderServi
 
     // More...
 }
-[/code]
+```
 
 <h3>Create an "AddEntityFramework..." extension method</h3>
 
@@ -51,7 +57,7 @@ Create an extension method on <code>IServiceCollection</code> called "AddEntityF
 
 For example:
 
-[code lang=csharp]
+``` c#
 public static IServiceCollection AddEntityFrameworkSqlServer(this IServiceCollection services)
 {
     services.AddRelational();
@@ -68,11 +74,11 @@ public static IServiceCollection AddEntityFrameworkSqlServer(this IServiceCollec
 
     return services;
 }
-[/code]
+```
 
-See <a href="https://blog.oneunicorn.com/2016/11/01/ef-core-dependency-injection-internals/">this post</a> for more information on provider services.
+See <a href="/2016/11/01/ef-core-dependency-injection-internals/">this post</a> for more information on provider services.
 
-<h2>Step 2: Implement a "Use..." method</h2>
+<h2>Step 2: Implement a 'Use...' method</h2>
 
 <h3>Create an options extension</h3>
 
@@ -86,7 +92,7 @@ Create a class <code>MyProviderOptionsExtension</code> that implements <code>IDb
 
 When implementing a relational provider your class should inherit from <code>RelationalOptionsExtension</code>. For example:
 
-[code lang=csharp]
+``` c#
 public class SqlServerOptionsExtension : RelationalOptionsExtension
 {
     private bool? _rowNumberPaging;
@@ -110,9 +116,9 @@ public class SqlServerOptionsExtension : RelationalOptionsExtension
     public override void ApplyServices(IServiceCollection services)
         => services.AddEntityFrameworkSqlServer();
 }
-[/code]
+```
 
-<h3>Create a "Use..." method</h3>
+<h3>Create a 'Use...' method</h3>
 
 Create an extension method on <code>DbContextOptionsBuilder</code> called <code>UseMyProvider</code>. This method should:
 
@@ -126,7 +132,7 @@ Create an extension method on <code>DbContextOptionsBuilder</code> called <code>
 
 For example:
 
-[code lang=csharp]
+``` c#
 public static DbContextOptionsBuilder UseSqlServer(
     this DbContextOptionsBuilder optionsBuilder,
     string connectionString,
@@ -148,9 +154,9 @@ public static DbContextOptionsBuilder<TContext> UseSqlServer<TContext>(
     where TContext : DbContext
     => (DbContextOptionsBuilder<TContext>)UseSqlServer(
         (DbContextOptionsBuilder)optionsBuilder, connectionString, sqlServerOptionsAction);
-[/code]
+```
 
-See <a href="https://blog.oneunicorn.com/2016/11/03/implementing-a-provider-use-method-for-ef-core-1-1/">this post</a> for more details on options extensions and creating a "Use..." method.
+See <a href="/2016/11/03/implementing-a-provider-use-method-for-ef-core-1-1/">this post</a> for more details on options extensions and creating a 'Use...' method.
 
 <h2>Step 3: Create metadata extension methods</h2>
 
@@ -158,7 +164,7 @@ See <a href="https://blog.oneunicorn.com/2016/11/03/implementing-a-provider-use-
 
 Create an annotation prefix name for your provider and names for any provider-specific metadata. Use these names to create a MyProviderFullAnnotationNames class, inheriting from RelationalFullAnnotationNames if your provider is relational. For example:
 
-[code lang=csharp]
+``` c#
 public class SqlServerFullAnnotationNames : RelationalFullAnnotationNames
 {
     protected SqlServerFullAnnotationNames(string prefix)
@@ -174,13 +180,13 @@ public class SqlServerFullAnnotationNames : RelationalFullAnnotationNames
     public readonly string Clustered;
     public readonly string MemoryOptimized;
 }
-[/code]
+```
 
 <h3>Create MyProvider() extension methods</h3>
 
 Create extension methods named after your provider for each mutable and immutable metadata type. For example:
 
-[code lang=csharp]
+``` c#
 public static SqlServerEntityTypeAnnotations SqlServer(this IMutableEntityType entityType)
     => (SqlServerEntityTypeAnnotations)SqlServer((IEntityType)entityType);
 
@@ -192,11 +198,11 @@ public static SqlServerPropertyAnnotations SqlServer(this IMutableProperty prope
 
 public static ISqlServerPropertyAnnotations SqlServer(this IProperty property)
     => new SqlServerPropertyAnnotations(property);
-[/code]
+```
 
 Create the IMyProviderXxxAnnotations interfaces returned from these methods, inheriting from IRelationalXxxAnnotations for relational providers. Create classes that implement these interfaces, inheriting from RelationalXxxAnnotations for relational providers. For example:
 
-[code lang=csharp]
+``` c#
 public interface ISqlServerEntityTypeAnnotations : IRelationalEntityTypeAnnotations
 {
     bool IsMemoryOptimized { get; }
@@ -216,7 +222,7 @@ public class SqlServerEntityTypeAnnotations
         set { ((IMutableAnnotatable)EntityType)[SqlServerFullAnnotationNames.Instance.MemoryOptimized] = value; }
     }
 }
-[/code]
+```
 
 Make sure that the interface defines read-only properties, while the class adds in setters. The interface is used for immutable metadata, while the class is used with mutable metadata.
 
@@ -224,7 +230,7 @@ Make sure that the interface defines read-only properties, while the class adds 
 
 Create fluent API extension methods that make use of the core metadata extensions described above. These methods should be named <code>MyProviderDoSomething</code>. Make sure to include generic and non-generic overloads of these methods. For example:
 
-[code lang=csharp]
+``` c#
 public static class SqlServerEntityTypeBuilderExtensions
 {
     public static EntityTypeBuilder ForSqlServerIsMemoryOptimized(
@@ -240,11 +246,11 @@ public static class SqlServerEntityTypeBuilderExtensions
         where TEntity : class
         => (EntityTypeBuilder<TEntity>)ForSqlServerIsMemoryOptimized((EntityTypeBuilder)entityTypeBuilder, memoryOptimized);
 }
-[/code]
+```
 
 Note that these methods can contain logic to obtain their values from the model hierarchy and to return reasonable defaults.
 
-See <a href="https://blog.oneunicorn.com/2016/11/10/implementing-provider-extension-methods-in-ef-core-1-1/">this post</a> for more information on metadata extensions.
+See <a href="/2016/11/10/implementing-provider-extension-methods-in-ef-core-1-1/">this post</a> for more information on metadata extensions.
 
 <h2>Look at examples</h2>
 

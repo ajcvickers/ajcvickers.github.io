@@ -1,11 +1,17 @@
 ---
-layout: post
-title: Add, Attach, Update, and Remove methods in EF Core 1.1
+layout: default
+title: "Add, Attach, Update, and Remove methods in EF Core 1.1"
 date: 2016-11-17 16:50
+day: 17th
+month: November
+year: 2016
 author: ajcvickers
-comments: true
-categories: [Change Tracking, DbContext, DbContext API, DbSet.Add, DbSet.Attach, DbSet.Renove, DbSet.Update, DetectChanges, EF Core, Entity Framework, EntityState, SaveChanges]
+permalink: 2016/11/17/add-attach-update-and-remove-methods-in-ef-core-1-1/
 ---
+
+# EF Core 1.1
+# Add, Attach, Update, and Remove methods
+
 EF Core provides a variety of ways to start tracking entities or change their state. This post gives a brief overview of the different approaches.
 
 
@@ -71,9 +77,9 @@ The AddRange, AttachRange, UpdateRange, and RemoveRange methods work exactly the
 
 The state of an entity can always be set directly using the DbContext.Entry method. For example:
 
-[code lang=csharp]
+``` c#
 context.Entry(blog).State = EntityState.Unchanged;
-[/code]
+```
 
 Setting the state this way:
 
@@ -86,7 +92,7 @@ Setting the state this way:
 
 The TrackGraph method provides full control over the state set for entities in a graph. For example, imagine your entities all have integer keys called "Id", and that these keys are set to negative temporary values before they are inserted into the database. TrackGraph can then be used to set the state of each entity appropriately and inform EF that the negative values are temporary.
 
-[code lang=csharp]
+``` c#
 context.ChangeTracker.TrackGraph(blog, node =>
 {
     var entry = node.Entry;
@@ -101,13 +107,13 @@ context.ChangeTracker.TrackGraph(blog, node =>
         entry.State = EntityState.Modified;
     }
 });
-[/code]
+```
 
 <h2>Using navigation properties</h2>
 
 New entities can be tracked by setting them on a reference navigation property or by adding them to a collection navigation property of an entity that is already being tracked. In this case the new entities are always put in the Added state.
 
-Usually DetectChanges does the job of finding these new entities. However, you can always use <a href="https://blog.oneunicorn.com/2016/11/16/notification-entities-in-ef-core-1-1/">notification entities</a> or use the <code>context.Entry</code> methods for references and collections, in which case DetectChanges is not needed,
+Usually DetectChanges does the job of finding these new entities. However, you can always use <a href="/2016/11/16/notification-entities-in-ef-core-1-1/">notification entities</a> or use the <code>context.Entry</code> methods for references and collections, in which case DetectChanges is not needed,
 
 <h2>Async Add</h2>
 

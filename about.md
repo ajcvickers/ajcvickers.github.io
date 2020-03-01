@@ -24,6 +24,5 @@ This is what I wrote in 2011 when I started blogging:
 
 It's 2020 and I'm now the Engineering Manager for Entity Framework, but otherwise not much has changed.
 
-Thanks for reading!
-
+Thanks for reading!<br>
 Arthur

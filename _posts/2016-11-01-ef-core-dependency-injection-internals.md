@@ -1,14 +1,18 @@
 ---
-layout: post
-title: EF Core Dependency Injection Internals
+layout: default
+title: "EF Core Dependency Injection Internals"
 date: 2016-11-01 12:46
+day: 1st
+month: November
+year: 2016
 author: ajcvickers
-comments: true
-categories: [Dependency Injection, EF Core, EF Core Provider, Entity Framework]
+permalink: 2016/11/01/ef-core-dependency-injection-internals/
 ---
-A <a href="https://blog.oneunicorn.com/2016/10/27/dependency-injection-in-ef-core-1-1/">previous post</a> gave an overview of how dependency injection is used internally by EF Core, and how applications might interact with this. In this post we will look at some of the internal details. This post is aimed at provider writers and people who may want to contribute to the EF source code. Application developers should not need to know any of this.
 
+# EF Core 1.1
+# EF Core Dependency Injection Internals
 
+A <a href="/2016/10/27/dependency-injection-in-ef-core-1-1/">previous post</a> gave an overview of how dependency injection is used internally by EF Core, and how applications might interact with this. In this post we will look at some of the internal details. This post is aimed at provider writers and people who may want to contribute to the EF source code. Application developers should not need to know any of this.
 
 <h2>Principles</h2>
 
@@ -36,7 +40,7 @@ EF Core creates a scope for each context instance such that there is essentially
 
 Registration of core EF services is done in an IServiceCollection extension method called AddEntityFramework. A very trimmed down version of this method looks like this:
 
-[code lang=csharp]
+``` c#
 public static IServiceCollection AddEntityFramework(
     [NotNull] this IServiceCollection serviceCollection)
 {
@@ -55,7 +59,7 @@ public static IServiceCollection AddEntityFramework(
 
     return serviceCollection;
 }
-[/code]
+```
 
 Most of the service registrations have been removed to leave just enough to explain the concepts going on here:
 
@@ -96,7 +100,7 @@ For example, see the registration for IValueGeneratorSelector in the code above.
 
 Database providers should ship with a method like AddEntityFramework. For example, the in-memory provider has a method called AddEntityFrameworkInMemoryDatabase. A cut-down version of this method looks like this:
 
-[code lang=csharp]
+``` c#
 public static IServiceCollection AddEntityFrameworkInMemoryDatabase(
     [NotNull] this IServiceCollection services)
 {
@@ -112,7 +116,7 @@ public static IServiceCollection AddEntityFrameworkInMemoryDatabase(
 
     return services;
 }
-[/code]
+```
 
 Things to notice:
 
@@ -131,7 +135,7 @@ Things to notice:
 
 The IDatabaseProviderServices implementation ties all this together. Here is a cut-down version of the in-memory implementation:
 
-[code lang=csharp]
+``` c#
 public class InMemoryDatabaseProviderServices : DatabaseProviderServices
 {
     public InMemoryDatabaseProviderServices([NotNull] IServiceProvider services)
@@ -145,7 +149,7 @@ public class InMemoryDatabaseProviderServices : DatabaseProviderServices
     public override IValueGeneratorCache ValueGeneratorCache 
         => GetService<InMemoryValueGeneratorCache>();
 }
-[/code]
+```
 
 The ValueGeneratorSelector property is overridden to call GetService for InMemoryValueGeneratorSelector. This completes the story of how IValueGeneratorSelector is resolved end-to-end:
 

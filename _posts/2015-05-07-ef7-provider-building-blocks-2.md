@@ -1,11 +1,17 @@
 ---
-layout: post
-title: EF7 Provider Building Blocks
+layout: default
+title: "EF7 Provider Building Blocks"
 date: 2015-05-07 11:02
+day: 7th
+month: May
+year: 2015
 author: ajcvickers
-comments: true
-categories: [EF7, Entity Framework]
+permalink: 2015/05/07/ef7-provider-building-blocks-2/
 ---
+
+# EF Core 1.0
+# Provider Building Blocks
+
 In this post I'll outline the basic building blocks needed for an EF7 provider. The idea is not to show how everything should be implemented, but rather to show what pieces are needed and how they fit together. The best examples of EF7 providers are the SQL Server and SQLite providers, which ca both be found in the <a href="https://github.com/aspnet/EntityFramework">EF repro on GitHub</a>.
 
 EF7 providers should be shipped as NuGet packages. This post does not cover NuGet packaging, but you can look at the GitHib repro for some ideas on how to do this.
@@ -44,7 +50,7 @@ There are base implementations of IRelationalDataStoreServices and IDataStoreSer
 
 For example, here is the implementation of IRelationalDataStoreServices used by the SQLite provider, as of the time of writing:
 
-[code lang=csharp]
+``` c#
 public class SqliteDataStoreServices : RelationalDataStoreServices
 {
     public SqliteDataStoreServices(IServiceProvider services)
@@ -91,7 +97,7 @@ public class SqliteDataStoreServices : RelationalDataStoreServices
     public override IRelationalDataStoreCreator RelationalDataStoreCreator 
         => GetService<SqliteDataStoreCreator>();
 }
-[/code]
+```
 
 Notice that it derives from RelationalDataStoreServices to use common services where possible and overrides for all services where a custom implementation is required.
 
@@ -101,7 +107,7 @@ Also notice that each property is mapping a concrete type in the GetService call
 
 Each of the concrete services must be registered in the DI container so that the GetService calls will have something to find. This is done in an AddXxx extension method, where Xxx is the name of the provider. For example, the extension method for SQLite looks like this:
 
-[code lang=csharp]
+``` c#
 public static EntityFrameworkServicesBuilder AddSqlite(
     this EntityFrameworkServicesBuilder services)
 {
@@ -123,7 +129,7 @@ public static EntityFrameworkServicesBuilder AddSqlite(
 
     return services;
 }
-[/code]
+```
 
 The AddXxx method is an extension method on EntityFrameworkServicesBuilder and should return the EntityFrameworkServicesBuilder that is passed in. This allows it to be chained from an AddEntityFramework call when registering DI services and allows additional AddXxx methods to be chained from it.
 
@@ -143,17 +149,17 @@ There are currently two services (IModelSource and IValueGeneratorCache) which a
 
 EF7 applications choose which provider to use for a given context instance my making a call to a UseXxx method, typically in the OnConfiguring method of the context. For example, to use SQLite an application might do something like this:
 
-[code lang=csharp]
+``` c#
 protected override void OnConfiguring(
     DbContextOptionsBuilder optionsBuilder)
 {
     optionsBuilder.UseSqlite("MyDb.db");
 }
-[/code]
+```
 
 The UseSqlite method is an extension method on DbContextOptionsBuilder. Its job is to create (or update an existing) IDbContextOptionsExtension object and register it onto the options builder. For example:
 
-[code lang=csharp]
+``` c#
 public static SqliteDbContextOptionsBuilder UseSqlite(
     this DbContextOptionsBuilder options,
     string connectionString)
@@ -164,7 +170,7 @@ public static SqliteDbContextOptionsBuilder UseSqlite(
 
     return new SqliteDbContextOptionsBuilder(options);
 }
-[/code]
+```
 
 Note that a new builder with the updated options is returned to allow chaining of further configuration.
 
@@ -172,14 +178,14 @@ Presence of IDbContextOptionsExtension in the options builder is used by the EF 
 
 An IDbContextOptionsExtension is also used to register DI services automatically for the case where EF is taking care of all DI registration internally. An example implementation for SQLite (trimmed) looks something like:
 
-[code lang=csharp]
+``` c#
 public class SqliteOptionsExtension : RelationalOptionsExtension
 {
     public override void ApplyServices(
         EntityFrameworkServicesBuilder builder)
         => builder.AddSqlite();
 }
-[/code]
+```
 
 When EF needs to register the current provider's services it calls ApplyServices, which in turn calls the AddXxx extension method that was defined above.
 
@@ -187,7 +193,7 @@ When EF needs to register the current provider's services it calls ApplyServices
 
 The final piece of the puzzle that connects selection of a provider with the services used for that provider is an implementation of the IDataStoreSource interface. A typical implementation uses the DataStoreSource generic base class, passing in the types for the provider's IDataStoreServices and IDbContextOptionsExtension implementations. For example, SqliteDataStoreSource looks something like:
 
-[code lang=csharp]
+``` c#
 public class SqliteDataStoreSource 
     : DataStoreSource<SqliteDataStoreServices, SqliteOptionsExtension>
 {
@@ -197,7 +203,7 @@ public class SqliteDataStoreSource
 
     public override string Name => "SQLite Data Store";
 }
-[/code]
+```
 
 SqliteDataStoreSource is then registered in the AddSqlite extension method as shown above.
 

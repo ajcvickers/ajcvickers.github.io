@@ -1,11 +1,17 @@
 ---
-layout: post
-title: EF6: Nested types and more for Code First
+layout: default
+title: "EF6: Nested types and more for Code First"
 date: 2013-03-11 10:39
+day: 11th
+month: March
+year: 2013
 author: ajcvickers
-comments: true
-categories: [Code First, EF6, Entity Framework, POCO]
+permalink: 2013/03/11/ef6-nested-types-and-more-for-code-first/
 ---
+
+# Entity Framework 6.0
+# Nested types and more for Code First
+
 Ever since POCO support was introduced in EF4 there have been two limiting restrictions on the types that can be mapped:
 <ul>
 	<li>Types nested inside other types were not supported</li>

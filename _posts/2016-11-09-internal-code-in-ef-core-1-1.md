@@ -1,11 +1,17 @@
 ---
-layout: post
-title: Internal code in EF Core 1.1
+layout: default
+title: "Internal code in EF Core 1.1"
 date: 2016-11-09 16:46
+day: 9th
+month: November
+year: 2016
 author: ajcvickers
-comments: true
-categories: [EF Core, Entity Framework]
+permalink: 2016/11/09/internal-code-in-ef-core-1-1/
 ---
+
+# EF Core 1.1
+# Internal code
+
 There is very little code in EF Core that is truely "internal". Instead, code that would traditionally have been internal has been made public but documented as internal. This post looks at what this means for application developers and how you can use this code responsibly.
 
 
@@ -45,12 +51,12 @@ Usually these breaks should be minor--for example, a new parameter added to a me
 
 The first thing you need to know is when you are using internal code. Internal code is almost always in an internal namespace. For example, <code>Microsoft.EntityFrameworkCore.Internal</code>. In addition, all internal code is documented like this:
 
-[code lang=csharp]
+``` c#
 /// <summary>
 ///     This API supports the Entity Framework Core infrastructure and is not intended to be used
 ///     directly from your code. This API may change or be removed in future releases.
 /// </summary>
-[/code]
+```
 
 So once you know that the code is internal you can make a conscious choice to use that code and accept that when you update to a new version of EF, then you might have to make some updates to your code.
 

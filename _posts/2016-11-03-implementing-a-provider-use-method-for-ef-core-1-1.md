@@ -1,11 +1,17 @@
 ---
-layout: post
-title: Implementing a provider "Use..." method for EF Core 1.1
+layout: default
+title: "Implementing a provider 'Use...' method for EF Core 1.1"
 date: 2016-11-03 15:24
+day: 3rd
+month: November
+year: 2016
 author: ajcvickers
-comments: true
-categories: [DbContextOptionsBuilder, EF Core, EF Core Provider, Entity Framework]
+permalink: 2016/11/03/implementing-a-provider-use-method-for-ef-core-1-1/
 ---
+
+# EF Core 1.1
+# Implementing a provider 'Use...' method for EF Core 1.1
+
 The previous post contained lots of information about how dependency injection works with database providers. This post adds more to the provider story by explaining how to implement a method like UseSqlServer that allows applications to select the provider to use.
 
 
@@ -22,11 +28,11 @@ The result of all this is that IDatabaseProvider is the mechanism by which a pro
 
 <h2>IDbContextOptionsExtension</h2>
 
-Options extensions are the mechanism whereby providers can add information to the DbContextOptions for the context. An options extension is registered by the "Use..." method, as described below. Each provider's extension implements the IDbContextOptionsExtension. EF will then call the ApplyServices method to register provider services in the D.I. container.
+Options extensions are the mechanism whereby providers can add information to the DbContextOptions for the context. An options extension is registered by the 'Use...' method, as described below. Each provider's extension implements the IDbContextOptionsExtension. EF will then call the ApplyServices method to register provider services in the D.I. container.
 
 For example, a trimmed down version of the in-memory provider's options extension looks something like this:
 
-[code lang=csharp]
+``` c#
 public class InMemoryOptionsExtension : IDbContextOptionsExtension
 {
     public InMemoryOptionsExtension()
@@ -43,17 +49,17 @@ public class InMemoryOptionsExtension : IDbContextOptionsExtension
     public virtual void ApplyServices(IServiceCollection services)
         => services.AddEntityFrameworkInMemoryDatabase();
 }
-[/code]
+```
 
 Notice that ApplyServices simply calls the AddEntityFrameworkInMemoryDatabase that was described in the previous post.
 
 The options extension also holds additional information needed by the provider. For example, relational options extensions will contain the connection string to use. The in-memory extension shown above holds the name of the in-memory database to use.
 
-<h2>Implementing the "Use..." method</h2>
+<h2>Implementing the 'Use...' method</h2>
 
 A trimmed-down version of the UseInMemoryDatabase method looks something like this:
 
-[code lang=csharp]
+``` c#
 public static DbContextOptionsBuilder UseInMemoryDatabase(
     this DbContextOptionsBuilder optionsBuilder,
     string databaseName)
@@ -70,7 +76,7 @@ public static DbContextOptionsBuilder UseInMemoryDatabase(
 
     return optionsBuilder;
 }
-[/code]
+```
 
 Walking through this code:
 
@@ -86,11 +92,11 @@ Notice that after this call, the options will have an InMemoryOptionsExtension r
 
 <h2>Coupling IDatabaseProvider and IDbContextOptionsExtension</h2>
 
-As discussed above, the IsConfigured method of IDatabaseProvider must return true if the provider is being used. The previous section showed that calling a "Use..." method will result in an options extension being added to the options. Therefore, IsConfigured should return true if an options extension for the provider has been added to the options.
+As discussed above, the IsConfigured method of IDatabaseProvider must return true if the provider is being used. The previous section showed that calling a 'Use...' method will result in an options extension being added to the options. Therefore, IsConfigured should return true if an options extension for the provider has been added to the options.
 
 The DatabaseProvider class implements IDatabaseProvider to do this:
 
-[code lang=csharp]
+``` c#
 public class DatabaseProvider<TProviderServices, TOptionsExtension> : IDatabaseProvider
     where TProviderServices : class, IDatabaseProviderServices
     where TOptionsExtension : class, IDbContextOptionsExtension
@@ -101,47 +107,47 @@ public class DatabaseProvider<TProviderServices, TOptionsExtension> : IDatabaseP
     public virtual bool IsConfigured(IDbContextOptions options)
         => options.Extensions.OfType<TOptionsExtension>().Any();
 }
-[/code]
+```
 
-This means that a provider should register a DatabaseProvider class to couple provider selection with the "Use..." method. For example:
+This means that a provider should register a DatabaseProvider class to couple provider selection with the 'Use...' method. For example:
 
-[code lang=csharp]
+``` c#
 services.TryAddEnumerable(ServiceDescriptor
     .Singleton<IDatabaseProvider, DatabaseProvider<InMemoryDatabaseProviderServices, InMemoryOptionsExtension>>());
-[/code]
+```
 
 When an InMemoryOptionsExtension is registered, the InMemoryDatabaseProviderServices will be selected.
 
-<h2>Additional "Use..." method details</h2>
+<h2>Additional 'Use...' method details</h2>
 
 <h3>The generic overload</h3>
 
-A provider should implement an overload of its "Use..." method that works with the generic DbContextOptionsBuilder<TContext>. For example:
+A provider should implement an overload of its 'Use...' method that works with the generic DbContextOptionsBuilder<TContext>. For example:
 
-[code lang=csharp]
+``` c#
 public static DbContextOptionsBuilder<TContext> UseInMemoryDatabase<TContext>(
     this DbContextOptionsBuilder<TContext> optionsBuilder,
     string databaseName)
     where TContext : DbContext
     => (DbContextOptionsBuilder<TContext>)UseInMemoryDatabase(
         (DbContextOptionsBuilder)optionsBuilder, databaseName);
-[/code]
+```
 
 This ensures that any chained methods will still get the generic DbContextOptionsBuilder<TContext>.
 
 <h3>Nested provider-specific configuration</h3>
 
-Configuration fundamental to the use of the provider should be passed as arguments to the "Use..." method. For example, the connection string. Other provider-specific configuration can be done in a nested closure. For example:
+Configuration fundamental to the use of the provider should be passed as arguments to the 'Use...' method. For example, the connection string. Other provider-specific configuration can be done in a nested closure. For example:
 
-[code lang=csharp]
+``` c#
 optionsBuilder.UseSqlServer(
     _connectionString,
     b => b.CommandTimeout(10));
-[/code]
+```
 
 Here, CommandTimeout is defined on SqlServerDbContextOptionsBuilder. The relevant parts of UseSqlServer look something like this:
 
-[code lang=csharp]
+``` c#
 public static DbContextOptionsBuilder UseSqlServer(
     this DbContextOptionsBuilder optionsBuilder,
     string connectionString,
@@ -153,11 +159,11 @@ public static DbContextOptionsBuilder UseSqlServer(
 
     return optionsBuilder;
 }
-[/code]
+```
 
-Notice that the delegate has a default of null since often code does not need to set any additional options. The CommandTimeout method looks very similar to the "Use..." method:
+Notice that the delegate has a default of null since often code does not need to set any additional options. The CommandTimeout method looks very similar to the 'Use...' method:
 
-[code lang=csharp]
+``` c#
 public virtual SqlServerDbContextOptionsBuilder CommandTimeout(int? commandTimeout)
 {
     var extension = new SqlServerOptionsExtension(
@@ -169,9 +175,9 @@ public virtual SqlServerDbContextOptionsBuilder CommandTimeout(int? commandTimeo
 
     return this;
 }
-[/code]
+```
 
-This method works just as is described above for the "Use..." method:
+This method works just as is described above for the 'Use...' method:
 
 <ul>
 <li>The extension is cloned. (In this case it is known to exist.)</li>

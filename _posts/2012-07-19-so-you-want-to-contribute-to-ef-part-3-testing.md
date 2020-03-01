@@ -49,11 +49,15 @@ When reading a test method name it should be clear:
 	<li>What the expected outcome is</li>
 </ul>
 For example:
-<pre>[Fact]
+
+``` c#
+[Fact]
 public void Add_starts_tracking_a_new_entity_and_puts_it_in_the_Added_state()
 {
     // Test some stuff...
-}</pre>
+}
+```
+
 Keeping tests simple and clean means that good test code does not have the same requirements as good product code. In particular:
 <ul>
 	<li>Duplication of test code in many tests is acceptable when it keeps each test easy to read and understand. In other words, don't repeat yourself (DRY) does not apply to test code in the same way that it applies to product code.</li>

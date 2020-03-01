@@ -1,11 +1,17 @@
 ---
-layout: post
-title: Notification entities in EF Core 1.1
+layout: default
+title: "Notification entities in EF Core 1.1"
 date: 2016-11-16 15:06
+day: 16th
+month: November
+year: 2016
 author: ajcvickers
-comments: true
-categories: [Change Tracking, DetectChanges, EF, EF Core, Entity Framework, INotifyCollectionChanged, INotifyPropertyChanged, INotifyPropertyChanging, Notification Entities, Snapshot Change Tracking]
+permalink: 2016/11/16/notification-entities-in-ef-core-1-1/
 ---
+
+# EF Core 1.1
+# Notification entities
+
 By default, EF Core uses snapshot change tracking. However, if entity types implement INotifyPropertyChanged and optionally INotifyPropertyChanging, then EF can use these notifications to avoid the overhead of creating snapshots and detecting changes.
 
 
@@ -18,7 +24,7 @@ When tracking entities EF needs to know which properties have changed in order t
 
 The need for DetectChanges to scan every entity can be removed if the entity itself notifies EF whenever a property has changed. This is done by having the entity type implement the INotifyPropertyChanged interface. For example:
 
-[code lang=csharp]
+``` c#
 public class Blog : INotifyPropertyChanged
 {
     private int _id;
@@ -52,7 +58,7 @@ public class Blog : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler PropertyChanged;
 }
-[/code]
+```
 
 INotifyPropertyChanged contains one member: the PropertyChanged event. Whenever a property changes it is the responsibly of the entity type to call this event passing in the name of the property that has changed.
 
@@ -60,7 +66,7 @@ INotifyPropertyChanged contains one member: the PropertyChanged event. Whenever 
 
 Rather than repeat the notification logic for every property it is common to use a base class. For example:
 
-[code lang=csharp]
+``` c#
 public class Blog : NotificationEntity
 {
     private int _id;
@@ -92,7 +98,7 @@ public class NotificationEntity : INotifyPropertyChanged
         }
     }
 }
-[/code]
+```
 
 Notice the use of the CallerMemberName attribute. This tells the compiler to automatically set the value of propertyName to the name of the property that is calling the method.
 
@@ -102,23 +108,23 @@ When entity types have collection navigation properties it is not sufficient, an
 
 The most common way to do this is to use ObservableCollection<T>. For example:
 
-[code lang=csharp]
+``` c#
     public ICollection<Post> Posts { get; } = new ObservableCollection<Post>();
-[/code]
+```
 
 This works fine, but it is backed by a list data structure which can be slow when using Contains on a large collection. For this reason EF Core ships with ObservableHashSet<T>. For example:
 
-[code lang=csharp]
+``` c#
     public ICollection<Post> Posts { get; } = new ObservableHashSet<Post>();
-[/code]
+```
 
 This lives in <code>Microsoft.EntityFrameworkCore.ChangeTracking</code>, so make sure you are using that namespace.
 
 Collection navigation properties can be initialized automatically during query or fixup if they have a setter. Consider this:
 
-[code lang=csharp]
+``` c#
     public ICollection<Post> Posts { get; set; }
-[/code]
+```
 
 If EF needs to add entities to this collection and it is null, then EF will create and set a collection. Normally EF will use a HashSet<T> for this. However, if the entity type implements INotifyPropertyChanged, then EF will use an ObservableHashSet<T> instead.
 
@@ -133,17 +139,17 @@ To have EF use INotifyPropertyChanged the entity type must:
 
 Sometimes entity types may need to implement INotifyPropertyChanged for reasons other than EF change tracking. In these cases it may not be necessary to follow the rules above. Indeed, the developer may not even know about the rules or be aware that EF can use INotifyPropertyChanged for change tracking. For this reason, just implementing INotifyPropertyChanged is not sufficient to have EF Core use the event for change tracking. Instead, some explicit code must be added in OnModelCreating:
 
-[code lang=csharp]
+``` c#
 modelBuilder.Entity<Blog>()
     .HasChangeTrackingStrategy(ChangeTrackingStrategy.ChangedNotifications);
-[/code]
+```
 
 Or set this at the model level to use INotifyPropertyChanged for all entity types:
 
-[code lang=csharp]
+``` c#
 modelBuilder
     .HasChangeTrackingStrategy(ChangeTrackingStrategy.ChangedNotifications);
-[/code]
+```
 
 If this option is set at the model level, then all entity types must implement INotifyPropertyChanged and follow the rules above.
 
@@ -151,7 +157,7 @@ If this option is set at the model level, then all entity types must implement I
 
 Using INotifyPropertyChanging doesn't avoid snapshots completely because sometimes EF needs to know what the property was set to before it was changed. In EF parlance, this is called the property's <em>original value</em>. INotifyPropertyChanged doesn't provide this information, but another interface, INotifyPropertyChanging, can be used to get it. Adding this interface to the NotificationEntity base class is pretty straightforward:
 
-[code lang=csharp]
+``` c#
 public class Blog : NotificationEntity
 {
     private int _id;
@@ -187,21 +193,21 @@ public class NotificationEntity : INotifyPropertyChanged, INotifyPropertyChangin
         }
     }
 }
-[/code]
+```
 
 Tell EF to start using both interfaces with:
 
-[code lang=csharp]
+``` c#
 modelBuilder.Entity<Blog>()
     .HasChangeTrackingStrategy(ChangeTrackingStrategy.ChangingAndChangedNotifications);
-[/code]
+```
 
 Or:
 
-[code lang=csharp]
+``` c#
 modelBuilder
     .HasChangeTrackingStrategy(ChangeTrackingStrategy.ChangingAndChangedNotifications);
-[/code]
+```
 
 <h3>Getting original values anyway</h3>
 

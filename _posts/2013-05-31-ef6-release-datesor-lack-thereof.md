@@ -1,14 +1,20 @@
 ---
-layout: post
-title: EF6 release dates…or lack thereof
-date: 2013-05-31 09:13
+layout: default
+title: "EF6 release dates…or lack thereof"
+date: 2013-05-31 10:20
+day: 31st
+month: May
+year: 2013
 author: ajcvickers
-comments: true
-categories: [EF6, Entity Framework]
+permalink: 2013/05/31/ef6-release-datesor-lack-thereof/
 ---
+
+# Entity Framework 6.0
+# Release dates…or lack thereof
+
 On the EF team we frequently get questions along the lines of, “when will the next version of EF be released?” This is an entirely reasonable question to ask and it is frustrating to me personally that I cannot answer such questions. But of course this is nothing compared to the frustration felt by those of you who never get an answer. So why is it this way?
 
-<strong>Update: </strong>Visual Studio 2013 has been <a href="http://blogs.msdn.com/b/bharry/archive/visual-studio-2013">announced for “this year” by Brian Harry</a>. If you read the rest of this post you will realized that this means EF6 RTM will be also released “this year”.
+<strong>Update: </strong>Visual Studio 2013 has been announced for “this year” by Brian Harry</a>. If you read the rest of this post you will realized that this means EF6 RTM will be also released “this year”.
 <h3>Disclaimer</h3>
 Please keep in mind that this is my personal view and doesn't necessarily reflect the views of my employer or others on the team.
 <h3>Waves</h3>

@@ -1,11 +1,17 @@
 ---
-layout: post
-title: EF6 Extensibility and Configuration
+layout: default
+title: "EF6 Extensibility and Configuration"
 date: 2012-10-01 14:03
+day: 1st
+month: October
+year: 2012
 author: ajcvickers
-comments: true
-categories: [EF6, Entity Framework, Extensibility, Open Source, OSS]
+permalink: 2012/10/01/ef6-extensibility-and-configuration/
 ---
+
+# Entity Framework 6.0
+# EF6 Extensibility and Configuration
+
 <h2>Introduction</h2>
 I just published two posts to the Entity Framework CodePlex site that cover some changes we are making to EF6 to improve <a href="http://entityframework.codeplex.com/wikipage?title=EF%20Configuration%20and%20Extensibility">extensibility</a> and <a href="http://entityframework.codeplex.com/wikipage?title=Code-based%20Configuration">code-based configuration</a>. These posts provide conceptual overviews of the features with relevant design and implementation details. The idea is that people who are interested in where EF is going can read posts like this and provide feedback on the direction, design, and implementation. Providing this kind of feedback is an important way to contribute to EF without even having to write any code.
 <h2>Overview and goals</h2>

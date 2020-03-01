@@ -1,12 +1,18 @@
 ---
-layout: post
-title: Implementing provider extension methods in EF Core 1.1
+layout: default
+title: "Implementing provider extension methods in EF Core 1.1"
 date: 2016-11-10 15:49
+day: 10th
+month: November
+year: 2016
 author: ajcvickers
-comments: true
-categories: [EF Core, EF Core Metadata, EF Core Provider, Entity Framework, Metadata]
+permalink: 2016/11/10/implementing-provider-extension-methods-in-ef-core-1-1/
 ---
-A <a href="https://blog.oneunicorn.com/2016/11/09/ef-core-1-1-metadata-overview/">previous post</a> gave an outline of EF Core metadata. That post showed the extension methods used by providers to add provider-specific functionality to EF. This post describes how to implement those methods. This post is aimed at provider writers or those who may want to contribute to the EF Core source code.
+
+# EF Core 1.1
+# Implementing provider extension methods
+
+A <a href="/2016/11/09/ef-core-1-1-metadata-overview/">previous post</a> gave an outline of EF Core metadata. That post showed the extension methods used by providers to add provider-specific functionality to EF. This post describes how to implement those methods. This post is aimed at provider writers or those who may want to contribute to the EF Core source code.
 
 
 
@@ -16,7 +22,7 @@ All provider-specific functionality is implemented through annotations applied t
 
 These are often defined as constants in the code. For example:
 
-[code lang=csharp]
+``` c#
 public static class SqlServerAnnotationNames
 {
     public const string Prefix = "SqlServer:";
@@ -24,13 +30,13 @@ public static class SqlServerAnnotationNames
     public const string MemoryOptimized = "MemoryOptimized";
     // More...
 }
-[/code]
+```
 
 <h3>Relational annotations</h3>
 
 There are a set of annotations that are common to all relational providers. These are defined in the RelationalAnnotationNames class:
 
-[code lang=csharp]
+``` c#
 public static class RelationalAnnotationNames
 {
     public const string Prefix = "Relational:";
@@ -38,7 +44,7 @@ public static class RelationalAnnotationNames
     public const string Schema = "Schema";
     // More...
 }
-[/code]
+```
 
 This is an internal class and provider code should not need to access it directly, as we will see below.
 
@@ -49,13 +55,13 @@ Relational annotations can be used in two ways:
 <li>With the provider prefix, meaning that the annotation applies to only that provider. For example, <code>SqlServer:TableName</code>.</li>
 </ul>
 
-This allows, for example, the table name to be set for all providers but then overridden to something else just for one provider, as was described in the <a href="https://blog.oneunicorn.com/2016/11/09/ef-core-1-1-metadata-overview/">metadata overview post</a>.
+This allows, for example, the table name to be set for all providers but then overridden to something else just for one provider, as was described in the <a href="/2016/11/09/ef-core-1-1-metadata-overview/">metadata overview post</a>.
 
 <h3>The FullAnnotationNames class</h3>
 
 It was found that the repeated concatenation of prefix and annotation name could cause perf issues. Therefore, each provider should create a FullAnnotationNames class where the concatenation can be done only once. For relational providers, this should inherit from RelationalFullAnnotationNames. For example:
 
-[code lang=csharp]
+``` c#
 public class SqlServerFullAnnotationNames : RelationalFullAnnotationNames
 {
     protected SqlServerFullAnnotationNames(string prefix)
@@ -71,21 +77,21 @@ public class SqlServerFullAnnotationNames : RelationalFullAnnotationNames
     public readonly string Clustered;
     public readonly string MemoryOptimized;
 }
-[/code]
+```
 
 Notice that this class is a singleton, with the single instance available via the <code>Instance</code> property. This will be used in the code below.
 
 <h2>Core metadata extensions</h2>
 
-As was discussed in the <a href="https://blog.oneunicorn.com/2016/11/09/ef-core-1-1-metadata-overview/">metadata overview post</a>, use of the annotations described above is hidden behind provider extension methods, such as the <code>SqlServer()</code> method. These methods can be implemented for the entity types, properties, etc. as required. Here is the <code>SqlServer()</code> method for extending entity types:
+As was discussed in the <a href="/2016/11/09/ef-core-1-1-metadata-overview/">metadata overview post</a>, use of the annotations described above is hidden behind provider extension methods, such as the <code>SqlServer()</code> method. These methods can be implemented for the entity types, properties, etc. as required. Here is the <code>SqlServer()</code> method for extending entity types:
 
-[code lang=csharp]
+``` c#
 public static SqlServerEntityTypeAnnotations SqlServer(this IMutableEntityType entityType)
     => (SqlServerEntityTypeAnnotations)SqlServer((IEntityType)entityType);
 
 public static ISqlServerEntityTypeAnnotations SqlServer(this IEntityType entityType)
     => new SqlServerEntityTypeAnnotations(entityType);
-[/code]
+```
 
 It's actually two methods: one for the read-only IEntityType, and one for read-write IMutableEntityType. They both return the same object, but the read-only version is only exposed as an immutable interface.
 
@@ -93,29 +99,29 @@ It's actually two methods: one for the read-only IEntityType, and one for read-w
 
 The ISqlServerEntityTypeAnnotations interface returned looks something like this:
 
-[code lang=csharp]
+``` c#
 public interface ISqlServerEntityTypeAnnotations : IRelationalEntityTypeAnnotations
 {
     bool IsMemoryOptimized { get; }
 }
-[/code]
+```
 
 Pretty simple. Notice that since SQL Server is a relational provider this interface inherits from IRelationalEntityTypeAnnotations, which has all the common relational extensions on it:
 
-[code lang=csharp]
+``` c#
 public interface IRelationalEntityTypeAnnotations
 {
     string TableName { get; }
     string Schema { get; }
     // More...
 }
-[/code]
+```
 
 <h3>The XxxTypeAnnotations class</h3>
 
 The implementation of this interface is also pretty simple:
 
-[code lang=csharp]
+``` c#
 public class SqlServerEntityTypeAnnotations
     : RelationalEntityTypeAnnotations, ISqlServerEntityTypeAnnotations
 {
@@ -130,7 +136,7 @@ public class SqlServerEntityTypeAnnotations
         set { ((IMutableAnnotatable)EntityType)[SqlServerFullAnnotationNames.Instance.MemoryOptimized] = value; }
     }
 }
-[/code]
+```
 
 Since this is a relational provider the class inherits from RelationalEntityTypeAnnotations. This base class takes care of all the common relational extensions such as TableName and Schema so the provider doesn't have to do anything. The base class uses the SqlServerFullAnnotationNames.Instance passed to the base constructor to determine which annotations to use.
 
@@ -145,7 +151,7 @@ Provider-specific extensions, such as IsMemoryOptimized, simply access annotatio
 
 Most application code will configure the model using the fluent API rather than the lower-level core metadata described above. Fortunately, once the core metadata extensions have been implemented it becomes trivial to add fluent API. For example:
 
-[code lang=csharp]
+``` c#
 public static class SqlServerEntityTypeBuilderExtensions
 {
     public static EntityTypeBuilder ForSqlServerToTable(
@@ -175,7 +181,7 @@ public static class SqlServerEntityTypeBuilderExtensions
         where TEntity : class
         => (EntityTypeBuilder<TEntity>)ForSqlServerIsMemoryOptimized((EntityTypeBuilder)entityTypeBuilder, memoryOptimized);
 }
-[/code]
+```
 
 The things to notice about this code are:
 

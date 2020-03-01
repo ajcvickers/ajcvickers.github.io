@@ -1,11 +1,17 @@
 ---
-layout: post
-title: EF enums and spatial types on .NET 4
+layout: default
+title: "EF enums and spatial types on .NET 4"
 date: 2012-10-05 16:08
+day: 5th
+month: October
+year: 2012
 author: ajcvickers
-comments: true
-categories: [EF6, Entity Framework, Enums, Open Source, Spatial]
+permalink: 2012/10/05/ef-enums-and-spatial-types-on-net-4/
 ---
+
+# Entity Framework 6.0
+# EF enums and spatial types on .NET 4
+
 In EF5 some features (such as enums and spatial types) are only available when targeting .NET 4.5. This is because EF5 relies on core EF libraries in the .NET Framework. With EF6 this changes because the core EF code is now included in EntityFramework.dll and recent commits to the code make all EF features (except async) available on .NET 4. This includes enums, spatial support, TVFs, auto-compiled queries and other EF perf improvements, together with many smaller changes/bug fixes in the core code.
 <h2>How do I get it?</h2>
 At the time of writing EF6 is still being developed but you can easily get prerelease builds in two ways:

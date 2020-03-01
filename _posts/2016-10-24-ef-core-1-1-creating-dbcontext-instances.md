@@ -1,11 +1,17 @@
 ---
-layout: post
-title: EF Core 1.1 - Creating DbContext instances
+layout: default
+title: "EF Core 1.1 - Creating DbContext instances"
 date: 2016-10-24 13:40
+day: 24th
+month: October
+year: 2016
 author: ajcvickers
-comments: true
-categories: [AddDbContext, DbContext, DbContext API, DbContextOptions, DbContextOptionsBuilder, Dependency Injection, EF, EF Core, Entity Framework, OnConfiguring]
+permalink: 2016/10/24/ef-core-1-1-creating-dbcontext-instances/
 ---
+
+# EF Core 1.1
+# Creating DbContext instances
+
 This post describes the different ways to create and configure instances of DbContext in EF Core 1.1. This includes:
 
 <ul>
@@ -24,21 +30,21 @@ There is no requirement to use EF with Dependency Injection (D.I.). New instance
 
 The simplest way to create a context instance is to create a class derived from DbContext and call its parameterless constructor. Don't forget that context instances should always be disposed, so often the instance is creating within a using statement. For example:
 
-[code lang=csharp]
+``` c#
 using (var context = new MyContext())
 {
 }
-[/code]
+```
 
 Configuration of the context instance is done by overriding OnConfiguring. For example:
 
-[code lang=csharp]
+``` c#
 public class MyContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         => optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFTest;Trusted_Connection=True;");
 }
-[/code]
+```
 
 Note that OnConfiguring is called every time a new context instance is initialized; this is different from OnModelCreating which is usually only called once to build the model. This means that OnConfiguring can make use of arguments passed to the context constructor or other instance data, as shown in the next section.
 
@@ -46,7 +52,7 @@ Note that OnConfiguring is called every time a new context instance is initializ
 
 The EF6 DbContext had many constructors taking things like the connections string, model, etc. It is easy to use a similar pattern with EF Core by stashing those things in fields and using them in OnConfiguring.
 
-[code lang=csharp]
+``` c#
 public class MyContext : DbContext
 {
     private readonly string _connectionString;
@@ -59,7 +65,7 @@ public class MyContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(_connectionString);
 }
-[/code]
+```
 
 <h3>Using DbContextOptions without D.I.</h3>
 
@@ -69,7 +75,7 @@ DbContextOptions objects are created using a builder. This is the same builder t
 
 For example, a console app that takes a connection string as its first argument might do something like this:
 
-[code lang=csharp]
+``` c#
 public class Program
 {
     private static DbContextOptions _contextOptions;
@@ -83,11 +89,11 @@ public class Program
         // My app stuff...
     }
 }
-[/code]
+```
 
 Now the class derived from DbContext can take the options and pass them to the base constructor:
 
-[code lang=csharp]
+``` c#
 public class MyContext : DbContext
 {
     public MyContext(DbContextOptions options)
@@ -95,7 +101,7 @@ public class MyContext : DbContext
     {
     }
 }
-[/code]
+```
 
 There is no longer any need to override OnConfiguring. However, OnConfiguring can still be overridden and will still be called. This means that configuration can be passed to the constructor and then tweaked in OnConfiguring.
 
@@ -118,7 +124,7 @@ A derived DbContext type can have a parameterless constructor and override OnCon
 
 It may be useful to register a DbContextOptions instance in D.I. This can often be created once and registered as a singleton. For example, using the <code>Microsoft.Extensions.DependencyInjection</code> abstractions:
 
-[code lang=csharp]
+``` c#
 public class Program
 {
     private static IServiceProvider _serviceProvider;
@@ -138,7 +144,7 @@ public class Program
         // My app stuff...
     }
 }
-[/code]
+```
 
 Now whenever MyContext is resolved from the container the DbContextOptions instance will be injected into its constructor.
 
@@ -146,7 +152,7 @@ Now whenever MyContext is resolved from the container the DbContextOptions insta
 
 So far all DbContextOptions objects have been non-generic. There is also a version that is generic on the type of the DbContext class. This is useful if there are multiple different DbContext types registered in D.I. by allowing each context type to depend on its own options. For example:
 
-[code lang=csharp]
+``` c#
 public class MyContext1 : DbContext
 {
     public MyContext1(DbContextOptions<MyContext1> options)
@@ -178,7 +184,7 @@ var services = new ServiceCollection()
     .AddScoped<MyContext2>();
 
 _serviceProvider = services.BuildServiceProvider();
-[/code]
+```
 
 Resolving MyContext1 will result in DbContextOptions<MyContext1> being injected, while resolving MyContext2 will result in DbContextOptions<MyContext2> being injected. There is nothing magical going on here--it's just D.I. doing appropriate dependency resolution.
 
@@ -186,11 +192,11 @@ Resolving MyContext1 will result in DbContextOptions<MyContext1> being injected,
 
 EF includes the AddDbContext sugar method that makes it easier to register a DbContextOptions and a DbContext when using the <code>Microsoft.Extensions.DependencyInjection</code> abstractions. For example:
 
-[code lang=csharp]
+``` c#
 var services = new ServiceCollection()
      .AddDbContext<MyContext>(
          b => b.UseSqlServer(connectionString));
-[/code]
+```
 
 This registers MyContext as scoped and registers DbContextOptions<MyContext> as a singleton built from the code provided in the delegate. The code in the delegate again uses the same DbContextOptionsBuilder as is used in OnConfiguring. It is worth noting that the delegate is not executed immediately, but rather just before the first time DbContextOptions<MyContext> is resolved from D.I.
 

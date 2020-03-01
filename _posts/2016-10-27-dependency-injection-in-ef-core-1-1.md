@@ -1,11 +1,17 @@
 ---
-layout: post
-title: Dependency Injection in EF Core 1.1
-date: 2016-10-27 09:55
+layout: default
+title: "Dependency Injection in EF Core 1.1"
+date: 2016-10-24 13:40
+day: 24th
+month: October
+year: 2016
 author: ajcvickers
-comments: true
-categories: [AddDbContext, DbContext, DbContext API, DbContextOptionsBuilder, Dependency Injection, EF Core, Entity Framework, OnConfiguring, ReplaceService, UseInternalServiceProvider]
+permalink: 2016/10/27/dependency-injection-in-ef-core-1-1/
 ---
+
+# EF Core 1.1
+# Dependency Injection in EF Core 1.1
+
 EF Core can interact with dependency injection (D.I.) in two ways:
 
 <ul>
@@ -13,7 +19,7 @@ EF Core can interact with dependency injection (D.I.) in two ways:
 <li>EF uses a D.I. container internally for its own services</li>
 </ul>
 
-The first of these was covered in a <a href="https://blog.oneunicorn.com/2016/10/24/ef-core-1-1-creating-dbcontext-instances/">previous post</a>. This post covers how EF uses dependency injection internally and how it can interact with an external container.
+The first of these was covered in a <a href="/2016/10/24/ef-core-1-1-creating-dbcontext-instances/">previous post</a>. This post covers how EF uses dependency injection internally and how it can interact with an external container.
 
 
 
@@ -25,9 +31,9 @@ For most applications the internal service provider is an implementation detail 
 
 <h2>Integrating with application services</h2>
 
-An application that is using D.I. may configure services that EF should then use. As of EF 1.1, these services are logging (via ILoggerFactory) and caching (via IMemoryCache). EF provides methods on DbContextOptionsBuilder (see the <a href="https://blog.oneunicorn.com/2016/10/24/ef-core-1-1-creating-dbcontext-instances/">previous post</a>) that allow these services to be wired up. For example, the following code takes an ILoggerFactory in its constructor (which may be injected) and wires up the context to use it:
+An application that is using D.I. may configure services that EF should then use. As of EF 1.1, these services are logging (via ILoggerFactory) and caching (via IMemoryCache). EF provides methods on DbContextOptionsBuilder (see the <a href="/2016/10/24/ef-core-1-1-creating-dbcontext-instances/">previous post</a>) that allow these services to be wired up. For example, the following code takes an ILoggerFactory in its constructor (which may be injected) and wires up the context to use it:
 
-[code lang=csharp]
+``` c#
 public class MyContext : DbContext
 {
     private readonly ILoggerFactory _loggerFactory;
@@ -42,7 +48,7 @@ public class MyContext : DbContext
             .UseInMemoryDatabase()
             .UseLoggerFactory(_loggerFactory);
 }
-[/code]
+```
 
 Note that there is no need to do this when using AddDbContext because AddDbContext already does this under the covers. This is how EF logging goes to the right place when using AddDbContext in an ASP.NET application.
 
@@ -50,7 +56,7 @@ Note that there is no need to do this when using AddDbContext because AddDbConte
 
 Sometimes it may be useful to replace one of EFs internal services. For example, the IValueGeneratorSelector service determines what type of value generator to use for properties that need value generation. You may want to change this to use different types of value generator. Prior to EF Core 1.1 you would need to take control of the internal service provider to do this. Now there is a ReplaceService call on DbContextOptionsBuilder, so you can do something like this:
 
-[code lang=csharp]
+``` c#
 public class MyContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -58,16 +64,16 @@ public class MyContext : DbContext
             .UseInMemoryDatabase()
             .ReplaceService<IValueGeneratorSelector, CustomInMemoryValueGeneratorSelector>();
 }
-[/code]
+```
 
 Or in AddDbContext:
 
-[code lang=csharp]
+``` c#
 services
     .AddDbContext<MyContext>(b => b
         .UseInMemoryDatabase()
         .ReplaceService<IValueGeneratorSelector, CustomInMemoryValueGeneratorSelector>());
-[/code]
+```
 
 <h2>Taking control of the internal service provider</h2>
 
@@ -81,7 +87,7 @@ Applications should not normally need to interact directly with the internal ser
 
 The UseInternalServiceProvider method on DbContextOptionsBuilder is used to tell EF which service provider to use for its services. This service provider must have all the services configured for EF and any providers. Each provider has an extension method to do this. For example, the following code configures a service provider for use with the in-memory store and then creates options to use it:
 
-[code lang=csharp]
+``` c#
 _serviceProvider = new ServiceCollection()
     .AddEntityFrameworkInMemoryDatabase()
     .BuildServiceProvider();
@@ -90,17 +96,17 @@ var contextOptions = new DbContextOptionsBuilder()
     .UseInternalServiceProvider(_serviceProvider)
     .UseInMemoryDatabase()
     .Options;
-[/code]
+```
 
 This can also be done with AddDbContext. However, when using AddDbContext the application service provider is often not yet built. Therefore, there is an overload of AddDbContext that takes the application service provider in the builder delegate so it can be passed to UseInternalServiceProvider:
 
-[code lang=csharp]
+``` c#
 services
     .AddEntityFrameworkInMemoryDatabase()
     .AddDbContext<MyContext>((p, b) => b
         .UseInMemoryDatabase()
         .UseInternalServiceProvider(p));
-[/code]
+```
 
 It is worth noting that you never need to call any of the AddEntityFramework... methods unless you are calling UseInternalServiceProvider. This is different from pre-release version of EF Core where they were needed.
 

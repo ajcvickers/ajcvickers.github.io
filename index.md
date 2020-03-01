@@ -108,6 +108,10 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 
 » [What's the difference between EF Core and EF6, and which one should I use?](/2020/01/29/coreor6/)
 
+» [EF6 SQL Logging](/2013/05/08/ef6-sql-logging-part-1-simple-logging/)
+
+» [EF6 DetectChanges](/2012/03/10/secrets-of-detectchanges-part-1-what-does-detectchanges-do/)
+
 </div>
 
 ## EF Core
@@ -126,7 +130,7 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 
 </div>
 
-### Tips
+### EF Core Tips
 
 <div class="post-preview-10">
 
@@ -136,17 +140,51 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 
 </div>
 
-### EF Core 2.0
+### EF Core 2.x
 
 <div class="post-preview-10">
 
 » [Many-to-many relationships - Part 4: A more general abstraction](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-4-a-more-general-abstraction/)
 
-» [Many-to-many relationships - Part 3: Hiding `as ICollection`](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-3-hiding-as-icollection/)
+» [Many-to-many relationships - Part 3: Hiding 'as ICollection'](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-3-hiding-as-icollection/)
 
-» [Many-to-many relationships - Part 2: Hiding `as IEnumerable`](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-2-hiding-as-ienumerable/)
+» [Many-to-many relationships - Part 2: Hiding 'as IEnumerable'](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-2-hiding-as-ienumerable/)
 
 » [Many-to-many relationships - Part 1: The basics](/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/)
+
+</div>
+
+### EF Core 1.x
+
+<div class="post-preview-10">
+
+» [EF Core 1.1: Looking at your model in the debugger](/2016/11/17/ef-core-1-1-looking-at-your-model-in-the-debugger/)
+
+» [Add, Attach, Update, and Remove methods in EF Core 1.1](/2016/11/17/add-attach-update-and-remove-methods-in-ef-core-1-1/)
+
+» [Notification entities in EF Core 1.1](/2016/11/16/notification-entities-in-ef-core-1-1/)
+
+» [So you want to write an EF Core provider...](/2016/11/11/so-you-want-to-write-an-ef-core-provider/)
+
+» [Implementing provider extension methods in EF Core 1.1](/2016/11/10/implementing-provider-extension-methods-in-ef-core-1-1/)
+
+» [Internal code in EF Core 1.1](/2016/11/09/internal-code-in-ef-core-1-1/)
+
+» [EF Core 1.1 metadata overview](/2016/11/09/ef-core-1-1-metadata-overview/)
+
+» [Implementing a provider 'Use...' method for EF Core 1.1](/2016/11/03/implementing-a-provider-use-method-for-ef-core-1-1/)
+
+» [EF Core Dependency Injection Internals](/2016/11/01/ef-core-dependency-injection-internals/)
+
+» [Collection navigation properties and fields in EF Core 1.1](/2016/10/28/collection-navigation-properties-and-fields-in-ef-core-1-1/)
+
+» [Dependency Injection in EF Core 1.1](/2016/10/27/dependency-injection-in-ef-core-1-1/)
+
+» [EF Core 1.1 - Creating DbContext instances](/2016/10/24/ef-core-1-1-creating-dbcontext-instances/)
+
+» [Provider Building Blocks](/2015/05/07/ef7-provider-building-blocks-2/)
+
+</div>
 
 </div>
 
@@ -165,6 +203,26 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 ## EF6 and earlier
 
 <div class="post-preview-30">
+
+» [EF 6.1: Creating indexes with IndexAttribute](/2014/02/15/ef-6-1-creating-indexes-with-indexattribute/)
+
+» [EF 6.1: Turning on logging without recompiling](/2014/02/09/ef-6-1-turning-on-logging-without-recompiling/)
+
+» [EF6 release dates…or lack thereof](/2013/05/31/ef6-release-datesor-lack-thereof/)
+
+» [Database initializer and Migrations Seed methods](/2013/05/28/database-initializer-and-migrations-seed-methods/)
+
+» [EF6 SQL Logging – Part 3: Interception building blocks](/2013/05/14/ef6-sql-logging-part-3-interception-building-blocks/)
+
+» [EF6 SQL Logging – Part 2: Changing the content/formatting](/2013/05/09/ef6-sql-logging-part-2-changing-the-contentformatting/)
+
+» [EF6 SQL Logging - Part 1: Simple Logging](/2013/05/08/ef6-sql-logging-part-1-simple-logging/)
+
+» [EF6: Nested types and more for Code First](/2013/03/11/ef6-nested-types-and-more-for-code-first/)
+
+» [EF enums and spatial types on .NET 4](/2012/10/05/ef-enums-and-spatial-types-on-net-4/)
+
+» [EF6 Extensibility and Configuration](/2012/10/01/ef6-extensibility-and-configuration/)
 
 » [Why open sourcing Entity Framework is a great move](/2012/07/19/why-open-sourcing-entity-framework-is-a-great-move/)
 
@@ -241,6 +299,12 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 <div class="post-preview-30">
 
 » [Welcome to One Unicorn 2.0!](/2020/02/29/1unicorn2/)
+
+» [Soft Oatmeal Cookies](/2014/02/17/soft-oatmeal-cookies/)
+
+» [Lego Mindstorms 360° Photobot for Gear VR](/2014/12/23/lego-mindstorms-360-photobot-for-gear-vr/)
+
+» [After wearing ourselves out in the real world, my daughter and I...](/2014/09/27/after-wearing-ourselves-out-in-the-real-world-my-daughter-and-i/)
 
 » [Why One Unicorn?](/2011/03/20/why-one-unicorn/)
 

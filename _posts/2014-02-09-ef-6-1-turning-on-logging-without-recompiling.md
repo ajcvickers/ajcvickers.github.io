@@ -1,26 +1,32 @@
 ---
-layout: post
-title: EF 6.1: Turning on logging without recompiling
+layout: default
+title: "EF 6.1: Turning on logging without recompiling"
 date: 2014-02-09 13:53
+day: 9th
+month: February
+year: 2014
 author: ajcvickers
-comments: true
-categories: [DbContext, DbContext API, EF6.1, Entity Framework, Extensibility, Interception, Logging]
+permalink: 2014/02/09/ef-6-1-turning-on-logging-without-recompiling/
 ---
+
+# Entity Framework 6.1
+# Turning on logging without recompiling
+
 I already blogged about <a href="/2013/05/08/ef6-sql-logging-part-1-simple-logging/">SQL logging in EF6</a>. <a href="/2013/05/14/ef6-sql-logging-part-3-interception-building-blocks/">Part 3</a> of that series shows how to use EF with a logging framework such as NLog. If you do this then you can easily switch logging on and off using NLog or equivalent without any changes to the app. This is the approach I would use if I wanted to log SQL from EF. But what if logging was not considered at all when the app was created? Now with EF 6.1 you can switch logging on for any app without access to the source or recompiling.
 <h2>How to do it</h2>
 To log SQL to the console add the following entry to the entityFramework section in your application's web.config or app.config:
 
-[code language="xml"]
+``` xml
 <interceptors>
   <interceptor type="System.Data.Entity.Infrastructure.Interception.DatabaseLogger, EntityFramework"/>
 </interceptors>
-[/code]
+```
 
 (If you are just working with the compiled application then look for a file like “MyApplication.exe.config” since this is what app.config is compiled into.)
 
 To log to a filename instead use something like:
 
-[code language="xml"]
+``` xml
 <interceptors>
   <interceptor type="System.Data.Entity.Infrastructure.Interception.DatabaseLogger, EntityFramework">
     <parameters>
@@ -28,11 +34,11 @@ To log to a filename instead use something like:
     </parameters>
   </interceptor>
 </interceptors>
-[/code]
+```
 
 By default this will cause the log file to be overwritten with a new file each time the app starts. To instead append to the log file if it already exists use something like:
 
-[code language="xml"]
+``` xml
 <interceptors>
   <interceptor type="System.Data.Entity.Infrastructure.Interception.DatabaseLogger, EntityFramework">
     <parameters>
@@ -41,7 +47,7 @@ By default this will cause the log file to be overwritten with a new file each t
     </parameters>
   </interceptor>
 </interceptors>
-[/code]
+```
 
 <h2>What's going on</h2>
 This is the part of the post where I describe what's going on in EF. You don't need to read any of this to use logging, but for those interested here it is.
@@ -50,23 +56,23 @@ The built-in SQL logging uses a class called DatabaseLogFormatter.  DatabaseLog
 
 EF 6.1 introduced IDbConfigurationInterceptor. This is an interception interface which lets code examine and/or modify EF configuration when the app starts. Using this hook we can write a simple version of DatabaseLogger:
 
-[code language="csharp"]
+``` c#
 public class ExampleDatabaseLogger : IDbConfigurationInterceptor
 {
     public void Loaded(
-        DbConfigurationLoadedEventArgs loadedEventArgs,
-        DbConfigurationInterceptionContext interceptionContext)
+        DbConfigurationLoadedEventArgs loadedEventArgs,
+        DbConfigurationInterceptionContext interceptionContext)
     {
-        var formatterFactory = loadedEventArgs
-                .DependencyResolver
-                .GetService<Func<DbContext, Action<string>, DatabaseLogFormatter>>();
+        var formatterFactory = loadedEventArgs
+                 .DependencyResolver
+                 .GetService<Func<DbContext, Action<string>, DatabaseLogFormatter>>();
 
         var formatter = formatterFactory(null, Console.Write);
 
-        DbInterception.Add(formatter);
-    }
+        DbInterception.Add(formatter);
+    }
 }
-[/code]
+```
 
 This is basically the same as DatabaseLogger in the EntityFramework assembly except that I have simplified it a bit by only including the code that logs to the Console. The Loaded method is called when EF configuration (as represented by the DbConfiguration class) has been loaded. Let's look at the three lines of code in Loaded.
 <ul>

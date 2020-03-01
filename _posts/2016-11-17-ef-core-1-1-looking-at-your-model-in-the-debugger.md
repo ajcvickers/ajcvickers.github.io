@@ -1,11 +1,17 @@
 ---
-layout: post
-title: EF Core 1.1: Looking at your model in the debugger
+layout: default
+title: "EF Core 1.1: Looking at your model in the debugger"
 date: 2016-11-17 12:05
+day: 17th
+month: November
+year: 2016
 author: ajcvickers
-comments: true
-categories: [EF Core, EF Core Metadata, Entity Framework, Metadata]
+permalink: 2016/11/17/ef-core-1-1-looking-at-your-model-in-the-debugger/
 ---
+
+# EF Core 1.1
+# Looking at your model in the debugger
+
 As developers on the EF team it is often useful to see what is in the metadata model. To facilitate this, the model and all other metadata elements are able to generate a "debug view" which provides lots of useful information about the metadata in a terse but human-readable form.
 
 
@@ -14,7 +20,9 @@ As developers on the EF team it is often useful to see what is in the metadata m
 
 In the debugger, expand context -> Model -> DebugView -> View.
 
-<a href="https://oneunicorn.files.wordpress.com/2016/11/debugview.png"><img src="https://oneunicorn.files.wordpress.com/2016/11/debugview.png" alt="EF Core model debug view" width="640" height="297" class="alignright size-full wp-image-451" /></a>
+<div class=big-image>
+<a href="/assets/debugview.png"><img src="/assets/debugview.png" alt="EF Core model debug view" /></a>
+</div>
 
 (The additional level of indirection from DebugView to View is intentional. For very large models it can be expensive to build the debug view string, which in turn can cause perf issues in the debugger. The indirection prevents the debugger from building the string unless it is requested by expanding the DebugView property.)
 
@@ -22,7 +30,7 @@ In the debugger, expand context -> Model -> DebugView -> View.
 
 Here's the output for the model I was using while writing the post on notification entities:
 
-[code lang=text]
+```
 Model: 
   EntityType: Blog ChangeTrackingStrategy.ChangingAndChangedNotificationsWithOriginalValues
     Properties: 
@@ -50,7 +58,7 @@ Model:
 Annotations: 
   ProductVersion: 1.1.0-preview1-22509
   SqlServer:ValueGenerationStrategy: IdentityColumn
-[/code]
+```
 
 Things to notice:
 

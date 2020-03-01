@@ -1,11 +1,17 @@
 ---
-layout: post
-title: Database initializer and Migrations Seed methods
+layout: default
+title: "Database initializer and Migrations Seed methods"
 date: 2013-05-28 10:20
+day: 28th
+month: May
+year: 2013
 author: ajcvickers
-comments: true
-categories: [Code First, Code First Migrations, Database Initializers, DbContext, DbContext API, EF4.1, EF4.3, EF5, EF6, Entity Framework]
+permalink: 2013/05/28/database-initializer-and-migrations-seed-methods/
 ---
+
+# Entity Framework 6.0
+# Database initializer and Migrations Seed methods
+
 Entity Framework contains two different methods both called Seed that do similar things but behave slightly differently. The first was introduced in EF 4.1 and works with database initializers. The second was introduced in EF 4.3 as part of Code First Migrations. This post describes how these two methods are used, when they are called, and how they differ from each other.
 <h2>The basic idea</h2>
 Regardless of the specific Seed method being used the general idea of a Seed method is the same. It is a way to get initial data into a database that is being created by Code First or evolved by Migrations. This data is often test data, but may also be reference data such as lists of known countries, states, etc.

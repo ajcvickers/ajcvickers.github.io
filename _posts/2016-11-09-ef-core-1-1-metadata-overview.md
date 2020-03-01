@@ -1,11 +1,17 @@
 ---
-layout: post
-title: EF Core 1.1 metadata overview
+layout: default
+title: "EF Core 1.1 metadata overview"
 date: 2016-11-09 15:50
+day: 9th
+month: November
+year: 2016
 author: ajcvickers
-comments: true
-categories: [EF Core, EF Core Provider, Entity Framework, Metadata]
+permalink: 2016/11/09/ef-core-1-1-metadata-overview/
 ---
+
+# EF Core 1.1
+# Metadata overview
+
 This post provides a high-level overview of metadata structure and APIs in EF Core 1.1. It covers the core metadata interfaces and shows how they are extended with particular focus on provider extensions.
 
 
@@ -81,9 +87,9 @@ These interfaces are minimal and supplemented with extension methods in the same
 
 Providers extend the core metadata through annotations. These annotations are accessed through extension methods that follow a common pattern. For example, access to the flag that indicates whether a SQL Server table is memory-optimized looks like this:
 
-[code lang=csharp]
+``` c#
 var isMemOptimized = entityType.SqlServer().IsMemoryOptimized;
-[/code]
+```
 
 Notice that there is an extension method <code>SqlServer()</code> that matches the provider name. This method then provides access to all SQL Server extensions of the entity type. There are also <code>SqlServer()</code> extension methods for properties, keys, etc. Other providers have similar methods--for example, <code>Sqlite()</code>.
 
@@ -95,15 +101,15 @@ There are a set of extensions that are common to all relational providers. This 
 
 These can be accessed through the "Relational" extension method. For example:
 
-[code lang=csharp]
+``` c#
 var tableName = entityType.Relational().TableName;
-[/code]
+```
 
 Relational annotations like this can be overridden by provider-specific annotations. This allows, for example, a table name to be set for all relational providers but then overridden to a different name on SQL Server. For this reason all relational annotations can also be read using provider-specific extensions. For example:
 
-[code lang=csharp]
+``` c#
 var tableName = entityType.SqlServer().TableName;
-[/code]
+```
 
 This code will return the SQL Server specific table name, if one has been set, otherwise the relational table name, if it has been set, otherwise the default table name created by convention.
 
@@ -113,15 +119,15 @@ Again, we will look at how this is implemented in a later post.
 
 The provider extension methods work the same way when using the mutable metadata interfaces. For example, to set the table name for any relational provider:
 
-[code lang=csharp]
+``` c#
 entityType.Relational().TableName = "BlogsTable";
-[/code]
+```
 
 Or to set the table name specifically for SQL Server:
 
-[code lang=csharp]
+``` c#
 entityType.SqlServer().TableName = "BlogsTable";
-[/code]
+```
 
 If only one provider is being used, then both of these do effectively the same thing.
 
@@ -131,25 +137,25 @@ This post does not cover the fluent API exposed by the ModelBuilder class. The f
 
 The fluent API is built on top of the core interfaces and extensions described above. The mutable interfaces are exposed from the fluent API through Metadata properties. For example, an IMutableEntityType can be obtained like this:
 
-[code lang=csharp]
+``` c#
 var entityType = modelBuilder.Entity<Blog>().Metadata;
-[/code]
+```
 
 <h3>Fluent API extensions</h3>
 
 Providers can also extend the fluent API using extension methods. In this case, the relational-level extension methods are named naturally and do not go through a level of indirection. For example:
 
-[code lang=csharp]
+``` c#
 modelBuilder.Entity<Blog>().ToTable("BlogsTable");
-[/code]
+```
 
 This is equivalent to setting <code>Relational().TableName</code>.
 
 The fluent API for setting the table name for only SQL Server is:
 
-[code lang=csharp]
+``` c#
 modelBuilder.Entity<Blog>().ForSqlServerToTable("BlogsTable");
-[/code]
+```
 
 This is equivalent to setting <code>SqlServer().TableName</code>.
 
