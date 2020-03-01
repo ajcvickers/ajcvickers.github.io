@@ -1,11 +1,18 @@
 ---
-layout: post
-title: So you want to contribute to EF? Part 3: Testing
+layout: default
+title: "So you want to contribute to EF? Part 3: Testing"
 date: 2012-07-19 09:33
+day: 19th
+month: July
+year: 2012
 author: ajcvickers
-comments: true
-categories: [EF6, Entity Framework, Open Source, OSS]
+permalink: 2012/07/19/so-you-want-to-contribute-to-ef-part-3-testing/
 ---
+
+# Entity Framework 6.0
+# So you want to contribute to EF?
+# Part 3: Testing
+
 This is the third part of a <a href="/2012/07/19/so-you-want-to-contribute-to-ef-part-1-introduction/">series</a> providing some background to those who may want make contributes to the Entity Framework. This post will cover the types of tests that at exist and expectations around writing new tests.
 
 If you make a contribution to EF it is expected and required that you will write tests for that contribution and that all existing tests will continue to pass. You can run the tests from the Visual Studio solution and running the <em>build </em>command also runs all tests. <em>Build </em>must pass before any change can be pushed to master.

@@ -1,11 +1,17 @@
 ---
-layout: post
-title: Why open sourcing Entity Framework is a great move
+layout: default
+title: "Why open sourcing Entity Framework is a great move"
 date: 2012-07-19 08:58
+day: 19th
+month: July
+year: 2012
 author: ajcvickers
-comments: true
-categories: [Entity Framework, Open Source, OSS]
+permalink: 2012/07/19/why-open-sourcing-entity-framework-is-a-great-move/
 ---
+
+# Entity Framework 6.0
+# Why open sourcing Entity Framework is a great move
+
 You have likely heard by now that the <a title="Entity Framework source code has been released under an open source license" href="https://docs.microsoft.com/archive/blogs/adonet/entity-framework-and-open-source">Entity Framework source code has been released under an open source license</a>. I'm a developer on the EF team and I'd like to give you my perspective on this.
 
 I've been on the team for several years and I have been involved a lot in the decision to take EF open source over the last year. (We've been working on this for quite some time.) That being said, keep in mind that everything on this blog including this post are my opinions and don't necessarily reflect those of Microsoft or others on the team.

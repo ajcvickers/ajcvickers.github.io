@@ -166,25 +166,25 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 
 <div class="post-preview-30">
 
-» []()
+» [Why open sourcing Entity Framework is a great move](/2012/07/19/why-open-sourcing-entity-framework-is-a-great-move/)
 
-» []()
+» [So you want to contribute to EF? Part 5: High-level architecture](/2012/07/19/so-you-want-to-contribute-to-ef-part-5-high-level-architecture/)
 
-» []()
+» [So you want to contribute to EF? Part 4: Developer experience](/2012/07/19/so-you-want-to-contribute-to-ef-part-4-developer-experience/)
 
-» []()
+» [So you want to contribute to EF? Part 3: Testing](/2012/07/19/so-you-want-to-contribute-to-ef-part-3-testing/)
 
-» []()
+» [So you want to contribute to EF? Part 2: The code](/2012/07/19/so-you-want-to-contribute-to-ef-part-2-the-code/)
 
-» []()
+» [So you want to contribute to EF? Part 1: Introduction](/2012/07/19/so-you-want-to-contribute-to-ef-part-1-introduction/)
 
-» []()
+» [Deleting orphans with Entity Framework](/2012/06/02/deleting-orphans-with-entity-framework/)
 
-» []()
+» [The key to AddOrUpdate](/2012/05/03/the-key-to-addorupdate/)
 
-» []()
+» [Code First model builder versions](/2012/04/22/code-first-model-builder-versions/)
 
-» []()
+» [Code First building blocks](/2012/04/21/code-first-building-blocks/)
 
 » [Code First Data Annotations on non-public properties](/2012/03/26/code-first-data-annotations-on-non-public-properties/)
 

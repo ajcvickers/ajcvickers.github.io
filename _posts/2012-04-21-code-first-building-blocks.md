@@ -1,11 +1,17 @@
 ---
-layout: post
-title: Code First Building Blocks
+layout: default
+title: "Code First Building Blocks"
 date: 2012-04-21 19:35
+day: 21st
+month: April
+year: 2012
 author: ajcvickers
-comments: true
-categories: [Code First, DbModelBuilder, EF4.1, EF4.2, EF4.3, EF5, Entity Framework]
+permalink: 2012/04/21/code-first-building-blocks/
 ---
+
+# Entity Framework 5.0
+# Code First building blocks
+
 There are plenty of examples out there showing how to <a href="https://docs.microsoft.com/archive/blogs/adonet/ef-4-2-code-first-walkthrough">use DbContext to create a Code First model</a>. But DbContext itself uses some fundamental Code First building blocks to do its stuff. This post shows how these building blocks can be used directly, which can be useful in situations where you need more control over how the model is created or cached.
 <h3>When would you do this?</h3>
 DbContext can be used in the normal way for most applications. However, there are currently two areas for which we get quite a few questions where the best approach is to fall back to using the lower-level building blocks.

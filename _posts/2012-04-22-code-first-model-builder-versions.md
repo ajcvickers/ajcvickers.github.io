@@ -1,11 +1,17 @@
 ---
-layout: post
-title: Code First model builder versions
+layout: default
+title: "Code First model builder versions"
 date: 2012-04-22 15:41
+day: 22nd
+month: April
+year: 2012
 author: ajcvickers
-comments: true
-categories: [Code First, EF4.1, EF4.2, EF4.3, EF5, Entity Framework, Enums]
+permalink: 2012/04/22/code-first-model-builder-versions/
 ---
+
+# Entity Framework 5.0
+# Code First model builder versions
+
 Code First's convention-based approach to building a model has some interesting implications for breaking changes between different versions of EF. This post describes those implications and shows how model builder versions can be used to deal with potential breaking changes while still retaining a forward-moving developer experience.
 <h3>Starting out with a new version</h3>
 Code First builds the mapping between your code and the database by examining your code and running a set of conventions. For given input code and set of conventions this will always produce the same mapping. All is well.

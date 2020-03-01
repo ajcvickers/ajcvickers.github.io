@@ -1,11 +1,17 @@
 ---
-layout: post
-title: The key to AddOrUpdate
+layout: default
+title: "The key to AddOrUpdate"
 date: 2012-05-03 19:58
+day: 3rd
+month: May
+year: 2012
 author: ajcvickers
-comments: true
-categories: [Change Tracking, DbContext, DbContext API, DbSet.Add, DbSet.Attach, EF4.1, EF4.2, EF4.3, EF5, Entity Framework]
+permalink: 2012/05/03/the-key-to-addorupdate/
 ---
+
+# Entity Framework 5.0
+# The key to AddOrUpdate
+
 The <a href="http://msdn.microsoft.com/en-us/library/gg696418(v=vs.103).aspx">DbSet.Find</a> method provides an easy way to lookup an entity given its primary key. One place this can be useful is in an AddOrUpdate method when loading an entity which can then be updated with values from another application tier—for example, updating an entity with values from a client in a web application.
 
 However, it isn't so easy to do this in a generic way on any entity type without specific knowledge of which properties make up the primary key. This is something we will make easier in a future release of EF, but for now this blog post shows how to write some extension methods that make this process easier.

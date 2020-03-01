@@ -1,11 +1,18 @@
 ---
-layout: post
-title: So you want to contribute to EF? Part 2: The code
+layout: default
+title: "So you want to contribute to EF? Part 2: The code"
 date: 2012-07-19 09:20
+day: 19th
+month: July
+year: 2012
 author: ajcvickers
-comments: true
-categories: [EF6, Entity Framework, Open Source, OSS]
+permalink: 2012/07/19/so-you-want-to-contribute-to-ef-part-2-the-code/
 ---
+
+# Entity Framework 6.0
+# So you want to contribute to EF?
+# Part 2: The code
+
 This is the second part of a <a href="/2012/07/19/so-you-want-to-contribute-to-ef-part-1-introduction/">series</a> providing some background to those who may want make contributes to the Entity Framework. This post will cover the high-level organization of the code describing the assemblies created and some of the namespaces used.
 <h2>What is the code base like?</h2>
 The Entity Framework has been developed over a number of years by many developers at a big company. Some of the code dates back to the WinFS days. The result of this is a code base that is, to say the least, not as clean as it could be. Feel free to complain about this if you want. Better yet be constructive in suggesting ways to improve the code or submit contributions that make those improvements.

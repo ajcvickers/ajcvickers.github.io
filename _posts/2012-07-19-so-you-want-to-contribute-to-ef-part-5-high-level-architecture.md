@@ -1,11 +1,18 @@
 ---
-layout: post
-title: So you want to contribute to EF? Part 5: High-level architecture
+layout: default
+title: "So you want to contribute to EF? Part 5: High-level architecture"
 date: 2012-07-19 10:18
+day: 19th
+month: July
+year: 2012
 author: ajcvickers
-comments: true
-categories: [EF6, Entity Framework, Open Source, OSS]
+permalink: 2012/07/19/so-you-want-to-contribute-to-ef-part-5-high-level-architecture/
 ---
+
+# Entity Framework 6.0
+# So you want to contribute to EF?
+# Part 5: High-level architecture
+
 This is the fifth part of a <a href="/2012/07/19/so-you-want-to-contribute-to-ef-part-1-introduction/">series</a> providing some background to those who may want make contributes to the Entity Framework. In this post I'll give an extremely high-level overview of the EF architecture.
 <h2>The Entity Data Model</h2>
 The first thing to understand is that the EF is based on the concept of an Entity Data Model (EDM). Very roughly, this means that the EF is making use of several different representations (models) and much of the work it does is to move the data between those models using defined mappings.

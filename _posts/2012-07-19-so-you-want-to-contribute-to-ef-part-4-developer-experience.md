@@ -1,11 +1,18 @@
 ---
-layout: post
-title: So you want to contribute to EF? Part 4: Developer experience
+layout: default
+title: "So you want to contribute to EF? Part 4: Developer experience"
 date: 2012-07-19 09:39
+day: 19th
+month: July
+year: 2012
 author: ajcvickers
-comments: true
-categories: [EF6, Entity Framework, Open Source, OSS]
+permalink: 2012/07/19/so-you-want-to-contribute-to-ef-part-4-developer-experience/
 ---
+
+# Entity Framework 6.0
+# So you want to contribute to EF?
+# Part 4: Developer experience
+
 This is the fourth part of a <a href="/2012/07/19/so-you-want-to-contribute-to-ef-part-1-introduction/">series</a> providing some background to those who may want make contributes to the Entity Framework. In this post I'll talk a bit about maintaining a good experience for the developers who use EF.
 <h2>The focus on developer experience</h2>
 The current EF team is very focused on making EF enjoyable for developers to use. (It's hard to always get this right but that doesn't stop it being a priority.) This includes both the public APIs and the behavior. In particular, we spent a lot of time making DbContext, Code First, Migrations, and so on intuitive and easy to use. We spent a lot of time polishing the APIs, considering the concept count to get started, ensuring a good grow-up story from simple tasks to more complex scenarios, and so on.

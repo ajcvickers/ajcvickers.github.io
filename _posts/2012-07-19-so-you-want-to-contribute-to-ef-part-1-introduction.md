@@ -1,11 +1,18 @@
 ---
-layout: post
-title: So you want to contribute to EF? Part 1: Introduction
+layout: default
+title: "So you want to contribute to EF? Part 1: Introduction"
 date: 2012-07-19 09:16
+day: 19th
+month: July
+year: 2012
 author: ajcvickers
-comments: true
-categories: [EF6, Entity Framework, OSS]
+permalink: 2012/07/19/so-you-want-to-contribute-to-ef-part-1-introduction/
 ---
+
+# Entity Framework 6.0
+# So you want to contribute to EF?
+# Part 1: Introduction
+
 As you have probably heard <a href="https://docs.microsoft.com/archive/blogs/adonet/entity-framework-and-open-source">the Entity Framework source code is now available under an open source licens</a>e. This means that the EF team are ready and excited to take your contributions.
 
 The process for getting and building the EF code and for making contributions are documented on the <a href="http://entityframework.codeplex.com/documentation">EF CodePlex site</a>. This series does not cover that information again but instead gives some context to help you in working with the code. This is the same kind of information that you would get if you joined the EF team.

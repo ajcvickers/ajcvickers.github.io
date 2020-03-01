@@ -1,11 +1,17 @@
 ---
-layout: post
-title: Deleting orphans with Entity Framework
+layout: default
+title: "Deleting orphans with Entity Framework"
 date: 2012-06-02 18:18
+day: 2nd
+month: June
+year: 2012
 author: ajcvickers
-comments: true
-categories: [Cascade delete, Code First, Data Annotations, DbContext, DbContext API, EF4.1, EF4.2, EF4.3, EF5, Entity Framework, Foreign Keys]
+permalink: 2012/06/02/deleting-orphans-with-entity-framework/
 ---
+
+# Entity Framework 5.0
+# Deleting orphans with Entity Framework
+
 It is common for a single parent entity to be related to many child entities. This relationship may be <em>required </em>or <em>optional</em>. A  required relationship means that the child cannot exist without a parent, and if the parent is deleted or the relationship between the child and the parent is severed, then the child becomes orphaned. In such situations it is often useful to have the orphaned child automatically deleted.
 <h3>An example model</h3>
 Consider the following model representing students, report cards, and honors advisors.
