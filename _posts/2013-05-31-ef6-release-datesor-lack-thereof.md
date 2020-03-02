@@ -40,7 +40,7 @@ Not only can this be confusing, it is also often perceived negatively. For examp
 <h3>What I can tell you</h3>
 As explained above, I can't give exact dates. However, I can tell you that:
 <ul>
-	<li><a href="https://docs.microsoft.com/archive/blogs/adonet/2013/05/30/ef6-beta-1-available.aspx">EF6 beta 1</a> was released yesterday <img class="wlEmoticon wlEmoticon-smile" alt="Smile" src="http://oneunicorn.files.wordpress.com/2013/05/wlemoticon-smile.png" /></li>
+	<li><a href="https://docs.microsoft.com/archive/blogs/adonet/ef6-beta-1-available">EF6 beta 1</a> was released yesterday </li>
 	<li>We will make a release of EF6 with a “go-live” license before the end of the year</li>
 	<li>EF6 will RTM at the same time as the next version of Visual Studio</li>
 	<li>
