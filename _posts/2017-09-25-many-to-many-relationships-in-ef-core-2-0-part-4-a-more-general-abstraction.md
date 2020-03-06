@@ -88,7 +88,7 @@ public class JoinCollectionFacade<TEntity, TOtherEntity, TJoinEntity>
         => _collection.Any(e => Equals(item, e));
 
     public void CopyTo(TEntity[] array, int arrayIndex)
-        => this.ToList().CopyTo(array, arrayIndex);
+        => _collection.Select(e => ((IJoinEntity<TEntity>)e).Navigation).ToList().CopyTo(array, arrayIndex);
 
     public bool Remove(TEntity item)
         => _collection.Remove(
