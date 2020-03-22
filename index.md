@@ -39,6 +39,30 @@ However, this is my personal blog, and the opinions expressed here are my own.
 <div class="backing-purple">
 <div class="post-preview-10">
 
+## [Moving to Linux](/2020/03/07/movingtolinux1/)
+
+<div class="post-preview-30">
+
+A few weeks ago, I decided to move from Windows to Linux as my primary development platform.
+These posts are about my experience.
+
+Part 1: [Background and first impressions](/2020/03/07/movingtolinux1/)
+
+Part 2: [My life in operating systems](/2020/03/07/movingtolinux2/)
+
+Part 3: [Installation and day-to-day use](/2020/03/07/movingtolinux3/)
+
+Part 4: [Conclusions](/2020/03/07/movingtolinux4/)
+
+</div>
+</div>
+</div>
+
+---
+
+<div class="backing-purple">
+<div class="post-preview-10">
+
 ## [Welcome to One Unicorn 2.0!](/2020/02/29/1unicorn2/)
 
 <div class="post-preview-30">
@@ -193,6 +217,14 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 ## Software development
 
 <div class="post-preview-30">
+
+» [Moving to Linux - Part 4: Conclusions](/2020/03/07/movingtolinux4/)
+
+» [Moving to Linux - Part 3: Installation and day-to-day use](/2020/03/07/movingtolinux3/)
+
+» [Moving to Linux - Part 2: My life in operating systems](/2020/03/07/movingtolinux2/)
+
+» [Moving to Linux - Part 1: Background and first impressions](/2020/03/07/movingtolinux1/)
 
 » [Today was a good day at work](/2020/02/05/today-was-a-good-day-at-work/)
 
