@@ -39,6 +39,23 @@ However, this is my personal blog, and the opinions expressed here are my own.
 <div class="backing-purple">
 <div class="post-preview-10">
 
+## [All your versions are belong to us](/2020/03/26/numbersarehard/)
+
+<div class="post-preview-30">
+
+Totally made up conversations about choosing Entity Framework version numbers.
+
+[[Read more...](/2020/03/26/numbersarehard/)]
+
+</div>
+</div>
+</div>
+
+---
+
+<div class="backing-purple">
+<div class="post-preview-10">
+
 ## [Moving to Linux](/2020/03/07/movingtolinux1/)
 
 <div class="post-preview-30">
@@ -135,6 +152,8 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 » [EF6 SQL Logging](/2013/05/08/ef6-sql-logging-part-1-simple-logging/)
 
 » [EF6 DetectChanges](/2012/03/10/secrets-of-detectchanges-part-1-what-does-detectchanges-do/)
+
+» [All your versions are belong to us](/2020/03/26/numbersarehard/)
 
 </div>
 
