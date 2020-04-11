@@ -1,7 +1,7 @@
 ---
 layout: default
-day: 23rd
-month: February
+day: 10th
+month: April
 year: 2020
 ---
 
@@ -35,6 +35,28 @@ However, this is my personal blog, and the opinions expressed here are my own.
 </span>
 
 # Recent Posts
+
+<div class="backing-purple">
+<div class="post-preview-10">
+
+## [Hacking my Sixth Form College network in 1991](/2020/04/10/nimbus/)
+
+<div class="post-preview-30">
+
+Back in 1991 I was a student at Franklin Sixth Form College in Grimsby, England.
+(Roughly equivalent to being a junior in high school.)
+
+The system admin challenged me to hack the school LAN.
+
+This is what happened. 
+
+[[Read more...](/2020/04/10/nimbus/)]
+
+</div>
+</div>
+</div>
+
+---
 
 <div class="backing-purple">
 <div class="post-preview-10">
@@ -112,26 +134,6 @@ TL;DR:
 * Or Dapper.
 
 [[Read more...](/2020/01/29/coreor6/)]
-
-</div>
-</div>
-</div>
-
----
-
-<div class="backing-purple">
-<div class="post-preview-10">
-
-## [EF Core adoption is very healthy](/2020/01/29/coreadoption/)
-
-<div class="post-preview-30">
-
-I commonly see feedback from people assuming that EF Core is not heavily used.
-This isn't true.
-The internal usage numbers are <em>very</em> healthy.
-The number of people moving from previous EF Core releases to 3.1 is also very healthy.
-
-[[Read more...](/2020/01/29/coreadoption/)]
 
 </div>
 </div>
@@ -348,6 +350,8 @@ The number of people moving from previous EF Core releases to 3.1 is also very h
 ## Other things
 
 <div class="post-preview-30">
+
+» [Hacking my Sixth Form College network in 1991](/2020/04/10/nimbus/)
 
 » [Welcome to One Unicorn 2.0!](/2020/02/29/1unicorn2/)
 
