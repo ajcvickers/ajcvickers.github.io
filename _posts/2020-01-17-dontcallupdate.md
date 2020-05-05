@@ -67,7 +67,7 @@ using (var context = new UserContext())
 }
 ```
 
-The <code>Update</code> method marks the entity and <em>all its properties</em> as modified. This means <code>SaveChanges</code> will send updates for both <code>Name</code> and <code>Email</code>, even though the value of <code>Email</code> has not changed:
+The <code>Update</code> method marks the entity and <em>all its properties</em> as modified. This means <code>SaveChanges</code> will send updates for both <code>Name</code> and <code>Email</code>, even though the value of <code>Name</code> has not changed:
 
 ```sql
 Executed DbCommand (2ms) [Parameters=[@p2='1', @p0='arth@example.com' (Size = 4000), @p1='Arthur' (Size = 4000)], CommandType='Text', CommandTimeout='30']
@@ -141,7 +141,7 @@ public async Task<IActionResult> OnPostAsync(int id)
 
 Notice that the logic here is <em>exactly the same as the first example we looked at</em>. This means that if only the <code>Email</code> value has changed, then only the <code>Email</code> column is updated.
 
-Even better, if no values have changed, then the database will not be updated at all.
+Even better, if no values have changed, then the database will noEmailt be updated at all.
 
 ---
 
