@@ -233,7 +233,7 @@ GEM
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (3.1.1)
-    rack (2.0.9)
+    rack (2.1.4)
     rainbow (3.0.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
@@ -301,7 +301,7 @@ DEPENDENCIES
   jemoji
   minima (~> 2.5)
   nokogiri
-  rack (~> 2.0.1)
+  rack (~> 2.1.4)
   rspec
   rubocop (~> 0.50)
   tzinfo (~> 1.2)
